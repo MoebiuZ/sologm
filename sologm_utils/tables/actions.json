@@ -1,0 +1,504 @@
+{
+	"actions": [{
+		{
+			"id": 1,
+			"en_EN": "Abandon",
+			"es_ES": "Abandonar"
+		},
+		{
+			"id": 2,
+			"en_EN": "Accompany",
+			"es_ES": "Acompañar"
+		},
+		{
+			"id": 3,
+			"en_EN": "Activate",
+			"es_ES": "Activar"
+		},
+		{
+			"id": 4,
+			"en_EN": "Agree",
+			"es_ES": "Aceptar"
+		},
+		{
+			"id": 5,
+			"en_EN": "Ambush",
+			"es_ES": "Emboscar"
+		},
+		{
+			"id": 6,
+			"en_EN": "Arrive",
+			"es_ES": "Llegar"
+		},
+		{
+			"id": 7,
+			"en_EN": "Assist",
+			"es_ES": "Ayudar"
+		},
+		{
+			"id": 8,
+			"en_EN": "Attack",
+			"es_ES": "Atacar"
+		},
+		{
+			"id": 9,
+			"en_EN": "Attain",
+			"es_ES": ""
+		},
+		{
+			"id": 10,
+			"en_EN": "Bargain",
+			"es_ES": ""
+		},
+		{
+			"id": 11,
+			"en_EN": "Befriend",
+			"es_ES": "Hacerse amigo"
+		},
+		{
+			"id": 12,
+			"en_EN": "Bestow",
+			"es_ES": "Otorgar"
+		},
+		{
+			"id": 13,
+			"en_EN": "Betray",
+			"es_ES": "Traicionar"
+		},
+		{
+			"id": 14,
+			"en_EN": "Block",
+			"es_ES": "Bloquear"
+		},
+		{
+			"id": 15,
+			"en_EN": "Break",
+			"es_ES": "Romper"
+		},
+		{
+			"id": 16,
+			"en_EN": "Carry",
+			"es_ES": "Llevar"
+		},
+		{
+			"id": 17,
+			"en_EN": "Celebrate",
+			"es_ES": "Celebrar"
+		},
+		{
+			"id": 18,
+			"en_EN": "Change",
+			"es_ES": "Cambiar"
+		},
+		{
+			"id": 19,
+			"en_EN": "Close",
+			"es_ES": "Cerrar"
+		},
+		{
+			"id": 20,
+			"en_EN": "Combine",
+			"es_ES": "Combinar"
+		},
+		{
+			"id": 21,
+			"en_EN": "Communicate",
+			"es_ES": "Comunicar"
+		},
+		{
+			"id": 22,
+			"en_EN": "Conceal",
+			"es_ES": "Ocultar"
+		},
+		{
+			"id": 23,
+			"en_EN": "Continue",
+			"es_ES": "Continuar"
+		},
+		{
+			"id": 24,
+			"en_EN": "Control",
+			"es_ES": "Controlar"
+		},
+		{
+			"id": 25,
+			"en_EN": "Create",
+			"es_ES": "Crear"
+		},
+		{
+			"id": 26,
+			"en_EN": "Deceive",
+			"es_ES": "Engañar"
+		},
+		{
+			"id": 27,
+			"en_EN": "Decrease",
+			"es_ES": "Decrementar"
+		},
+		{
+			"id": 28,
+			"en_EN": "Defend",
+			"es_ES": "Defender"
+		},
+		{
+			"id": 29,
+			"en_EN": "Delay",
+			"es_ES": "Retrasar"
+		},
+		{
+			"id": 30,
+			"en_EN": "Deny",
+			"es_ES": "Negar"
+		},
+		{
+			"id": 31,
+			"en_EN": "Depart",
+			"es_ES": "Irse"
+		},
+		{
+			"id": 32,
+			"en_EN": "Deposit",
+			"es_ES": "Depositar"
+		},
+		{
+			"id": 33,
+			"en_EN": "Destroy",
+			"es_ES": "Destruir"
+		},
+		{
+			"id": 34,
+			"en_EN": "Dispute",
+			"es_ES": "Disputar"
+		},
+		{
+			"id": 35,
+			"en_EN": "Disrupt",
+			"es_ES": "Interrumpir"
+		},
+		{
+			"id": 36,
+			"en_EN": "Distrust",
+			"es_ES": "Desconfiar"
+		},
+		{
+			"id": 37,
+			"en_EN": "Divide",
+			"es_ES": "Dividir"
+		},
+		{
+			"id": 38,
+			"en_EN": "Drop",
+			"es_ES": "Tirar"
+		},
+		{
+			"id": 39,
+			"en_EN": "Easy",
+			"es_ES": "Facilitar"
+		},
+		{
+			"id": 40,
+			"en_EN": "Energize",
+			"es_ES": "Energizar"
+		},
+		{
+			"id": 41,
+			"en_EN": "Escape",
+			"es_ES": "Escapar"
+		},
+		{
+			"id": 42,
+			"en_EN": "Expose",
+			"es_ES": "Exponer"
+		},
+		{
+			"id": 43,
+			"en_EN": "Fail",
+			"es_ES": "Fallar"
+		},
+		{
+			"id": 44,
+			"en_EN": "Fight",
+			"es_ES": "Luchar"
+		},
+		{
+			"id": 45,
+			"en_EN": "Flee",
+			"es_ES": "Huir"
+		},
+		{
+			"id": 46,
+			"en_EN": "Free",
+			"es_ES": "Liberar"
+		},
+		{
+			"id": 47,
+			"en_EN": "Guide",
+			"es_ES": "Guiar"
+		},
+		{
+			"id": 48,
+			"en_EN": "Harm",
+			"es_ES": "Dañar"
+		},
+		{
+			"id": 49,
+			"en_EN": "Heal",
+			"es_ES": "Curar"
+		},
+		{
+			"id": 50,
+			"en_EN": "Hinder",
+			"es_ES": "Dificultar"
+		},
+		{
+			"id": 51,
+			"en_EN": "Imitate",
+			"es_ES": "Imitar"
+		},
+		{
+			"id": 52,
+			"en_EN": "Imprison",
+			"es_ES": "Aprisionar"
+		},
+		{
+			"id": 53,
+			"en_EN": "Increase",
+			"es_ES": "Incrementar"
+		},
+		{
+			"id": 54,
+			"en_EN": "Indulge",
+			"es_ES": "Complacer"
+		},
+		{
+			"id": 55,
+			"en_EN": "Inform",
+			"es_ES": "Informar"
+		},
+		{
+			"id": 56,
+			"en_EN": "Inquire",
+			"es_ES": "Preguntar"
+		},
+		{
+			"id": 57,
+			"en_EN": "Inspect",
+			"es_ES": "Inspeccionar"
+		},
+		{
+			"id": 58,
+			"en_EN": "Invade",
+			"es_ES": "Invadir"
+		},
+		{
+			"id": 59,
+			"en_EN": "Leave",
+			"es_ES": "Dejar"
+		},
+		{
+			"id": 60,
+			"en_EN": "Lure",
+			"es_ES": "Atraer"
+		},
+		{
+			"id": 61,
+			"en_EN": "Misuse",
+			"es_ES": "Usar mal"
+		},
+		{
+			"id": 62,
+			"en_EN": "Move",
+			"es_ES": "Mover"
+		},
+		{
+			"id": 63,
+			"en_EN": "Neglect",
+			"es_ES": "Descuidar"
+		},
+		{
+			"id": 64,
+			"en_EN": "Observe",
+			"es_ES": "Observar"
+		},
+		{
+			"id": 65,
+			"en_EN": "Open",
+			"es_ES": "Abrir"
+		},
+		{
+			"id": 66,
+			"en_EN": "Oppose",
+			"es_ES": "Oponerse"
+		},
+		{
+			"id": 67,
+			"en_EN": "Overthrow",
+			"es_ES": "Derribar"
+		},
+		{
+			"id": 68,
+			"en_EN": "Praise",
+			"es_ES": "Elogiar"
+		},
+		{
+			"id": 69,
+			"en_EN": "Proceed",
+			"es_ES": "Proceder"
+		},
+		{
+			"id": 70,
+			"en_EN": "Protect",
+			"es_ES": "Proteger"
+		},
+		{
+			"id": 71,
+			"en_EN": "Punish",
+			"es_ES": "Castigar"
+		},
+		{
+			"id": 72,
+			"en_EN": "Pursue",
+			"es_ES": "Perseguir"
+		},
+		{
+			"id": 73,
+			"en_EN": "Recruit",
+			"es_ES": "Reclutar"
+		},
+		{
+			"id": 74,
+			"en_EN": "Refuse",
+			"es_ES": "Rehusar"
+		},
+		{
+			"id": 75,
+			"en_EN": "Release",
+			"es_ES": "Liberar"
+		},
+		{
+			"id": 76,
+			"en_EN": "Relinquish",
+			"es_ES": "Renunciar"
+		},
+		{
+			"id": 77,
+			"en_EN": "Repair",
+			"es_ES": "Reparar"
+		},
+		{
+			"id": 78,
+			"en_EN": "Repulse",
+			"es_ES": "Repeler"
+		},
+		{
+			"id": 79,
+			"en_EN": "Return",
+			"es_ES": "Volver"
+		},
+		{
+			"id": 80,
+			"en_EN": "Reward",
+			"es_ES": "Recompensar"
+		},
+		{
+			"id": 81,
+			"en_EN": "Ruin",
+			"es_ES": "Arruinar"
+		},
+		{
+			"id": 82,
+			"en_EN": "Separate",
+			"es_ES": "Separar"
+		},
+		{
+			"id": 83,
+			"en_EN": "Start",
+			"es_ES": "Empezar"
+		},
+		{
+			"id": 84,
+			"en_EN": "Stop",
+			"es_ES": "Parar"
+		},
+		{
+			"id": 85,
+			"en_EN": "Strange",
+			"es_ES": "Alienar"
+		},
+		{
+			"id": 86,
+			"en_EN": "Struggle",
+			"es_ES": "Debatirse"
+		},
+		{
+			"id": 87,
+			"en_EN": "Succeed",
+			"es_ES": "Tener éxito"
+		},
+		{
+			"id": 88,
+			"en_EN": "Support",
+			"es_ES": "Apoyar"
+		},
+		{
+			"id": 89,
+			"en_EN": "Suppress",
+			"es_ES": "Contener/Rechazar"
+		},
+		{
+			"id": 90,
+			"en_EN": "Take",
+			"es_ES": "Coger"
+		},
+		{
+			"id": 91,
+			"en_EN": "Threaten",
+			"es_ES": "Amenazar"
+		},
+		{
+			"id": 92,
+			"en_EN": "Transform",
+			"es_ES": "Transformar"
+		},
+		{
+			"id": 93,
+			"en_EN": "Trap",
+			"es_ES": "Atrapar"
+		},
+		{
+			"id": 94,
+			"en_EN": "Travel",
+			"es_ES": "Viajar"
+		},
+		{
+			"id": 95,
+			"en_EN": "Triumph",
+			"es_ES": "Triunfar"
+		},
+		{
+			"id": 96,
+			"en_EN": "Truce",
+			"es_ES": "Tregua"
+		},
+		{
+			"id": 97,
+			"en_EN": "Trust",
+			"es_ES": "Confiar"
+		},
+		{
+			"id": 98,
+			"en_EN": "Use",
+			"es_ES": "Usar"
+		},
+		{
+			"id": 99,
+			"en_EN": "Usurp",
+			"es_ES": "Usurpar"
+		},
+		{
+			"id": 100,
+			"en_EN": "Waste",
+			"es_ES": "Desperdiciar"
+		},
+	}]
+}
