@@ -42,6 +42,12 @@ class AppController extends Controller
         parent::initialize();
 
         $this->loadComponent('Flash');
+	
+	$this->loadComponent('Auth', [
+		'loginRedirect' => [ 'controller' => 'PaginaCuandoLogeas', 'action' => 'index' ]
+		'logoutRedirect' => [ 'controller' => 'Paginaenlogout', 'action' => 'display', 'home' ]
+		]);
+
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
@@ -49,4 +55,8 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+   public function beforeFilter(Event $event) {
+      $this->Auth->allow(['index', 'view', 'display']);  // MIrar bien esto
+   }
 }
