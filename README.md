@@ -5,9 +5,6 @@ This is a web application to keep track of a Solo RPG campaign (journaling) and 
 
 ## Setup
 ```
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --requirement requirements.txt
+apt install php-mbstring php-mysql php-xml php-sqlite3 php-intl
 ```
 
-Please, edit sologm/setting.py and change SECRET_KEY with your own.
