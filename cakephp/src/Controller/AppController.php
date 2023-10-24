@@ -43,10 +43,10 @@ class AppController extends Controller
 
         $this->loadComponent('Flash');
 	
-	$this->loadComponent('Auth', [
-		'loginRedirect' => [ 'controller' => 'PaginaCuandoLogeas', 'action' => 'index' ]
-		'logoutRedirect' => [ 'controller' => 'Paginaenlogout', 'action' => 'display', 'home' ]
-		]);
+	//$this->loadComponent('Auth', [
+	//	'loginRedirect' => [ 'controller' => 'PaginaCuandoLogeas', 'action' => 'index' ],
+	//	'logoutRedirect' => [ 'controller' => 'Paginaenlogout', 'action' => 'display', 'home' ]
+	//	]);
 
 
         /*
@@ -56,7 +56,7 @@ class AppController extends Controller
         //$this->loadComponent('FormProtection');
     }
 
-   public function beforeFilter(Event $event) {
-      $this->Auth->allow(['index', 'view', 'display']);  // MIrar bien esto
-   }
+   //public function beforeFilter(Event $event) {
+  //    $this->Auth->allow(['index', 'view', 'display']);  // MIrar bien esto
+   //}
 }
