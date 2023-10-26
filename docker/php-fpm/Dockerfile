@@ -1,8 +1,7 @@
-#FROM phpdockerio/php74-fpm:latest
 FROM php:8.2-fpm
 # Install selected extensions and other stuff
 RUN apt-get update \
-    && apt-get -y --no-install-recommends install libicu-dev\
+    && apt-get -y --no-install-recommends install libicu-dev git unzip \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*\
     && docker-php-ext-install intl pdo_mysql mysqli \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"\

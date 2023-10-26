@@ -5,7 +5,7 @@ CREATE TABLE users (
     role VARCHAR(20) NOT NULL,
     name VARCHAR(255) NOT NULL,
     lastname VARCHAR(255),
-    enabled BOOL NOT NULL DEFAULT true,
+    enabled BOOL NOT NULL DEFAULT false,
     created DATETIME DEFAULT NULL,
     modified DATETIME DEFAULT NULL,
     last_login DATETIME DEFAULT NULL
