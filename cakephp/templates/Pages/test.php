@@ -15,7 +15,7 @@ $this->disableAutoLayout();
 
 </head>
 
-
+<p><?php echo date('Y-m-d H:i:s');  ?></p>
 <p>Yupiiii</p>
 
 <button id="edit" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
