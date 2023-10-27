@@ -9,7 +9,7 @@ CREATE TABLE users (
     created_date DATETIME NOT NULL,
     modified_date DATETIME DEFAULT NULL,
     last_login DATETIME DEFAULT NULL,
-    pref_theme ENUM("light", "dark") NOT ULL DEFAULT "light",
+    pref_theme ENUM("light", "dark") NOT NULL DEFAULT "light",
     pref_language ENUM("en_US", "es_ES") NOT NULL DEFAULT "en_US",
     PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8 ENGINE=InnoDB;  
@@ -29,7 +29,7 @@ CREATE TABLE campaigns (
 CREATE TABLE scenes (
     id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    order FLOAT UNIQUE NOT NULL,
+    pos FLOAT UNIQUE NOT NULL,
     created_date DATETIME NOT NULL,
     campaign_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
@@ -39,7 +39,7 @@ CREATE TABLE scenes (
 
 CREATE TABLE blocks (
     id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
-    order FLOAT UNIQUE NOT NULL,
+    pos FLOAT UNIQUE NOT NULL,
     created_date DATETIME NOT NULL,
     modified_date DATETIME NOT NULL,
     scene_id INT UNSIGNED NOT NULL,
