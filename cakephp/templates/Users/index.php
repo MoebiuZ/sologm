@@ -17,8 +17,8 @@
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('lastname') ?></th>
                     <th><?= $this->Paginator->sort('enabled') ?></th>
-                    <th><?= $this->Paginator->sort('created_date') ?></th>
-                    <th><?= $this->Paginator->sort('modified_date') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('last_login') ?></th>
                     <th><?= $this->Paginator->sort('pref_theme') ?></th>
                     <th><?= $this->Paginator->sort('pref_language') ?></th>
@@ -34,8 +34,8 @@
                     <td><?= h($user->name) ?></td>
                     <td><?= h($user->lastname) ?></td>
                     <td><?= h($user->enabled) ?></td>
-                    <td><?= h($user->created_date) ?></td>
-                    <td><?= h($user->modified_date) ?></td>
+                    <td><?= h($user->created) ?></td>
+                    <td><?= h($user->modified) ?></td>
                     <td><?= h($user->last_login) ?></td>
                     <td><?= h($user->pref_theme) ?></td>
                     <td><?= h($user->pref_language) ?></td>

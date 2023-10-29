@@ -28,9 +28,7 @@
                     echo $this->Form->control('name');
                     echo $this->Form->control('lastname');
                     echo $this->Form->control('enabled');
-                    echo $this->Form->control('created_date');
-                    echo $this->Form->control('modified_date', ['empty' => true]);
-                    echo $this->Form->control('last_login', ['empty' => true]);
+                    echo $this->Form->control('last_login');
                     echo $this->Form->control('pref_theme');
                     echo $this->Form->control('pref_language');
                 ?>

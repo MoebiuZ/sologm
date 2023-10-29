@@ -8,6 +8,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+
 /**
  * Users Model
  *
@@ -26,6 +27,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class UsersTable extends Table
 {
@@ -42,6 +45,8 @@ class UsersTable extends Table
         $this->setTable('users');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->hasMany('Campaigns', [
             'foreignKey' => 'user_id',
@@ -70,8 +75,6 @@ class UsersTable extends Table
 
         $validator
             ->scalar('role')
-            ->maxLength('role', 20)
-            ->requirePresence('role', 'create')
             ->notEmptyString('role');
 
         $validator
@@ -89,15 +92,6 @@ class UsersTable extends Table
         $validator
             ->boolean('enabled')
             ->notEmptyString('enabled');
-
-        $validator
-            ->dateTime('created_date')
-            ->requirePresence('created_date', 'create')
-            ->notEmptyDateTime('created_date');
-
-        $validator
-            ->dateTime('modified_date')
-            ->allowEmptyDateTime('modified_date');
 
         $validator
             ->dateTime('last_login')
@@ -128,4 +122,7 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+
+
 }

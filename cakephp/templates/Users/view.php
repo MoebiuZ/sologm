@@ -47,12 +47,12 @@
                     <td><?= $this->Number->format($user->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Created Date') ?></th>
-                    <td><?= h($user->created_date) ?></td>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($user->created) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Modified Date') ?></th>
-                    <td><?= h($user->modified_date) ?></td>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($user->modified) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Last Login') ?></th>
@@ -72,7 +72,8 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
                             <th><?= __('Chaos') ?></th>
-                            <th><?= __('Created Date') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <th><?= __('Modified') ?></th>
                             <th><?= __('User Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
@@ -81,7 +82,8 @@
                             <td><?= h($campaigns->id) ?></td>
                             <td><?= h($campaigns->name) ?></td>
                             <td><?= h($campaigns->chaos) ?></td>
-                            <td><?= h($campaigns->created_date) ?></td>
+                            <td><?= h($campaigns->created) ?></td>
+                            <td><?= h($campaigns->modified) ?></td>
                             <td><?= h($campaigns->user_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Campaigns', 'action' => 'view', $campaigns->id]) ?>
