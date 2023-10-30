@@ -15,7 +15,7 @@
                     <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('role') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('lastname') ?></th>
+                    <th><?= $this->Paginator->sort('last_name') ?></th>
                     <th><?= $this->Paginator->sort('enabled') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>

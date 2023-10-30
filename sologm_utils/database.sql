@@ -4,11 +4,12 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'user') NOT NULL DEFAULT "user",
     name VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
     enabled BOOL NOT NULL DEFAULT false,
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP DEFAULT NULL,
     last_login TIMESTAMP DEFAULT NULL,
+    activation_nonce VARCHAR(255),
     pref_theme ENUM("light", "dark") NOT NULL DEFAULT "light",
     pref_language ENUM("en_US", "es_ES") NOT NULL DEFAULT "en_US",
     PRIMARY KEY (id)

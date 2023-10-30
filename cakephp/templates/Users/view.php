@@ -31,8 +31,8 @@
                     <td><?= h($user->name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Lastname') ?></th>
-                    <td><?= h($user->lastname) ?></td>
+                    <th><?= __('Last name') ?></th>
+                    <td><?= h($user->last_name) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Pref Theme') ?></th>

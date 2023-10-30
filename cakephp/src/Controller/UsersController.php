@@ -10,6 +10,14 @@ namespace App\Controller;
  */
 class UsersController extends AppController
 {
+
+    function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('Dice');
+    }
+
+
     /**
      * Index method
      *
@@ -21,6 +29,7 @@ class UsersController extends AppController
         $users = $this->paginate($query);
 
         $this->set(compact('users'));
+   
     }
 
     /**
@@ -43,6 +52,7 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $this->Authorization->skipAuthorization();
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -98,22 +108,44 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function beforeFilter(\Cake\Event\EventInterface $event)
+
+    /**
+     * Signup method
+     *
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     */
+    public function signup()
     {
-        parent::beforeFilter($event);
-        // Configure the login action to not require authentication, preventing
-        // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login']);
-       
+        $this->Authorization->skipAuthorization();
+        $user = $this->Users->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+        $this->set(compact('user'));
     }
 
     public function login()
     {
+        $this->Authorization->skipAuthorization();
+
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
         if ($result && $result->isValid()) {
-            // redirect to /articles after login success
+            $identity = $this->Authentication->getIdentity();
+
+            $user = $this->Users->get($identity->id);
+            $user->last_login = date('Y-m-d H:i:s');
+            // To avoid modified date being updated when last_login is updated (due to TimestampBehaviour)
+            $user->setDirty('modified', true);
+            $this->Users->save($user);
+
             $redirect = $this->request->getQuery('redirect', [
                 'controller' => 'users',
                 'action' => 'index',
@@ -125,5 +157,27 @@ class UsersController extends AppController
         if ($this->request->is('post') && !$result->isValid()) {
             $this->Flash->error(__('Invalid username or password'));
         }
+    }
+
+
+    public function logout()
+    {
+        $this->Authorization->skipAuthorization();
+
+        $result = $this->Authentication->getResult();
+        // regardless of POST or GET, redirect if user is logged in
+        if ($result && $result->isValid()) {
+            $this->Authentication->logout();
+            return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        }
+    }
+
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // Configure the login action to not require authentication, preventing
+        // the infinite redirect loop issue
+        $this->Authentication->addUnauthenticatedActions(['login', 'signup']);
+           
     }
 }

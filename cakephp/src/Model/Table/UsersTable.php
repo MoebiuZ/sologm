@@ -73,6 +73,8 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
 
+        $validator->sameAs('confirm_password', 'password', __('Password confirmation does not match'));
+
         $validator
             ->scalar('role')
             ->notEmptyString('role');
@@ -96,6 +98,10 @@ class UsersTable extends Table
         $validator
             ->dateTime('last_login')
             ->allowEmptyDateTime('last_login');
+
+        $validator
+            ->scalar('activation_nonce')
+            ->maxLength('activation_nonce', 255);
 
         $validator
             ->scalar('pref_theme')
