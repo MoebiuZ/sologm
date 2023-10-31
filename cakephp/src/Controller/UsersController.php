@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Mailer\Mailer;
+
 /**
  * Users Controller
  *
@@ -25,6 +27,7 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->Authorization->skipAuthorization();
         $query = $this->Users->find();
         $users = $this->paginate($query);
 
@@ -41,7 +44,9 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id, contain: ['Campaigns']);
+        $user = $this->Users->get($id); //, contain: ['Campaigns']);
+        $this->Authorization->authorize($user);
+
         $this->set(compact('user'));
     }
 
@@ -51,9 +56,9 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
-        $this->Authorization->skipAuthorization();
+    {       
         $user = $this->Users->newEmptyEntity();
+        $this->Authorization->authorize($user);
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -76,6 +81,7 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, contain: []);
+        $this->Authorization->authorize($user);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -99,6 +105,7 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
+        $this->Authorization->authorize($user);
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
@@ -128,6 +135,12 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
+
+        $mailer = new Mailer(['transport' => 'mailhog']);
+        $mailer->setFrom(['me@example.com' => 'My Site'])
+            ->setTo('you@example.com')
+            ->setSubject('About')
+            ->deliver('My message');
     }
 
     public function login()

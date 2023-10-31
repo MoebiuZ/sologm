@@ -21,7 +21,7 @@ class UserCommand extends Command
             $parser->addArgument('name', [
             'help' => __('What is your name'),
             ]);
-            $parser->addArgument('lastname', [
+            $parser->addArgument('last_name', [
             'help' => __('What is your last name'),
         ]);
         return $parser;
@@ -35,8 +35,9 @@ class UserCommand extends Command
         $email = $args->getArgument('email');
         $user->email = $email;
         $user->name = $args->getArgument('name');
-        $user->lastname =  $args->getArgument('lastname');
+        $user->last_name =  $args->getArgument('last_name');
         $user->enabled = true;
+        $user->role = "admin";
 
         $this->fetchTable()->save($user);
 

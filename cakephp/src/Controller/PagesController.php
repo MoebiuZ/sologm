@@ -31,6 +31,7 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
+
     /**
      * Displays a view
      *
@@ -45,6 +46,8 @@ class PagesController extends AppController
      */
     public function display(string ...$path): ?Response
     {
+        $this->Authorization->skipAuthorization();
+
         if (!$path) {
             return $this->redirect('/');
         }
@@ -59,6 +62,7 @@ class PagesController extends AppController
         if (!empty($path[1])) {
             $subpage = $path[1];
         }
+
         $this->set(compact('page', 'subpage'));
 
         try {

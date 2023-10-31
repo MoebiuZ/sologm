@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 use Authentication\PasswordHasher\DefaultPasswordHasher; 
+use Authorization\IdentityInterface;
 
 use Cake\ORM\Entity;
 
@@ -67,4 +68,6 @@ class User extends Entity
             return (new DefaultPasswordHasher())->hash($password);
         }
     }
+
+
 }
