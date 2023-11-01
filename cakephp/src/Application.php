@@ -21,7 +21,7 @@ use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
-use App\Command\UserCommand;
+use App\Command\UserNewAdminCommand;
 use App\Command\VersionCommand;
 use Cake\Console\CommandCollection;
 use Cake\Http\Middleware\BodyParserMiddleware;
@@ -34,6 +34,7 @@ use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
+use Authentication\Identifier\AbstractIdentifier;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use Authorization\AuthorizationService;
@@ -42,8 +43,7 @@ use Authorization\AuthorizationServiceProviderInterface;
 use Authorization\Middleware\AuthorizationMiddleware;
 use Authorization\Policy\OrmResolver;
 use Psr\Http\Message\ResponseInterface;
-
-
+use Cake\Http\Middleware\EncryptedCookieMiddleware;
 
 
 /**
@@ -110,16 +110,25 @@ class Application extends BaseApplication
                 'httponly' => true,
             ]))
             
+            ->add(new EncryptedCookieMiddleware(
+                ['CookieAuth'],
+                Configure::read('Security.cookieKey')
+            ))
             ->add(new AuthenticationMiddleware($this))
             ->add(new AuthorizationMiddleware($this));
-
-            
+          
 
         return $middlewareQueue;
     }
 
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
+
+        $fields = [
+            AbstractIdentifier::CREDENTIAL_USERNAME => 'email',
+            AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
+        ];
+
         $authenticationService = new AuthenticationService([
             'unauthenticatedRedirect' => Router::url('/users/login'),
             'queryParam' => 'redirect',
@@ -127,21 +136,21 @@ class Application extends BaseApplication
 
         // Load identifiers, ensure we check email and password fields
         $authenticationService->loadIdentifier('Authentication.Password', [
-            'fields' => [
-                'username' => 'email',
-                'password' => 'password',
-            ],
+            'fields' => $fields
         ]);
 
         // Load the authenticators, you want session first
         $authenticationService->loadAuthenticator('Authentication.Session');
         // Configure form data check to pick email and password
         $authenticationService->loadAuthenticator('Authentication.Form', [
-            'fields' => [
-                'username' => 'email',
-                'password' => 'password',
-            ],
+            'fields' => $fields,
             'loginUrl' => Router::url('/users/login'),
+        ]);
+
+        // If the user is on the login page, check for a cookie as well.
+        $authenticationService->loadAuthenticator('Authentication.Cookie', [
+            'fields' => $fields,
+            'loginUrl' => '/users/login',
         ]);
 
         return $authenticationService;
@@ -164,13 +173,12 @@ class Application extends BaseApplication
     public function services(ContainerInterface $container): void
     {
     }
-/*
+
     public function console(CommandCollection $commands): CommandCollection
     {
-        // Add by classname
-       // $commands->add('user', UserCommand::class);
         $commands->autoDiscover();
+        $commands->add('user newadmin', UserNewAdminCommand::class);
         return $commands;
-    } */
+    } 
 
 }

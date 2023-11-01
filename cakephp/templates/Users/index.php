@@ -32,7 +32,7 @@
                     <td><?= h($user->email) ?></td>
                     <td><?= h($user->role) ?></td>
                     <td><?= h($user->name) ?></td>
-                    <td><?= h($user->lastname) ?></td>
+                    <td><?= h($user->last_name) ?></td>
                     <td><?= h($user->enabled) ?></td>
                     <td><?= h($user->created) ?></td>
                     <td><?= h($user->modified) ?></td>

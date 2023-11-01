@@ -9,7 +9,7 @@ CREATE TABLE users (
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP DEFAULT NULL,
     last_login TIMESTAMP DEFAULT NULL,
-    activation_nonce VARCHAR(255),
+    activation_nonce VARCHAR(65),
     pref_theme ENUM("light", "dark") NOT NULL DEFAULT "light",
     pref_language ENUM("en_US", "es_ES") NOT NULL DEFAULT "en_US",
     PRIMARY KEY (id)

@@ -36,6 +36,15 @@ Edit `app_local.php` with your database settings:
                 ],
         ...
 ```
+- Add a cookieKey after salt (to encrypt cookies):
+'''
+...
+    'Security' => [
+        'salt' => env('SECURITY_SALT', 'your salt here'),
+        'cookieKey' => env('SECURITY_COOKIE_KEY', 'put your cookie key here'),
+    ],
+...
+'''
 
 ```
 cd docker
@@ -57,5 +66,5 @@ sudo docker exec -ti sologm-php-fpm composer update
 Add an admin user:
 ```
 cd cakephp
-sudo docker exec -ti sologm-php-fpm bin/cake user YOUR_EMAIL YOUR_NAME YOUR_LASTNAME
+sudo docker exec -ti sologm-php-fpm bin/cake user newadmin ADMIN_EMAIL ADMIN_NAME ADMIN_LASTNAME
 ```

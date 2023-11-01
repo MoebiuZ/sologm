@@ -77,6 +77,8 @@ class UsersTable extends Table
 
         $validator
             ->scalar('role')
+            ->inList('role', ['user','admin'])
+            ->requirePresence('role', 'create')
             ->notEmptyString('role');
 
         $validator
@@ -86,10 +88,10 @@ class UsersTable extends Table
             ->notEmptyString('name');
 
         $validator
-            ->scalar('lastname')
-            ->maxLength('lastname', 255)
-            ->requirePresence('lastname', 'create')
-            ->notEmptyString('lastname');
+            ->scalar('last_name')
+            ->maxLength('last_name', 255)
+            ->requirePresence('last_name', 'create')
+            ->notEmptyString('last_name');
 
         $validator
             ->boolean('enabled')
@@ -98,6 +100,10 @@ class UsersTable extends Table
         $validator
             ->dateTime('last_login')
             ->allowEmptyDateTime('last_login');
+
+        $validator
+            ->scalar('activation_nonce')
+            ->maxLength('activation_nonce', 36);
 
         $validator
             ->scalar('activation_nonce')

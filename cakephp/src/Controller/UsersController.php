@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Utility\Text;
 use Cake\Mailer\Mailer;
+
 
 /**
  * Users Controller
@@ -62,11 +64,11 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('The user has been created.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user could not be saved. Please, try again.') . $this->ValidationErrors);
         }
         $this->set(compact('user'));
     }
@@ -126,21 +128,26 @@ class UsersController extends AppController
         $this->Authorization->skipAuthorization();
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
+            $activation_nonce = Text::uuid();
+            $user->activation_nonce = $activation_nonce;
+            
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('The user has been created.'));
+
+                $mailer = new Mailer(['transport' => 'mailhog']);
+                $mailer->setFrom(['me@example.com' => 'My Site'])
+                    ->setTo('you@example.com')
+                    ->setSubject('About')
+                    ->deliver("este es tu codigo" . $activation_nonce);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user could not be created. Please, try again.'));
         }
         $this->set(compact('user'));
 
-        $mailer = new Mailer(['transport' => 'mailhog']);
-        $mailer->setFrom(['me@example.com' => 'My Site'])
-            ->setTo('you@example.com')
-            ->setSubject('About')
-            ->deliver('My message');
+
     }
 
     public function login()
@@ -161,7 +168,8 @@ class UsersController extends AppController
 
             $redirect = $this->request->getQuery('redirect', [
                 'controller' => 'users',
-                'action' => 'index',
+                'action' => 'view', 
+                $user->id
             ]);
 
             return $this->redirect($redirect);
@@ -185,12 +193,21 @@ class UsersController extends AppController
         }
     }
 
+
+    public function activate($activation_code  = "")
+    {
+        $this->Authorization->skipAuthorization();
+
+        $this->set(compact('activation_code'));
+    }
+
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login', 'signup']);
+        $this->Authentication->addUnauthenticatedActions(['pages/home', 'login', 'signup', 'activate']);
            
     }
+
 }

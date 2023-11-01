@@ -8,7 +8,7 @@ use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 
-class UserCommand extends Command
+class UserNewAdminCommand extends Command
 {
 
     protected ?string $defaultTable = 'Users';
@@ -16,13 +16,13 @@ class UserCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser->addArgument('email', [
-            'help' => __('What is your email'),
+            'help' => __('Admin email'),
         ]);
-            $parser->addArgument('name', [
-            'help' => __('What is your name'),
+        $parser->addArgument('name', [
+            'help' => __('Admin name'),
             ]);
-            $parser->addArgument('last_name', [
-            'help' => __('What is your last name'),
+        $parser->addArgument('last_name', [
+            'help' => __('Admin last name'),
         ]);
         return $parser;
     }
