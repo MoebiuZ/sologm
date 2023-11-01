@@ -36,7 +36,7 @@ $title = 'Solo GM';
 
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-footer-fixed layout-nav-fixed ">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-footer-fixed layout-navbar-fixed">
     <div class="wrapper">
         <!-- navvbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -46,10 +46,10 @@ $title = 'Solo GM';
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="/" class="nav-link"><?= __('Home') ?></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link"><?= __('Help') ?></a>
                 </li>
             </ul>
 
@@ -190,7 +190,7 @@ $title = 'Solo GM';
 
     </div>
 
-<?= $this->Html->script(['jquery-3.6.0.min', 'bootstrap4.bundle.min', 'adminlte.min', 'sologm']) ?>
+<?= $this->Html->script(['jquery-3.6.0.min', 'bootstrap.bundle.min', 'adminlte.min', 'sologm']) ?>
 <?php $this->fetch('script') ?>
 </body>
 

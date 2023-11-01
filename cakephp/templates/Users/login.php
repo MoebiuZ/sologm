@@ -4,7 +4,7 @@
 
 <?= $this->Flash->render() ?>
 
-<div class="card" > <!--style="max-width: 450px;">-->
+<div class="card" style="max-width: 350px;">
     
     <div class="card-header">
         <h3 class="card-title"><?= __('Sign in') ?></h3>
@@ -13,7 +13,7 @@
         <?= $this->Form->create() ?>
         <fieldset>
             <div class="input-group mb-3">
-                <?= $this->Form->text('email', ['required' => true, 'class' => 'form-control', 'placeholder' => 'email']) ?>
+                <?= $this->Form->email('email', ['required' => true, 'class' => 'form-control', 'placeholder' => 'email']) ?>
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -28,9 +28,9 @@
                     </div>
                 </div>
             </div>
-            <div class="form-check form-switch">
-                <?= $this->Form->checkbox('remember_me', ['type' => 'checkbox', 'class' => 'form-check-input']) ?>
-                <?= $this->Form->label('remember_me', __("Remember me"), ['class' => 'form-check.label']); ?>
+            <div class="custom-control custom-switch mb-3">
+                <?= $this->Form->checkbox('remember_me', ['class' => 'custom-control-input', 'id' => 'remembermeSwitch']) ?>
+                <?= $this->Form->label('remember_me', __("Remember me"), ['class' => 'custom-control-label', 'for' => 'remembermeSwitch']); ?>
             </div>
                
         </fieldset>

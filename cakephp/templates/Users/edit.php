@@ -4,36 +4,80 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
+
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column column-80">
-        <div class="users form content">
-            <?= $this->Form->create($user) ?>
-            <fieldset>
-                <legend><?= __('Edit User') ?></legend>
-                <?php
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('password');
-                    echo $this->Form->control('role');
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('last_name');
-                    echo $this->Form->control('enabled');
-                    echo $this->Form->control('pref_theme');
-                    echo $this->Form->control('pref_language');
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
+<div class="mx-auto"> 
+
+<?= $this->Flash->render() ?>
+
+<div class="card card-info" style="width: 350px;">
+    
+    <div class="card-header">
+        <h3 class="card-title"><?= __('Edit user') ?></h3>
+    </div>
+    <div class="card-body ">
+        <?= $this->Form->create($user) ?>
+        <fieldset>
+            <div class="form-group mb-3">
+                <?= $this->Form->label(__('Name')) ?>
+                <?= $this->Form->text('name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Name')]) ?>
+            </div>
+            <div class="form-group mb-3">
+                <?= $this->Form->label(__('Last name')) ?>
+                <?= $this->Form->text('last_name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Last name')]) ?>
+            </div>
+            <div class="form-group mb-3">
+                <?= $this->Form->label(__('Email')) ?>
+                <div class="input-group">
+                    <?= $this->Form->email('email', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Email')]) ?>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <?= $this->Form->label(__('Password')) ?>
+                <div class="input-group">
+                    <?= $this->Form->password('password', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Password')]) ?>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <?= $this->Form->label(__('Confirm password')) ?>
+                <div class="input-group">
+                    <?= $this->Form->password('confirm_password', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Confirm password')]) ?>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <?= $this->Form->label('role', __("Role"), ['class' => 'form-group-label']); ?>
+                <?= $this->Form->select('role', ['user' => __('User'), 'admin' => __('Admin')], ['class' => 'custom-select']) ?>
+                
+            </div>
+            <div class="custom-control custom-switch mb-3">
+                <?= $this->Form->checkbox('enabled', ['class' => 'custom-control-input', 'id' => 'enabledSwitch']) ?>
+                <?= $this->Form->label('enabled', __("Enabled"), ['class' => 'custom-control-label', 'for' => "enabledSwitch"]); ?>
+            </div>
+
+         </fieldset>
+        <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-primary btn-block')); ?>
+        <?= $this->Form->end() ?>
+
+
     </div>
 </div>
+
+</div>
+</div>
+
+
