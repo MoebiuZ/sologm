@@ -49,8 +49,6 @@ cp cakephp/config/app_local.example.php cakephp/config/app_local.php
 ```
 cd docker
 sudo docker-compose up -d
-cd ../cakephp
-sudo docker exec -ti sologm-php-fpm composer install
 cd ..
 sudo docker exec -i sologm-mysql mysql -uYOUR_DB_USER -pYOUR_DB_PASSWORD YOUR_DB_NAME < sologm_utils/database.sql
 ```
