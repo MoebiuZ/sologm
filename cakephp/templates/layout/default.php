@@ -53,8 +53,9 @@ $title = 'Solo GM';
                 </li>
             </ul>
 
+            <?php if ($this->Identity->isLoggedIn()) : ?>
             <ul class="navbar-nav ml-auto">
-
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" data-slide="true" href="#" role="button">
                             <?= $this->Html->Image('user.jpg', array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px')) ?>
@@ -83,7 +84,9 @@ $title = 'Solo GM';
 
                 </li>
             </ul>
+            <?php endif; ?>
         </nav>
+        
         <!-- navvbar -->
 
         <!-- sidebar -->
@@ -103,7 +106,7 @@ $title = 'Solo GM';
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Starter Pages
+                                    <?=__('Campaigns') ?>
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -111,13 +114,13 @@ $title = 'Solo GM';
                                 <li class="nav-item">
                                     <a href="#" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Active Page</p>
+                                        <p><?=__('Campaign 1') ?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Inactive Page</p>
+                                        <p><?=__('Campaign 2') ?></p>
                                     </a>
                                 </li>
                             </ul>
@@ -126,7 +129,7 @@ $title = 'Solo GM';
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Simple Link
+                                <?=__('Scene 1') ?>
                                     <span class="right badge badge-danger">New</span>
                                 </p>
                             </a>

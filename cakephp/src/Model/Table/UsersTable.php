@@ -53,6 +53,12 @@ class UsersTable extends Table
         ]);
     }
 
+    
+    public function findEnabled(SelectQuery $query, array $options): SelectQuery
+    {
+        return $query->where(['enabled' => true]);
+    }
+
     /**
      * Default validation rules.
      *

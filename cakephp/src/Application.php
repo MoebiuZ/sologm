@@ -129,14 +129,22 @@ class Application extends BaseApplication
             AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
         ];
 
+        $resolver = [
+            'className' => 'Authentication.Orm',
+            'userModel' => 'Users',
+            'finder' => 'enabled'
+        ];
+
         $authenticationService = new AuthenticationService([
             'unauthenticatedRedirect' => Router::url('/users/login'),
             'queryParam' => 'redirect',
         ]);
 
+
         // Load identifiers, ensure we check email and password fields
         $authenticationService->loadIdentifier('Authentication.Password', [
-            'fields' => $fields
+            'fields' => $fields,
+            'resolver' => $resolver
         ]);
 
         // Load the authenticators, you want session first
