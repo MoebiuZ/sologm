@@ -36,7 +36,7 @@ $title = 'Solo GM';
 
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-footer-fixed layout-navbar-fixed">
+<body class="hold-transition <?php if ($this->Identity->isLoggedIn()) : ?> sidebar-mini <?php endif; ?> sidebar-collapse layout-fixed layout-footer-fixed layout-navbar-fixed">
     <div class="wrapper">
         <!-- navvbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -90,6 +90,7 @@ $title = 'Solo GM';
         <!-- navvbar -->
 
         <!-- sidebar -->
+        <?php if ($this->Identity->isLoggedIn()) : ?>
         <aside class="main-sidebar nav-collapse-hide-child nav-child-indent sidebar-dark-primary elevation-4">
 
             <a href="index3.html" class="brand-link">
@@ -140,6 +141,7 @@ $title = 'Solo GM';
             </div>
 
         </aside>
+        <?php endif; ?>
         <!-- sidebar -->
 
         <!-- content -->

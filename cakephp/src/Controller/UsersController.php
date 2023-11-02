@@ -136,19 +136,49 @@ class UsersController extends AppController
                 $this->Flash->success(__('The user has been created.'));
 
                 $mailer = new Mailer(['transport' => 'mailhog']);
-                $mailer->setFrom(['me@example.com' => 'My Site'])
-                    ->setTo('you@example.com')
-                    ->setSubject('About')
-                    ->deliver("este es tu codigo" . $activation_nonce);
+                $mailer->setFrom(['sologm@fakeemail.foo' => 'Solo GM'])
+                    ->setTo($user->email)
+                    ->setSubject(__('Activation code'))
+                    ->deliver(__('This is your activation code: ') . $activation_nonce);
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'activate']);
             }
             $this->Flash->error(__('The user could not be created. Please, try again.'));
         }
         $this->set(compact('user'));
-
-
     }
+
+
+    public function activate()
+    {
+        $this->Authorization->skipAuthorization();
+
+        $this->request->allowMethod(['get', 'post']);
+
+        $request = $this->request->getData('activation_nonce');
+
+        if ($request) {
+            $result = $this->Users
+            ->find()
+            ->where(['activation_nonce = ' => $request])
+            ->all();
+
+            if (sizeof($result) == 0) {
+                $this->Flash->error(__('This activation code does not exist'));
+            } else {
+              
+                foreach ($result as $user) {
+                    $user->enabled = true;
+                    $user->activation_nonce = null;
+                    $this->Users->save($user);
+                }
+
+                $this->Flash->success(__('Your user was activated'));
+                $this->redirect(['controller' => 'Users', 'action' => 'login']);
+            }
+        }
+    }
+
 
     public function login()
     {
@@ -193,13 +223,6 @@ class UsersController extends AppController
         }
     }
 
-
-    public function activate($activation_code  = "")
-    {
-        $this->Authorization->skipAuthorization();
-
-        $this->set(compact('activation_code'));
-    }
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
