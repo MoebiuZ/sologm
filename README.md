@@ -50,7 +50,7 @@ cp cakephp/config/app_local.example.php cakephp/config/app_local.php
 cd docker
 sudo docker-compose up -d
 cd ..
-sudo docker exec -i sologm-mysql mysql -uYOUR_DB_USER -pYOUR_DB_PASSWORD YOUR_DB_NAME < sologm_utils/database.sql
+sudo docker exec -i sologm-mysql mysql -uYOUR_DB_USER -pYOUR_DB_PASSWORD YOUR_DB_NAME < misc/database.sql
 ```
 
 Install CakePHP dependencies:
@@ -63,6 +63,5 @@ sudo docker exec -ti sologm-php-fpm composer update
 
 Add an admin user:
 ```
-cd cakephp
 sudo docker exec -ti sologm-php-fpm bin/cake user newadmin ADMIN_EMAIL ADMIN_NAME ADMIN_LASTNAME
 ```
