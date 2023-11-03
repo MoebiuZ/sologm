@@ -28,7 +28,6 @@ cp cakephp/config/app_local.example.php cakephp/config/app_local.php
  'EmailTransport' => [
         ...
         'mailhog' => [
-                    # These are default settings for the MailHog container - make sure it's running first
                     'className' => 'Smtp',
                     'host' => 'sologm-mailhog',
                     'port' => 1025,
