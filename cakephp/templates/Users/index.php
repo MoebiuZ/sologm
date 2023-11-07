@@ -4,11 +4,13 @@
  * @var iterable<\App\Model\Entity\User> $users
  */
 ?>
-<div class="users index content">
-    <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+<div class="card index content">
+    <div class="card-header">
+    <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'btn btn-primary float-right']) ?>
     <h3><?= __('Users') ?></h3>
-    <div class="table table-striped">
-        <table>
+</diV>
+    <div class="card-body">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
@@ -43,14 +45,16 @@
             </tbody>
         </table>
     </div>
-    <div class="paginator">
+    <div class="card-footer clear-fix">
+        <div>
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<i class="fa-solid fa-backward"></i>' , ['escape' => false]) ?>
+            <?= $this->Paginator->prev('<i class="fa-solid fa-caret-left"></i>',  ['escape' => false]) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next('<i class="fa-solid fa-caret-right"></i>', ['escape' => false]) ?>
+            <?= $this->Paginator->last('<i class="fa-solid fa-forward"></i>', ['escape' => false]) ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+                    </div>
+        <div class="float-right"><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></div>
     </div>
 </div>

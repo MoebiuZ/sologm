@@ -15,6 +15,15 @@ use Cake\Mailer\Mailer;
 class UsersController extends AppController
 {
 
+
+    protected array $paginate = [
+        'limit' => 20,
+        'order' => [
+            'Users.id' => 'asc',
+        ],
+    ];
+
+
     function initialize(): void
     {
         parent::initialize();
@@ -85,7 +94,12 @@ class UsersController extends AppController
         $user = $this->Users->get($id, contain: []);
         $this->Authorization->authorize($user);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $data = $this->request->getData();
+            if ($data['password'] == '') {
+                unset($data['password']);
+                unset($data['confirm_password']);
+            }
+            $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -93,6 +107,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
+        
         $this->set(compact('user'));
     }
 

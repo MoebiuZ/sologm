@@ -4,7 +4,6 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-
 <div class="row">
     <div class="mx-auto"> 
         <?= $this->Flash->render() ?>
@@ -42,7 +41,7 @@
                     <div class="form-group mb-3">
                         <?= $this->Form->label(__('Password')) ?>
                         <div class="input-group">
-                            <?= $this->Form->password('password', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Password')]) ?>
+                            <?= $this->Form->password('password', ['required' => false, 'value' => '', 'class' => 'form-control', 'placeholder' => __('Leave empty to not change')]) ?>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -53,7 +52,7 @@
                     <div class="form-group mb-3">
                         <?= $this->Form->label(__('Confirm password')) ?>
                         <div class="input-group">
-                            <?= $this->Form->password('confirm_password', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Confirm password')]) ?>
+                            <?= $this->Form->password('confirm_password', ['required' => false, 'class' => 'form-control', 'placeholder' => __('Leave empty to not change')]) ?>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -74,8 +73,6 @@
                 </fieldset>
                 <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-primary btn-block')); ?>
                 <?= $this->Form->end() ?>
-
-
             </div>
         </div>
     </div>

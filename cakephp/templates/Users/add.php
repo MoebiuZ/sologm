@@ -5,30 +5,52 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column column-80">
-        <div class="users form content">
-            <?= $this->Form->create($user) ?>
-            <fieldset>
-                <legend><?= __('Add User') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('last_name');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('password', ['type' => 'password']);
-                    echo $this->Form->control('confirm_password', ['type' => 'password']);
-                    echo $this->Form->control('role', [
-                        'options' => ['admin' => __('Admin'), 'user' => __('User')]
-                    ]);
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
+    <div class="mx-auto"> 
+        <?= $this->Flash->render() ?>
+    </div>
+</div>
+<div class="row">
+    <div class="mx-auto col-auto">
+        <div class="card card-info" style="width: 350px;">
+            <div class="card-header">
+                <h3 class="card-title"><?= __('New user') ?></h3>
+            </div>
+
+            <div class="card-body">
+                <?= $this->Form->create($user) ?>
+                <fieldset>
+                    <div class="form-group mb-3">
+                        <?= $this->Form->label(__('Name')) ?>
+                        <?= $this->Form->text('name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Name')]) ?>
+                    </div>
+                    <div class="form-group mb-3">
+                        <?= $this->Form->label(__('last_name')) ?>
+                        <?= $this->Form->text('last_name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Last name')]) ?>
+                    </div>
+                    <div class="form-group mb-3">
+                        <?= $this->Form->label(__('Email')) ?>
+                        <?= $this->Form->text('email', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Email')]) ?>
+                    </div>
+                    <div class="form-group mb-3">
+                        <?= $this->Form->label(__('Password')) ?>
+                        <?= $this->Form->text('password', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Password')]) ?>
+                    </div>
+                    <div class="form-group mb-3">
+                        <?= $this->Form->label(__('Confirm password')) ?>
+                        <?= $this->Form->text('confirm_password', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Confirm password')]) ?>
+                    </div>
+                    <div class="form-group mb-3">
+                        <?= $this->Form->label('role', __("Role"), ['class' => 'form-group-label']); ?>
+                        <?= $this->Form->select('role', ['user' => __('User'), 'admin' => __('Admin')], ['class' => 'custom-select']) ?>
+                    </div>
+                    <div class="custom-control custom-switch mb-3">
+                        <?= $this->Form->checkbox('enabled', ['class' => 'custom-control-input', 'id' => 'enabledSwitch']) ?>
+                        <?= $this->Form->label('enabled', __("Enabled"), ['class' => 'custom-control-label', 'for' => "enabledSwitch"]); ?>
+                    </div>
+                </fieldset>
+                <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-primary btn-block')); ?>
+                <?= $this->Form->end() ?>
+            </div>
         </div>
     </div>
 </div>
