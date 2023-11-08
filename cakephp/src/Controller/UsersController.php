@@ -145,20 +145,26 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $activation_nonce = Text::uuid();
             $user->activation_nonce = $activation_nonce;
-            
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user->role = "user";     
+                       
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been created.'));
 
                 $mailer = new Mailer(['transport' => 'mailhog']);
-                $mailer->setFrom(['sologm@fakeemail.foo' => 'Solo GM'])
+                $mailer->setFrom(['sologm@sologm.com' => 'Solo GM'])
                     ->setTo($user->email)
                     ->setSubject(__('Activation code'))
                     ->deliver(__('This is your activation code: ') . $activation_nonce);
 
                 return $this->redirect(['action' => 'activate']);
             }
-            $this->Flash->error(__('The user could not be created. Please, try again.'));
+
+            foreach ($user->getErrors() as $error) {
+                foreach ($error as $suberror) {
+                    $this->Flash->error(__($suberror));
+                }
+            }
         }
         $this->set(compact('user'));
     }
