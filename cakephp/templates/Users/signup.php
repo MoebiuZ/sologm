@@ -66,8 +66,6 @@
                 </fieldset>
                 <?= $this->Form->submit(__('Sign up'), array('class' => 'btn btn-primary btn-block')); ?>
                 <?= $this->Form->end() ?>
-
-
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
         <div class="card" style="width: 350px;">
             
             <div class="card-header">
-                <h3 class="card-title"><?= __('Activate your user') ?></h3>
+                <h3 class="card-title"><?= __('Please enter the activation code we have sent to your email.') ?></h3>
             </div>
             <div class="card-body ">
                 <?= $this->Form->create() ?>

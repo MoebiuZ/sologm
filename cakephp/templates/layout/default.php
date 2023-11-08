@@ -36,7 +36,7 @@ $title = 'Solo GM';
 
 </head>
 
-<body class="hold-transition <?php if ($this->Identity->isLoggedIn()) : ?> sidebar-mini <?php endif; ?> sidebar-collapse layout-fixed layout-footer-fixed layout-navbar-fixed">
+<body class="hold-transition <?php if ($this->Identity->isLoggedIn()) : ?> sidebar-mini <?php endif; ?> sidebar-collapse layout-fixed layout-footer-fixed"> <!-- layout-navbar-fixed">-->
     <div class="wrapper">
         <!-- navvbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -149,7 +149,7 @@ $title = 'Solo GM';
 
             <div class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
+                 <!--   <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">Titulo</h1>
                         </div>
@@ -159,7 +159,7 @@ $title = 'Solo GM';
                                 <li class="breadcrumb-item active">Starter Page</li>
                             </ol>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 

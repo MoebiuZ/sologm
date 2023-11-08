@@ -39,7 +39,7 @@
                 <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-primary btn-block')); ?>
                 <?= $this->Form->end() ?>
 
-                <?= $this->Html->link(__("Sign up"), ['action' => 'signup']) ?>
+                <?= $this->Html->link(__("Create an account"), ['action' => 'signup'], ['class' => 'btn btn-secondary btn-sm mt-2']) ?>
 
             </div>
         </div>
