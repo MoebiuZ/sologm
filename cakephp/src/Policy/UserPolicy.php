@@ -10,7 +10,7 @@ class UserPolicy
 
     public function canView(IdentityInterface $identity, User $user) 
     {
-        return $this->isAdmin($identity); //$this->isOwner($identity, $user) || $this->isAdmin($identity);
+        return $this->isOwner($identity, $user) || $this->isAdmin($identity);
     }
 
     public function canAdd(IdentityInterface $identity, User $user) 
@@ -19,7 +19,7 @@ class UserPolicy
     }
 
     public function canEdit(IdentityInterface $identity, User $user) 
-    {
+    {        
         return $this->isOwner($identity, $user) || $this->isAdmin($identity) ;
     }
 
