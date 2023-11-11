@@ -60,6 +60,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php if ($this->Identity->get('role') == "admin"): ?>
                     <div class="form-group mb-3">
                         <?= $this->Form->label('role', __("Role"), ['class' => 'form-group-label']); ?>
                         <?= $this->Form->select('role', ['user' => __('User'), 'admin' => __('Admin')], ['class' => 'custom-select']) ?>
@@ -69,6 +70,8 @@
                         <?= $this->Form->checkbox('enabled', ['class' => 'custom-control-input', 'id' => 'enabledSwitch']) ?>
                         <?= $this->Form->label('enabled', __("Enabled"), ['class' => 'custom-control-label', 'for' => "enabledSwitch"]); ?>
                     </div>
+
+                <?php endif; ?>
 
                 </fieldset>
                 <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-primary btn-block')); ?>

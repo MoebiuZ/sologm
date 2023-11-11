@@ -30,7 +30,7 @@ class UserPolicy
 
     public function isOwner(IdentityInterface $identity, User $user) 
     {
-        return $user->role === $identity->getIdentifier();
+        return $user->id === $identity->getIdentifier();
     }
 
     public function isAdmin(IdentityInterface $identity) 

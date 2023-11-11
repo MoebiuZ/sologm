@@ -38,12 +38,17 @@ class UsersController extends AppController
      */
     public function index()
     {
+        // TODO: Check if we can do authorization better than this
         $this->Authorization->skipAuthorization();
-        $query = $this->Users->find();
-        $users = $this->paginate($query);
+        $user = $this->request->getAttribute('identity');
+        if ($user->role == "admin") {
+            $query = $this->Users->find();
+            $users = $this->paginate($query);
+            $this->set(compact('users'));
+        } else {
+            return $this->redirect(['action' => 'view', $user->id]);
+        }
 
-        $this->set(compact('users'));
-   
     }
 
     /**
@@ -74,7 +79,6 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been created.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.') . $this->ValidationErrors);
@@ -98,6 +102,10 @@ class UsersController extends AppController
             if ($data['password'] == '') {
                 unset($data['password']);
                 unset($data['confirm_password']);
+            }
+            if ($user['role'] != 'user') {
+                unset($data['role']);
+                unset($data['enabled']);
             }
             $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {

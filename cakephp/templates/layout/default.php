@@ -64,21 +64,14 @@ $title = 'Solo GM';
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-header"><?= $user->name ?></span>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
                         <?= $this->Html->link('<i class="fa fa-user" aria-hidden="true"></i> ' . __('My profile'), ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
-                        </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2" aria-hidden="true"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
+
+                        <?php if ($this->Identity->get('role') == "admin"): ?>
+                        <?= $this->Html->link('<i class="fa fa-users" aria-hidden="true"></i> ' . __('List users'), ['controller' => 'users', 'action' => 'index', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        
+                        <?php endif; ?>
+
                         <?= $this->Html->link('<i class="fa fa-sign-out" aria-hidden="true"></i> ' . __('Logout'), ['controller' => 'users', 'action' => 'logout'], ['class' => 'dropdown-item', 'escape' => false]) ?>
                     </div>
 
