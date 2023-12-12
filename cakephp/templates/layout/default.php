@@ -14,8 +14,9 @@
  * @var \App\View\AppView $this
  */
 
- $user = $this->request->getAttribute('identity');
 
+
+$user = $this->request->getAttribute('identity');
 
 $title = 'Solo GM';
 ?>
@@ -96,6 +97,7 @@ $title = 'Solo GM';
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+                    <?php if (!empty($user->campaigns)) : ?>
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -104,20 +106,18 @@ $title = 'Solo GM';
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+
                             <ul class="nav nav-treeview">
+                            <?php foreach ($user->campaigns as $campaigns) : ?>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p><?=__('Campaign 1') ?></p>
+                                        <p><?= h($campaigns->name) ?></p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?=__('Campaign 2') ?></p>
-                                    </a>
-                                </li>
+                            <?php endforeach; ?>
                             </ul>
+                            <?php endif; ?>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -129,6 +129,7 @@ $title = 'Solo GM';
                             </a>
                         </li>
                     </ul>
+                    
                 </nav>
 
             </div>

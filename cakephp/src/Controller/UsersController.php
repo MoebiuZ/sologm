@@ -60,7 +60,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id); //, contain: ['Campaigns']);
+        $user = $this->Users->get($id, contain: ['Campaigns']);
         $this->Authorization->authorize($user);
 
         $this->set(compact('user'));
@@ -72,9 +72,10 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {       
+    {   
         $user = $this->Users->newEmptyEntity();
         $this->Authorization->authorize($user);
+            
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
