@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\View\Cell;
 
 use Cake\View\Cell;
-class CampaignsBlockCell extends Cell
+class CampaignsSidebarBlockCell extends Cell
 {
    
     #protected $_validCellOptions = [];    
