@@ -108,7 +108,7 @@ $title = 'Solo GM';
                             </a>
 
                             <ul class="nav nav-treeview">
-                                <?php echo $this->cell("CampaignsBlock"); ?>
+                                <?php echo $this->cell("CampaignsSidebarBlock"); ?>
                             </ul>
                             <?php # endif; ?>
                         </li>

@@ -21,8 +21,7 @@ class CampaignsController extends AppController
         $query = $this->Campaigns->find()
             ->contain(['Users']);
         $campaigns = $this->paginate($query);
-        $this->Authorization->authorize($campaigns);
-
+        
         $this->set(compact('campaigns'));
     }
 
@@ -54,7 +53,7 @@ class CampaignsController extends AppController
             if ($this->Campaigns->save($campaign)) {
                 $this->Flash->success(__('The campaign has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $campaign->id]);
             }
             $this->Flash->error(__('The campaign could not be saved. Please, try again.'));
         }
@@ -78,7 +77,7 @@ class CampaignsController extends AppController
             if ($this->Campaigns->save($campaign)) {
                 $this->Flash->success(__('The campaign has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'index', $campaign->id]);
             }
             $this->Flash->error(__('The campaign could not be saved. Please, try again.'));
         }

@@ -61,6 +61,7 @@ class ScenePolicy
 
     protected function isOwner(IdentityInterface $user, Scene $scene)
     {
+        debug($scene->user_id);
         return $scene->user_id === $user->getIdentifier();
     }
 }
