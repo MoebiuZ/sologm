@@ -87,7 +87,7 @@ $title = 'Solo GM';
         <?php if ($this->Identity->isLoggedIn()) : ?>
         <aside class="main-sidebar nav-collapse-hide-child nav-child-indent sidebar-dark-primary elevation-4">
 
-            <a href="index3.html" class="brand-link">
+            <a href="/" class="brand-link">
                 <?= $this->Html->Image('cake.icon.png', array('class' => 'brand-image img-circle elevation-3', 'style' => 'opacity: .8', 'alt' => $title)) ?>
                 <span class="brand-text font-weight-light"><?= $title ?></span>
             </a>
@@ -108,7 +108,7 @@ $title = 'Solo GM';
                             </a>
 
                             <ul class="nav nav-treeview">
-                                <?php echo $this->cell("CampaignsSidebarBlock"); ?>
+                                <?= $this->cell("CampaignsSidebarBlock", [$user->id]) ?>
                             </ul>
                             <?php # endif; ?>
                         </li>

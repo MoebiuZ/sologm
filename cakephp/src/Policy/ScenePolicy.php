@@ -32,7 +32,7 @@ class ScenePolicy
      */
     public function canEdit(IdentityInterface $user, Scene $scene)
     {
-        return $this->isOwner($user, $campaign);
+        return $this->isOwner($user, $scene);
     }
 
     /**
@@ -62,6 +62,6 @@ class ScenePolicy
     protected function isOwner(IdentityInterface $user, Scene $scene)
     {
         debug($scene->user_id);
-        return $scene->user_id === $user->getIdentifier();
+        return $campaign->user_id === $user->getIdentifier();
     }
 }
