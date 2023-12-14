@@ -40,6 +40,7 @@ $title = 'Solo GM';
 <body class="hold-transition <?php if ($this->Identity->isLoggedIn()) : ?> sidebar-mini <?php endif; ?> sidebar-collapse layout-fixed layout-footer-fixed"> <!-- layout-navbar-fixed">-->
     <div class="wrapper">
         <!-- navvbar -->
+        <?php if ($this->Identity->isLoggedIn()) : ?>
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
              <ul class="navbar-nav">
@@ -80,6 +81,7 @@ $title = 'Solo GM';
             </ul>
             <?php endif; ?>
         </nav>
+        <?php endif; ?>
         
         <!-- navvbar -->
 
@@ -96,31 +98,7 @@ $title = 'Solo GM';
 
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                    <?php #if (!empty($user->campaigns)) : ?>
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    <?=__('Campaigns') ?>
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-
-                            <ul class="nav nav-treeview">
-                                <?= $this->cell("CampaignsSidebarBlock", [$user->id]) ?>
-                            </ul>
-                            <?php # endif; ?>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                <?=__('Scene 1') ?>
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
-                        </li>
+                        <?= $this->cell("CampaignsSidebarBlock", [$user->id]) ?>
                     </ul>
                     
                 </nav>
@@ -171,6 +149,7 @@ $title = 'Solo GM';
         <!-- content -->
 
         <!-- footer -->
+        <?php if ($this->Identity->isLoggedIn()) : ?>
         <footer class="main-footer">
             <div class="float-right"> 
                 <button type="button" data-widget="control-sidebar" class="btn btn-primary btn-block">
@@ -178,6 +157,7 @@ $title = 'Solo GM';
                 </button>
             </div>
         </footer>
+        <?php endif; ?>
         <!-- footer -->
 
     </div>
