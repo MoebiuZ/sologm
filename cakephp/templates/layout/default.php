@@ -82,7 +82,6 @@ $title = 'Solo GM';
             <?php endif; ?>
         </nav>
         <?php endif; ?>
-        
         <!-- navvbar -->
 
         <!-- sidebar -->
