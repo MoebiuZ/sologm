@@ -26,7 +26,7 @@ class CampaignsTableTest extends TestCase
     protected array $fixtures = [
         'app.Campaigns',
         'app.Users',
-        'app.AdventureLists',
+        'app.Adventurelists',
         'app.Scenes',
     ];
 

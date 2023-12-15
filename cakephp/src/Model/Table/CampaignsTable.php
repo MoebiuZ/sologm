@@ -52,9 +52,6 @@ class CampaignsTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Adventurelists', [
-            'foreignKey' => 'campaign_id',
-        ]);
         $this->hasMany('Scenes', [
             'foreignKey' => 'campaign_id',
         ]);
@@ -76,6 +73,256 @@ class CampaignsTable extends Table
 
         $validator
             ->notEmptyString('current_chaos');
+
+        $validator
+            ->scalar('adventurelist_char_1_1')
+            ->maxLength('adventurelist_char_1_1', 255)
+            ->allowEmptyString('adventurelist_char_1_1');
+
+        $validator
+            ->scalar('adventurelist_char_1_3')
+            ->maxLength('adventurelist_char_1_3', 255)
+            ->allowEmptyString('adventurelist_char_1_3');
+
+        $validator
+            ->scalar('adventurelist_char_1_5')
+            ->maxLength('adventurelist_char_1_5', 255)
+            ->allowEmptyString('adventurelist_char_1_5');
+
+        $validator
+            ->scalar('adventurelist_char_1_7')
+            ->maxLength('adventurelist_char_1_7', 255)
+            ->allowEmptyString('adventurelist_char_1_7');
+
+        $validator
+            ->scalar('adventurelist_char_1_9')
+            ->maxLength('adventurelist_char_1_9', 255)
+            ->allowEmptyString('adventurelist_char_1_9');
+
+        $validator
+            ->scalar('adventurelist_char_3_1')
+            ->maxLength('adventurelist_char_3_1', 255)
+            ->allowEmptyString('adventurelist_char_3_1');
+
+        $validator
+            ->scalar('adventurelist_char_3_3')
+            ->maxLength('adventurelist_char_3_3', 255)
+            ->allowEmptyString('adventurelist_char_3_3');
+
+        $validator
+            ->scalar('adventurelist_char_3_5')
+            ->maxLength('adventurelist_char_3_5', 255)
+            ->allowEmptyString('adventurelist_char_3_5');
+
+        $validator
+            ->scalar('adventurelist_char_3_7')
+            ->maxLength('adventurelist_char_3_7', 255)
+            ->allowEmptyString('adventurelist_char_3_7');
+
+        $validator
+            ->scalar('adventurelist_char_3_9')
+            ->maxLength('adventurelist_char_3_9', 255)
+            ->allowEmptyString('adventurelist_char_3_9');
+
+        $validator
+            ->scalar('adventurelist_char_5_1')
+            ->maxLength('adventurelist_char_5_1', 255)
+            ->allowEmptyString('adventurelist_char_5_1');
+
+        $validator
+            ->scalar('adventurelist_char_5_3')
+            ->maxLength('adventurelist_char_5_3', 255)
+            ->allowEmptyString('adventurelist_char_5_3');
+
+        $validator
+            ->scalar('adventurelist_char_5_5')
+            ->maxLength('adventurelist_char_5_5', 255)
+            ->allowEmptyString('adventurelist_char_5_5');
+
+        $validator
+            ->scalar('adventurelist_char_5_7')
+            ->maxLength('adventurelist_char_5_7', 255)
+            ->allowEmptyString('adventurelist_char_5_7');
+
+        $validator
+            ->scalar('adventurelist_char_5_9')
+            ->maxLength('adventurelist_char_5_9', 255)
+            ->allowEmptyString('adventurelist_char_5_9');
+
+        $validator
+            ->scalar('adventurelist_char_7_1')
+            ->maxLength('adventurelist_char_7_1', 255)
+            ->allowEmptyString('adventurelist_char_7_1');
+
+        $validator
+            ->scalar('adventurelist_char_7_3')
+            ->maxLength('adventurelist_char_7_3', 255)
+            ->allowEmptyString('adventurelist_char_7_3');
+
+        $validator
+            ->scalar('adventurelist_char_7_5')
+            ->maxLength('adventurelist_char_7_5', 255)
+            ->allowEmptyString('adventurelist_char_7_5');
+
+        $validator
+            ->scalar('adventurelist_char_7_7')
+            ->maxLength('adventurelist_char_7_7', 255)
+            ->allowEmptyString('adventurelist_char_7_7');
+
+        $validator
+            ->scalar('adventurelist_char_7_9')
+            ->maxLength('adventurelist_char_7_9', 255)
+            ->allowEmptyString('adventurelist_char_7_9');
+
+        $validator
+            ->scalar('adventurelist_char_9_1')
+            ->maxLength('adventurelist_char_9_1', 255)
+            ->allowEmptyString('adventurelist_char_9_1');
+
+        $validator
+            ->scalar('adventurelist_char_9_3')
+            ->maxLength('adventurelist_char_9_3', 255)
+            ->allowEmptyString('adventurelist_char_9_3');
+
+        $validator
+            ->scalar('adventurelist_char_9_5')
+            ->maxLength('adventurelist_char_9_5', 255)
+            ->allowEmptyString('adventurelist_char_9_5');
+
+        $validator
+            ->scalar('adventurelist_char_9_7')
+            ->maxLength('adventurelist_char_9_7', 255)
+            ->allowEmptyString('adventurelist_char_9_7');
+
+        $validator
+            ->scalar('adventurelist_char_9_9')
+            ->maxLength('adventurelist_char_9_9', 255)
+            ->allowEmptyString('adventurelist_char_9_9');
+
+        $validator
+            ->scalar('adventurelist_thread_1_1')
+            ->maxLength('adventurelist_thread_1_1', 255)
+            ->allowEmptyString('adventurelist_thread_1_1');
+
+        $validator
+            ->scalar('adventurelist_thread_1_3')
+            ->maxLength('adventurelist_thread_1_3', 255)
+            ->allowEmptyString('adventurelist_thread_1_3');
+
+        $validator
+            ->scalar('adventurelist_thread_1_5')
+            ->maxLength('adventurelist_thread_1_5', 255)
+            ->allowEmptyString('adventurelist_thread_1_5');
+
+        $validator
+            ->scalar('adventurelist_thread_1_7')
+            ->maxLength('adventurelist_thread_1_7', 255)
+            ->allowEmptyString('adventurelist_thread_1_7');
+
+        $validator
+            ->scalar('adventurelist_thread_1_9')
+            ->maxLength('adventurelist_thread_1_9', 255)
+            ->allowEmptyString('adventurelist_thread_1_9');
+
+        $validator
+            ->scalar('adventurelist_thread_3_1')
+            ->maxLength('adventurelist_thread_3_1', 255)
+            ->allowEmptyString('adventurelist_thread_3_1');
+
+        $validator
+            ->scalar('adventurelist_thread_3_3')
+            ->maxLength('adventurelist_thread_3_3', 255)
+            ->allowEmptyString('adventurelist_thread_3_3');
+
+        $validator
+            ->scalar('adventurelist_thread_3_5')
+            ->maxLength('adventurelist_thread_3_5', 255)
+            ->allowEmptyString('adventurelist_thread_3_5');
+
+        $validator
+            ->scalar('adventurelist_thread_3_7')
+            ->maxLength('adventurelist_thread_3_7', 255)
+            ->allowEmptyString('adventurelist_thread_3_7');
+
+        $validator
+            ->scalar('adventurelist_thread_3_9')
+            ->maxLength('adventurelist_thread_3_9', 255)
+            ->allowEmptyString('adventurelist_thread_3_9');
+
+        $validator
+            ->scalar('adventurelist_thread_5_1')
+            ->maxLength('adventurelist_thread_5_1', 255)
+            ->allowEmptyString('adventurelist_thread_5_1');
+
+        $validator
+            ->scalar('adventurelist_thread_5_3')
+            ->maxLength('adventurelist_thread_5_3', 255)
+            ->allowEmptyString('adventurelist_thread_5_3');
+
+        $validator
+            ->scalar('adventurelist_thread_5_5')
+            ->maxLength('adventurelist_thread_5_5', 255)
+            ->allowEmptyString('adventurelist_thread_5_5');
+
+        $validator
+            ->scalar('adventurelist_thread_5_7')
+            ->maxLength('adventurelist_thread_5_7', 255)
+            ->allowEmptyString('adventurelist_thread_5_7');
+
+        $validator
+            ->scalar('adventurelist_thread_5_9')
+            ->maxLength('adventurelist_thread_5_9', 255)
+            ->allowEmptyString('adventurelist_thread_5_9');
+
+        $validator
+            ->scalar('adventurelist_thread_7_1')
+            ->maxLength('adventurelist_thread_7_1', 255)
+            ->allowEmptyString('adventurelist_thread_7_1');
+
+        $validator
+            ->scalar('adventurelist_thread_7_3')
+            ->maxLength('adventurelist_thread_7_3', 255)
+            ->allowEmptyString('adventurelist_thread_7_3');
+
+        $validator
+            ->scalar('adventurelist_thread_7_5')
+            ->maxLength('adventurelist_thread_7_5', 255)
+            ->allowEmptyString('adventurelist_thread_7_5');
+
+        $validator
+            ->scalar('adventurelist_thread_7_7')
+            ->maxLength('adventurelist_thread_7_7', 255)
+            ->allowEmptyString('adventurelist_thread_7_7');
+
+        $validator
+            ->scalar('adventurelist_thread_7_9')
+            ->maxLength('adventurelist_thread_7_9', 255)
+            ->allowEmptyString('adventurelist_thread_7_9');
+
+        $validator
+            ->scalar('adventurelist_thread_9_1')
+            ->maxLength('adventurelist_thread_9_1', 255)
+            ->allowEmptyString('adventurelist_thread_9_1');
+
+        $validator
+            ->scalar('adventurelist_thread_9_3')
+            ->maxLength('adventurelist_thread_9_3', 255)
+            ->allowEmptyString('adventurelist_thread_9_3');
+
+        $validator
+            ->scalar('adventurelist_thread_9_5')
+            ->maxLength('adventurelist_thread_9_5', 255)
+            ->allowEmptyString('adventurelist_thread_9_5');
+
+        $validator
+            ->scalar('adventurelist_thread_9_7')
+            ->maxLength('adventurelist_thread_9_7', 255)
+            ->allowEmptyString('adventurelist_thread_9_7');
+
+        $validator
+            ->scalar('adventurelist_thread_9_9')
+            ->maxLength('adventurelist_thread_9_9', 255)
+            ->allowEmptyString('adventurelist_thread_9_9');
 
         $validator
             ->nonNegativeInteger('user_id')
