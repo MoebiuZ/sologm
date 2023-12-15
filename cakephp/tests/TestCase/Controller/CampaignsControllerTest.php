@@ -24,7 +24,6 @@ class CampaignsControllerTest extends TestCase
     protected array $fixtures = [
         'app.Campaigns',
         'app.Users',
-        'app.AdventureLists',
         'app.Scenes',
     ];
 

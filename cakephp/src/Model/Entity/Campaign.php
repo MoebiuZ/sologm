@@ -66,7 +66,6 @@ use Cake\ORM\Entity;
  * @property int $user_id
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Adventurelist[] $adventurelists
  * @property \App\Model\Entity\Scene[] $scenes
  */
 class Campaign extends Entity
@@ -137,7 +136,6 @@ class Campaign extends Entity
         'modified' => true,
         'user_id' => true,
         'user' => true,
-        'adventurelists' => true,
         'scenes' => true,
     ];
 }

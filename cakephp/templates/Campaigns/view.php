@@ -44,37 +44,6 @@
                 </tr>
             </table>
             <div class="related">
-                <h4><?= __('Related Adventure Lists') ?></h4>
-                <?php if (!empty($campaign->adventure_lists)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Name') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
-                            <th><?= __('Campaign Id') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($campaign->adventure_lists as $adventureLists) : ?>
-                        <tr>
-                            <td><?= h($adventureLists->id) ?></td>
-                            <td><?= h($adventureLists->name) ?></td>
-                            <td><?= h($adventureLists->created) ?></td>
-                            <td><?= h($adventureLists->modified) ?></td>
-                            <td><?= h($adventureLists->campaign_id) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'AdventureLists', 'action' => 'view', $adventureLists->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'AdventureLists', 'action' => 'edit', $adventureLists->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'AdventureLists', 'action' => 'delete', $adventureLists->id], ['confirm' => __('Are you sure you want to delete # {0}?', $adventureLists->id)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div>
-            <div class="related">
                 <h4><?= __('Related Scenes') ?></h4>
                 <?php if (!empty($campaign->scenes)) : ?>
                 <div class="table-responsive">

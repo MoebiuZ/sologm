@@ -34,7 +34,7 @@ class CampaignsController extends AppController
      */
     public function view($id = null)
     {
-        $campaign = $this->Campaigns->get($id, contain: ['Users', 'Adventurelists', 'Scenes']);
+        $campaign = $this->Campaigns->get($id, contain: ['Users', 'Scenes']);
         $this->Authorization->authorize($campaign);
         $this->set(compact('campaign'));
     }

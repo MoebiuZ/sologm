@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use Cake\Utility\Text;
 use Cake\Mailer\Mailer;
-
+use Cake\Cache\Cache;
 
 /**
  * Users Controller
@@ -60,6 +60,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        Cache::clear();
         $user = $this->Users->get($id, contain: ['Campaigns']);
         $this->Authorization->authorize($user);
 
