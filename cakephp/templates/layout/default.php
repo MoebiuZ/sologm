@@ -30,10 +30,11 @@ $title = 'Solo GM';
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css(['fontawesome/css/all.min', 'adminlte.min', 'sologm']) ?>
+    <?= $this->Html->css(['fontawesome/css/all.min', 'adminlte.min', 'sologm', 'summernote-lite.min']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
+    
 
 </head>
 
@@ -203,7 +204,7 @@ $title = 'Solo GM';
 
     </div>
 
-<?= $this->Html->script(['jquery-3.6.0.min', 'bootstrap.bundle.min', 'adminlte.min', 'sologm']) ?>
+<?= $this->Html->script(['jquery-3.6.0.min', 'bootstrap.bundle.min', 'adminlte.min', 'summernote-lite.min', 'sologm']) ?>
 <?php $this->fetch('script') ?>
 </body>
 

@@ -34,6 +34,7 @@ class BlocksController extends AppController
     public function view($id = null)
     {
         $block = $this->Blocks->get($id, contain: ['Scenes']);
+        $this->Authorization->authorize($block);
         $this->set(compact('block'));
     }
 
@@ -45,6 +46,7 @@ class BlocksController extends AppController
     public function add()
     {
         $block = $this->Blocks->newEmptyEntity();
+        $this->Authorization->authorize($block);
         if ($this->request->is('post')) {
             $block = $this->Blocks->patchEntity($block, $this->request->getData());
             if ($this->Blocks->save($block)) {

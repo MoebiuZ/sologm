@@ -5,12 +5,15 @@ namespace App\Policy;
 
 use App\Model\Entity\Scene;
 use Authorization\IdentityInterface;
+use Cake\ORM\Locator\LocatorAwareTrait;
 
 /**
  * Scene policy
  */
 class ScenePolicy
 {
+
+    use LocatorAwareTrait;
     /**
      * Check if $user can add Scene
      *
@@ -61,7 +64,7 @@ class ScenePolicy
 
     protected function isOwner(IdentityInterface $user, Scene $scene)
     {
-        debug($scene->user_id);
-        return $campaign->user_id === $user->getIdentifier();
+        $campaign_user_id = $this->fetchtable("Campaigns")->find('all')->where(['id' => $scene->campaign_id])->toArray()[0]['user_id'];
+        return $campaign_user_id === $user->id;
     }
 }
