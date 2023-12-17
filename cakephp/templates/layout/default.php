@@ -134,13 +134,55 @@ $title = 'Solo GM';
                     <?= $this->fetch('content') ?>
                 </div>
 
+                <!-- adventure-lists -->
                 <aside class="control-sidebar control-sidebar-dark">
-
                     <div class="p-3">
-                        <h5>Title</h5>
-                        <p>Sidebar content</p>
+                        <div class="row"><h5><?= __("Adventure lists") ?></h5></div>
+                        <div class="row">
+                            <div >
+                                <div class="card card-tabs card-dark">
+                                    <div class="card-header p-0 pt-1">
+                                        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="custom-tabs-one-threads-tab" data-toggle="pill" href="#custom-tabs-one-threads" role="tab" aria-controls="custom-tabs-one-threads" aria-selected="true">Threads</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="custom-tabs-one-characters-tab" data-toggle="pill" href="#custom-tabs-one-characters" role="tab" aria-controls="custom-tabs-one-characters" aria-selected="false">Characters</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="tab-content" id="custom-tabs-one-tabContent">
+
+                                            <div class="tab-pane fade show active" id="custom-tabs-one-threads" role="tabpanel" aria-labelledby="custom-tabs-one-threads-tab">
+                                                <div class="row">
+                                                    <div class="col-3" style="background: red;">1-2</div>
+                                                    <div class="col-9">
+                                                        <div class="row">
+                                                            <div class="col-4">1-2</div>
+                                                            <div class="col-8">afasdfasfasdfasdfasdfasdf</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4">3-4</div>
+                                                            <div class="col-8">afasdfasfasdfasdfasdfasdf</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane fade" id="custom-tabs-characters-profile" role="tabpanel" aria-labelledby="custom-tabs-one-characters-tab">
+                                                Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </aside>
+                <!-- adventure-lists -->
+                
             </div>
 
             
@@ -152,7 +194,7 @@ $title = 'Solo GM';
         <footer class="main-footer">
             <div class="float-right"> 
                 <button type="button" data-widget="control-sidebar" class="btn btn-primary btn-block">
-                    <i class="fa fa-wrench"></i> <?= __("Tools") ?>
+                    <i class="fa fa-wrench"></i> <?= __("Adventure lists") ?>
                 </button>
             </div>
         </footer>
