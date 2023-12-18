@@ -205,6 +205,9 @@ $title = 'Solo GM';
     </div>
 
 <?= $this->Html->script(['jquery-3.6.0.min', 'bootstrap.bundle.min', 'adminlte.min', 'summernote-lite.min', 'sologm']) ?>
+<script>
+    var csrfToken = <?= json_encode($this->request->getCookie('csrfToken')) ?>;
+</script>
 <?php $this->fetch('script') ?>
 </body>
 
