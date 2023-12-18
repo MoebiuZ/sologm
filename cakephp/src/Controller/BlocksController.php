@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\View\JsonView;
+
 /**
  * Blocks Controller
  *
@@ -10,6 +12,14 @@ namespace App\Controller;
  */
 class BlocksController extends AppController
 {
+
+
+    public function viewClasses(): array
+    {
+        return [JsonView::class];
+    }
+
+
     /**
      * Index method
      *
@@ -69,18 +79,21 @@ class BlocksController extends AppController
      */
     public function edit($id = null)
     {
-        $block = $this->Blocks->get($id, contain: []);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $block = $this->Blocks->patchEntity($block, $this->request->getData());
-            if ($this->Blocks->save($block)) {
-                $this->Flash->success(__('The block has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('ajax')) {
+            
+            $id = $this->request->getData("id");
+            $block = $this->Blocks->get($id, contain: []);
+            $this->Authorization->authorize($block);
+            $block->content = $this->request->getData("content");
+            if ($this->Blocks->save($block)) {
+                echo json_encode(array("status" => "success")); 
+                exit;
+            } else {
+                echo json_encode(array("status" => "error")); 
+                exit;
             }
-            $this->Flash->error(__('The block could not be saved. Please, try again.'));
         }
-        $scenes = $this->Blocks->Scenes->find('list', limit: 200)->all();
-        $this->set(compact('block', 'scenes'));
     }
 
     /**

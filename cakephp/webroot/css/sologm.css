@@ -1,0 +1,26 @@
+.pblock .pblocktext {
+    padding: 5px;
+    margin: 4px;
+}
+
+.pblock:hover .pblocktext {
+    padding: 4px;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+}
+
+.pblock:hover .editblock {
+    display: block;
+}
+
+.pblock p {
+    margin:0;
+}
+
+.note-editor p {
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}

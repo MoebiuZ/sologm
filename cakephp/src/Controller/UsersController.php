@@ -177,6 +177,7 @@ class UsersController extends AppController
             }
         }
         $this->set(compact('user'));
+        $this->viewBuilder()->setLayout('login');
     }
 
 
@@ -208,6 +209,8 @@ class UsersController extends AppController
                 $this->redirect(['controller' => 'Users', 'action' => 'login']);
             }
         }
+
+        $this->viewBuilder()->setLayout('login');
     }
 
 
