@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $content
+ * @property string $blocktype
  * @property float $pos
  * @property bool $hidden
  * @property \Cake\I18n\DateTime $created
@@ -31,6 +32,7 @@ class Block extends Entity
      */
     protected array $_accessible = [
         'content' => true,
+        'blocktype' => true,
         'pos' => true,
         'hidden' => true,
         'created' => true,

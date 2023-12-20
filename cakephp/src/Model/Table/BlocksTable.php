@@ -67,6 +67,12 @@ class BlocksTable extends Table
             ->notEmptyString('content');
 
         $validator
+            ->scalar('blocktype')
+            ->inList('blocktype', ['text','other'])
+            ->requirePresence('blocktype', 'create')
+            ->notEmptyString('blocktype');
+
+        $validator
             ->numeric('pos')
             ->requirePresence('pos', 'create')
             ->notEmptyString('pos')
