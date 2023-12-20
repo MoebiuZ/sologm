@@ -24,3 +24,39 @@
 .hidden {
     display: none;
 }
+
+#conway-grid {
+    position: absolute; 
+    left: 50%;
+}
+#conway-grid > div {
+    position: relative; 
+    left: -50%;
+}
+
+.conwaycell {
+    width: 9px;
+    height: 9px;
+    margin:1px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+@keyframes conwaycellcolor {
+    0% {
+        background-color: blue;
+        transform: scale(0.1);
+    }
+    50% {
+        background-color: red;
+        transform: scale(0.8);
+    }
+    100% {
+        background-color: blue;
+        transform: scale(0.1);
+    }
+}
+
+.conwayalive {
+    animation: conwaycellcolor 1s ease-in;
+}

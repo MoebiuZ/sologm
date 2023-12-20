@@ -38,9 +38,14 @@ $title = 'Solo GM';
 </head>
 
 <body class="hold-transition">
+    
+    <div id="conway-grid"><div></div></div>
+
     <!-- content -->
     <div class="d-flex align-items-center vh-100">
+  
         <div class="container">
+                 
             <?= $this->fetch('content') ?>
         </div>
     </div>

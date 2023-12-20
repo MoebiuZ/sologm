@@ -1,9 +1,6 @@
-/*
-
-*/
-
 $(function(){
      
+  
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': csrfToken // this is defined in app.php as a js variable
@@ -167,4 +164,98 @@ $(function(){
             });
         }
     });*/
+});
+
+
+
+$(function(){
+    const rows = 21;
+    const cols = 21;
+    let grid = createGrid();
+    
+    function createGrid() {
+        const newGrid = new Array(rows).fill(null)
+        .map(() => new Array(cols).fill(false));
+        return newGrid;
+    }
+    
+    function renderGrid() {
+        const container = $('#conway-grid');
+        container.empty();
+    
+        for (let i = 0; i < rows; i++) {
+            const row = $('<div class="row"></div>');
+    
+            for (let j = 0; j < cols; j++) {
+                const cell = $('<div class="conwaycell"></div>');
+                cell.addClass(grid[i][j] ? 'conwayalive' : 'conwaydead');
+                cell.on('click', () => toggleCell(i, j));
+                row.append(cell);
+            }
+            container.append(row)
+        }
+    }
+    
+    function toggleCell(row, col) {
+        grid[row][col] = !grid[row][col];
+        renderGrid();
+    }
+    
+    function updateGrid() {
+        const newGrid = createGrid();
+    
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                const neighbors = countNeighbors(i, j);
+                if (grid[i][j]) {
+                    newGrid[i][j] = neighbors === 2 || neighbors === 3;
+                } else {
+                    newGrid[i][j] = neighbors === 3;
+                }
+            }
+        }
+    
+        grid = newGrid;
+        renderGrid();
+    }
+    
+    function countNeighbors(row, col) {
+        let count = 0;
+    
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                const newRow = row + i;
+                const newCol = col + j;
+    
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                    count += grid[newRow][newCol] ? 1 : 0;
+                }
+            }
+        }
+    
+        count -= grid[row][col] ? 1 : 0;
+        return count;
+    }
+    
+    toggleCell(10,5);
+    toggleCell(10,6);
+    toggleCell(10,7);
+    toggleCell(10,8);
+    toggleCell(10,9);
+    toggleCell(10,10);
+    toggleCell(10,11);
+    toggleCell(10,12);
+    toggleCell(10,13);
+    toggleCell(10,14);
+    toggleCell(10,15);
+
+    toggleCell(8,10);
+    toggleCell(9,10);
+
+    toggleCell(11,10);
+    toggleCell(12,10);
+
+    renderGrid();
+    setInterval(updateGrid, 1000);
+    
 });
