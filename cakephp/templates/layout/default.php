@@ -18,6 +18,9 @@
 
 $user = $this->request->getAttribute('identity');
 
+
+$
+
 $title = 'Solo GM';
 ?>
 <!DOCTYPE html>
@@ -98,9 +101,15 @@ $title = 'Solo GM';
 
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="/campaigns/add" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p><?= __('New Campaign') ?></p>
+                            </a>
+                        </li>                        
                         <?= $this->cell("CampaignsSidebarBlock", [$user->id]) ?>
                     </ul>
-                    
+        
                 </nav>
 
             </div>
@@ -114,6 +123,7 @@ $title = 'Solo GM';
 
             <div class="content-header">
                 <div class="container-fluid">
+                    <?php debug($this); ?>
                  <!--   <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">Titulo</h1>

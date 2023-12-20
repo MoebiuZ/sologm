@@ -98,7 +98,6 @@ class ScenesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->isUnique(['id']), ['errorField' => 'id']);
-        $rules->add($rules->isUnique(['pos']), ['errorField' => 'pos']);
         $rules->add($rules->existsIn('campaign_id', 'Campaigns'), ['errorField' => 'campaign_id']);
 
         return $rules;

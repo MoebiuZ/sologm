@@ -6,3 +6,9 @@
     </a>
 </li>
 <?php endforeach; ?>
+<li class="nav-item">
+    <a href="/scenes/add" class="nav-link">
+        <i class="far fa-plus nav-icon"></i>
+        <p><?= __('New scene') ?></p>
+    </a>
+</li>
