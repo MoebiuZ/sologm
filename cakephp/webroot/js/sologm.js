@@ -173,29 +173,41 @@ $(function(){
     const cols = 21;
     let grid = createGrid();
     
-    function createGrid() {
-        const newGrid = new Array(rows).fill(null)
-        .map(() => new Array(cols).fill(false));
-        return newGrid;
-    }
-    
-    function renderGrid() {
-        const container = $('#conway-grid');
-        container.empty();
-    
+    const container = $('#conway-grid');
+
+    function dale() {
         for (let i = 0; i < rows; i++) {
-            const row = $('<div class="row"></div>');
+            const row = $('<div id="cwrow' + i + '" class="row"></div>');
     
             for (let j = 0; j < cols; j++) {
-                const cell = $('<div class="conwaycell"></div>');
-                cell.addClass(grid[i][j] ? 'conwayalive' : 'conwaydead');
+                const cell = $('<div id="cwcell' + j + '" class="conwaycell"></div>');
                 cell.on('click', () => toggleCell(i, j));
                 row.append(cell);
             }
             container.append(row)
         }
     }
-    
+
+    function createGrid() {
+        const newGrid = new Array(rows).fill(null)
+        .map(() => new Array(cols).fill(false));
+        return newGrid;
+    }
+        
+    function renderGrid() {
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                const cell = $('#cwrow' + i).find('#cwcell' + j);
+                if (grid[i][j] == 1) {
+                   cell.removeClass('conwayalive');
+                   cell.width();
+                   cell.addClass('conwayalive');
+
+                }
+            }
+        }
+    }
+
     function toggleCell(row, col) {
         grid[row][col] = !grid[row][col];
         renderGrid();
@@ -237,6 +249,8 @@ $(function(){
         return count;
     }
     
+    dale();
+
     toggleCell(10,5);
     toggleCell(10,6);
     toggleCell(10,7);

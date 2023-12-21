@@ -44,19 +44,23 @@
 
 @keyframes conwaycellcolor {
     0% {
-        background-color: blue;
+        background-color: rgb(255, 255, 255);
         transform: scale(0.1);
     }
-    50% {
-        background-color: red;
+    10% {
+        background-color: rgb(0, 0, 0);
         transform: scale(0.8);
     }
+    20% {
+        background-color: rgb(255, 0, 191);
+        transform: scale(0.2);
+    }
     100% {
-        background-color: blue;
-        transform: scale(0.1);
+        background-color: rgb(0, 0, 0);
+        transform: scale(0);
     }
 }
 
 .conwayalive {
-    animation: conwaycellcolor 1s ease-in;
+    animation: conwaycellcolor 5s ease-in forwards;
 }
