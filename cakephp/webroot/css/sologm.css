@@ -52,11 +52,11 @@
         transform: scale(0.8);
     }
     20% {
-        background-color: rgb(255, 0, 191);
-        transform: scale(0.2);
+        background-color: rgb(133, 133, 133);
+        transform: scale(0.7);
     }
     100% {
-        background-color: rgb(0, 0, 0);
+        
         transform: scale(0);
     }
 }
