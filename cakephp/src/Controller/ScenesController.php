@@ -51,6 +51,10 @@ class ScenesController extends AppController
         if ($this->request->is('post')) {
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
             if ($this->Scenes->save($scene)) {
+                $campaignstable = $this->fetchTable('Campaigns');
+                $campaign = $campaignstable->get($scene->campaign_id);
+                $campaignstable->touch($campaign);
+                $campaignstable->save($campaign);
                 $this->Flash->success(__('The scene has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -75,6 +79,10 @@ class ScenesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
             if ($this->Scenes->save($scene)) {
+                $campaignstable = $this->fetchTable('Campaigns');
+                $campaign = $campaignstable->get($scene->campaign_id);
+                $campaignstable->touch($campaign);
+                $campaignstable->save($campaign);
                 $this->Flash->success(__('The scene has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

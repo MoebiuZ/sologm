@@ -1,6 +1,5 @@
 $(function(){
-     
-  
+ 
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': csrfToken // this is defined in app.php as a js variable
@@ -9,35 +8,14 @@ $(function(){
 
     $("#blocks").on("dblclick", "[id^=block]", function() {
         var id = $(this).attr("id").replace("block-", '');
-        var btnAttch = function (context) {
-            var ui = $.summernote.ui;
-            var button = ui.button({
-                contents:
-                '<label class="custom-file-upload"> <input type="file" class="input-file" id="input-file-' + id + '" multiple/>' +
-                '<i class="glyphicon glyphicon-paperclip"></i> dsfg </label>',
-                 tooltip: 'Attach file',
-             });
-        }
         $('#block-'.concat(id)).summernote({
             toolbar: [
                 ['style', ['bold', 'italic', 'underline']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['fontsize', ['fontsize']],
-                ['btn-anexar', ['btnAnexar']],
-                ['save', ['save']], // The button
             ],
-            buttons: {
-                btnAttch: btnAttch
-            },
-            save:{
-                lang: 'en-US', // Change to your chosen language
-                encode: false, // true = encode editor data, you may need to unencode the data on your backend or before output.
-                pageBlockClass: '.page-block', // Leave empty if not using an overlay to block user activity while data is sent.
-                pageBlockToggle: 'd-block', // Class to use to toggle Page Block. Remove the class via backend once data is safely stored.
-                saveBtnIndicator: 'btn-danger', // Class to change save button indication when content changes to warn of unsaved data.
-            },
-            focus: true
+             focus: true
         });
 
         $('#save-'.concat(id)).show();
@@ -46,34 +24,13 @@ $(function(){
 
     $("#blocks").on("click", ".editblock", function() {
         var id = $(this).attr("id").replace("edit-", '');
-        var btnAttch = function (context) {
-            var ui = $.summernote.ui;
-            var button = ui.button({
-                contents:
-                '<label class="custom-file-upload"> <input type="file" class="input-file" id="input-file-' + id + '" multiple/>' +
-                '<i class="glyphicon glyphicon-paperclip"></i> dsfg </label>',
-                 tooltip: 'Attach file',
-            });
-        }
         $('#block-'.concat(id)).summernote({
             toolbar: [
                 ['style', ['bold', 'italic', 'underline']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['fontsize', ['fontsize']],
-                ['btn-anexar', ['btnAnexar']],
-                ['save', ['save']], // The button
             ],
-            buttons: {
-                btnAttch: btnAttch
-            },
-            save:{
-                lang: 'en-US', // Change to your chosen language
-                encode: false, // true = encode editor data, you may need to unencode the data on your backend or before output.
-                pageBlockClass: '.page-block', // Leave empty if not using an overlay to block user activity while data is sent.
-                pageBlockToggle: 'd-block', // Class to use to toggle Page Block. Remove the class via backend once data is safely stored.
-                saveBtnIndicator: 'btn-danger', // Class to change save button indication when content changes to warn of unsaved data.
-            },
             focus: true
             });
         $('#save-'.concat(id)).show();
@@ -83,7 +40,6 @@ $(function(){
     $("#blocks").on("click", ".saveblock", function() {
         var id = $(this).attr("id").replace("save-", '');
         var markup = $('#block-'.concat(id)).summernote('code');
-
         var postdata = {"id": id, "content": markup};
         $.ajax({
             url: "/blocks/edit",
@@ -109,9 +65,8 @@ $(function(){
     $(".savenew").click(function() {
         var scene_id = $(this).attr("id").replace("save-new-", '');
         var markup = $('#block-new').summernote('code');
-
         var postdata = {"scene_id": scene_id, "content": markup};
-        console.log(markup);
+        
         if (markup != "<p><br></p>") {
             $.ajax({
                 url: "/blocks/add",
@@ -121,8 +76,6 @@ $(function(){
                 type: "post",
                 success: function(response) {
                     if (response.status == "success") {
-
-
                         let newblock = '<div class="row soloblock">' +
                             '<div class="col pblock">' +
                             '<div class="float-left">' +
@@ -267,14 +220,14 @@ $(function(){
     const cols = 21;
     let grid = createGrid();
     
-    const container = $('#conway-grid');
+    const container = $('#conway-grid-mini');
 
     function dale() {
         for (let i = 0; i < rows; i++) {
             const row = $('<div id="cwrow' + i + '" class="row"></div>');
     
             for (let j = 0; j < cols; j++) {
-                const cell = $('<div id="cwcell' + j + '" class="conwaycell"></div>');
+                const cell = $('<div id="cwcell' + j + '" class="conwaycell-mini"></div>');
                 cell.on('click', () => toggleCell(i, j));
                 row.append(cell);
             }
@@ -293,9 +246,9 @@ $(function(){
             for (let j = 0; j < cols; j++) {
                 const cell = $('#cwrow' + i).find('#cwcell' + j);
                 if (grid[i][j] == 1) {
-                   cell.removeClass('conwayalive');
+                   cell.removeClass('conwayalive-mini');
                    cell.width();
-                   cell.addClass('conwayalive');
+                   cell.addClass('conwayalive-mini');
 
                 }
             }

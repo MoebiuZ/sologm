@@ -71,13 +71,17 @@ class BlocksController extends AppController
             $block->type = "text";
             $block->pos = $maxpos + 1;
 
-                if ($this->Blocks->save($block)) {
-                    echo json_encode(["status" => "success", "block_id" => $block->id]);  
-                    exit;
-                } else {
-                    echo json_encode(array("status" => "error")); 
-                    exit;
-                }
+            if ($this->Blocks->save($block)) {
+                $scenestable = $this->fetchTable('Scenes');
+                $scene = $scenestable->get($block->scene_id);
+                $scenestable->touch($scene);
+                $scenestable->save($scene);
+                echo json_encode(["status" => "success", "block_id" => $block->id]);
+                exit;
+            } else {
+                echo json_encode(array("status" => "error")); 
+                exit;
+            }
                 
         }
 
@@ -114,6 +118,10 @@ class BlocksController extends AppController
             $this->Authorization->authorize($block);
             $block->content = $this->request->getData("content");
             if ($this->Blocks->save($block)) {
+                $scenestable = $this->fetchTable('Scenes');
+                $scene = $scenestable->get($block->scene_id);
+                $scenestable->touch($scene);
+                $scenestable->save($scene);
                 echo json_encode(array("status" => "success")); 
                 exit;
             } else {
