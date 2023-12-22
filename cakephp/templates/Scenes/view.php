@@ -20,13 +20,13 @@
     </div>
 </div>
 <?php endforeach; ?>
-
+<div id="blocks-end"></div>
 <div id="new-block-editor" class="row hidden">
     <div class="col pblock">
         <br />
         <div id="block-new"></div>
         <div class="float-right">
-            <button id="save-new" class="saveblock btn btn btn-primary float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>
+            <button id="save-new-<?= $scene->id ?>" class="savenew btn btn btn-primary float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>
         </div>
     </div>
 </div>

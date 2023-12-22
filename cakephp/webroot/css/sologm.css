@@ -21,6 +21,10 @@
     margin: 0;
 }
 
+#new-block-editor {
+    margin-bottom: 100px;
+}
+
 .hidden {
     display: none;
 }

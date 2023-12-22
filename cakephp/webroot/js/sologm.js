@@ -44,7 +44,7 @@ $(function(){
         $('#edit-'.concat(id)).hide();
     });
 
-    $(".editblock").click(function() {
+    $(".editblock").on("click", function() {
         var id = $(this).attr("id").replace("edit-", '');
         var btnAttch = function (context) {
             var ui = $.summernote.ui;
@@ -80,7 +80,7 @@ $(function(){
         $('#edit-'.concat(id)).hide();
     });
       
-    $(".saveblock").click(function() {
+    $(".saveblock").on("click", function() {
         var id = $(this).attr("id").replace("save-", '');
         var markup = $('#block-'.concat(id)).summernote('code');
 
@@ -106,12 +106,67 @@ $(function(){
         });
     });
 
+    $(".savenew").click(function() {
+        var scene_id = $(this).attr("id").replace("save-new-", '');
+        var markup = $('#block-new').summernote('code');
+
+        var postdata = {"scene_id": scene_id, "content": markup};
+        console.log(markup);
+        if (markup != "<p><br></p>") {
+            $.ajax({
+                url: "/blocks/add",
+                data: postdata,
+                dataType: "json",
+                method: "post",
+                type: "post",
+                success: function(response) {
+                    if (response.status == "success") {
+
+
+                        let newblock = '<div class="row soloblock">' +
+                            '<div class="col pblock">' +
+                            '<div class="float-left">' +
+                            '<button id="edit-' + 
+                            response.block_id +
+                            '" class="editblock btn btn-xs hidden" type="button"><i class="fas fa-pencil"></i></button>' +
+                            '</div><br /><div id="block-' +
+                            response.block_id +
+                            '" class="pblocktext">' +
+                                markup +
+                            '</div><div class="float-right">' +
+                            '<button id="save-' +
+                            response.block_id +
+                            '" class="saveblock btn btn btn-primary hidden float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>' +
+                            '</div></div></div>'
+                        
+                        $('#blocks-end').before(newblock); 
+                        $("#newpblock").show();
+                        $("#block-new").summernote('destroy');
+                        $('#new-block-editor').hide();
+                    } else {
+                        alert("Error");
+                    }               
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        } else {
+            $("#newpblock").show();
+            $("#block-new").summernote('destroy');
+            $('#new-block-editor').hide();
+        }
+
+
+    });
     
-    $("#block-new").summernote();
+    
 
     $("#newpblock").click(function() {
+        $("#block-new").summernote();
         $("#new-block-editor").show();
         $(this).hide();
+        $("html, body").animate({ scrollTop: $(document).height() }, 10);
     });
 
     /*
@@ -210,7 +265,7 @@ $(function(){
 });
 
 
-/*
+
 $(function(){
     const rows = 21;
     const cols = 21;
@@ -316,4 +371,3 @@ $(function(){
     setInterval(updateGrid, 1000);
     
 });
-*/

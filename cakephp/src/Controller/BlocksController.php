@@ -55,8 +55,33 @@ class BlocksController extends AppController
      */
     public function add()
     {
-        $block = $this->Blocks->newEmptyEntity();
-        $this->Authorization->authorize($block);
+
+        if ($this->request->is('ajax')) {
+            $block = $this->Blocks->newEmptyEntity();
+            $this->Authorization->authorize($block);
+            $query = $this->Blocks->find('all');
+            $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
+            
+            if ($maxpos = null) {
+                $maxpos = 0;
+            }
+
+            $block->scene_id = $this->request->getData("scene_id");
+            $block->content = $this->request->getData("content");
+            $block->type = "text";
+            $block->pos = $maxpos + 1;
+
+                if ($this->Blocks->save($block)) {
+                    echo json_encode(["status" => "success", "block_id" => $block->id]);  
+                    exit;
+                } else {
+                    echo json_encode(array("status" => "error")); 
+                    exit;
+                }
+                
+        }
+
+/*
         if ($this->request->is('post')) {
 
             $block = $this->Blocks->patchEntity($block, $this->request->getData());
@@ -70,7 +95,7 @@ class BlocksController extends AppController
             $this->Flash->error(__('The block could not be saved. Please, try again.'));
         }
         $scenes = $this->Blocks->Scenes->find('list', limit: 200)->all();
-        $this->set(compact('block', 'scenes'));
+        $this->set(compact('block', 'scenes'));*/
     }
 
     /**
@@ -84,7 +109,6 @@ class BlocksController extends AppController
     {
 
         if ($this->request->is('ajax')) {
-            
             $id = $this->request->getData("id");
             $block = $this->Blocks->get($id, contain: []);
             $this->Authorization->authorize($block);

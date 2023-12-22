@@ -59,8 +59,6 @@ $app_title = 'Solo GM';
 
             <div><?= $app_title ?></div>
             
-
-
             <?php if ($this->Identity->isLoggedIn()) : ?>
             <ul class="navbar-nav ml-auto">
                 
