@@ -98,7 +98,6 @@ class BlocksTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->isUnique(['id']), ['errorField' => 'id']);
-        $rules->add($rules->isUnique(['pos']), ['errorField' => 'pos']);
         $rules->add($rules->existsIn('scene_id', 'Scenes'), ['errorField' => 'scene_id']);
 
         return $rules;

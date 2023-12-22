@@ -58,12 +58,15 @@ class BlocksController extends AppController
         $block = $this->Blocks->newEmptyEntity();
         $this->Authorization->authorize($block);
         if ($this->request->is('post')) {
+
             $block = $this->Blocks->patchEntity($block, $this->request->getData());
+            debug($this->Blocks->save($block));
             if ($this->Blocks->save($block)) {
                 $this->Flash->success(__('The block has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+
             $this->Flash->error(__('The block could not be saved. Please, try again.'));
         }
         $scenes = $this->Blocks->Scenes->find('list', limit: 200)->all();

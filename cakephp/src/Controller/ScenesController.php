@@ -34,7 +34,7 @@ class ScenesController extends AppController
      */
     public function view($id = null)
     {
-        $scene = $this->Scenes->get($id, contain: ['Campaigns', 'Blocks']);
+        $scene = $this->Scenes->get($id, contain: ['Campaigns', 'Blocks' => ['sort' => ['pos' => 'ASC']]]);
         $this->Authorization->authorize($scene);
         $this->set(compact('scene'));
     }

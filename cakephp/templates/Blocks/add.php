@@ -19,6 +19,7 @@
                 <legend><?= __('Add Block') ?></legend>
                 <?php
                     echo $this->Form->control('content');
+                    echo $this->Form->control('blocktype');
                     echo $this->Form->control('pos');
                     echo $this->Form->control('hidden');
                     echo $this->Form->control('scene_id', ['options' => $scenes]);

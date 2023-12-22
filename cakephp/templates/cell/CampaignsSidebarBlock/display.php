@@ -10,7 +10,7 @@
         </p>
     </a>
 
-    <ul class="nav nav-treeview mx-2">
+    <ul class="nav nav-treeview px-2">
         <?= $this->cell("ScenesSidebarBlock", [$campaign->id, $currentScene]) ?>
     </ul>
 </li>

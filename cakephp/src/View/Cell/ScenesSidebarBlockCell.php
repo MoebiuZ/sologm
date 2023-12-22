@@ -16,7 +16,7 @@ class ScenesSidebarBlockCell extends Cell
 
     public function display($campaign_id, $currentScene)
     {
-        $scenes = $this->fetchtable("Scenes")->find('all')->where(['campaign_id' => $campaign_id]); #->where(['is_published' => true])->order(['lft' => 'ASC']);
+        $scenes = $this->fetchtable("Scenes")->find('all')->where(['campaign_id' => $campaign_id])->order(['pos' => 'ASC']);
         $this->set(compact('scenes', 'currentScene'));
     }
 }

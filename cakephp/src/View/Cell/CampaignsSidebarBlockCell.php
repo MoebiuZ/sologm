@@ -18,7 +18,7 @@ class CampaignsSidebarBlockCell extends Cell
     {
         #$this->loadModel('Campaigns');
         
-        $campaigns = $this->fetchtable("Campaigns")->find('all')->where(['user_id' => $user_id]); #->where(['is_published' => true])->order(['lft' => 'ASC']);
+        $campaigns = $this->fetchtable("Campaigns")->find('all')->where(['user_id' => $user_id]);
         
         $this->set(compact('campaigns', 'currentScene'));
     }
