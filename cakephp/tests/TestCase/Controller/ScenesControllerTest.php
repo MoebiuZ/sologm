@@ -27,18 +27,7 @@ class ScenesControllerTest extends TestCase
         'app.Blocks',
     ];
 
-    /**
-     * Test index method
-     *
-     * @return void
-     * @uses \App\Controller\ScenesController::index()
-     */
-    public function testIndex(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
+     /**
      * Test view method
      *
      * @return void
