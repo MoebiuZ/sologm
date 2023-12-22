@@ -49,13 +49,17 @@ $app_title = 'Solo GM';
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+              <!--  <li class="nav-item d-none d-sm-inline-block">
                     <a href="/" class="nav-link"><?= __('Home') ?></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link"><?= __('Help') ?></a>
-                </li>
+                </li>-->
             </ul>
+
+            <div><?= $app_title ?></div>
+            
+
 
             <?php if ($this->Identity->isLoggedIn()) : ?>
             <ul class="navbar-nav ml-auto">
@@ -100,7 +104,7 @@ $app_title = 'Solo GM';
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="/campaigns/add" class="nav-link">
+                            <a href="/campaigns/add" class="nav-link bg-success">
                                 <i class="far fa-plus nav-icon"></i>
                                 <p><?= __('New Campaign') ?></p>
                             </a>

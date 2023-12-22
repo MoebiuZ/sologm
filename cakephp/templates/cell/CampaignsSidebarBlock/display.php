@@ -1,6 +1,8 @@
 <?php foreach ($campaigns as $campaign): ?>
-<li class="nav-item <?= $campaign->id == $currentScene['campaign_id'] ? "menu-open" : "menu-close"; ?>">
-    <a href="#" class="nav-link <?= $campaign->id == $currentScene['campaign_id'] ? "active" : ""  ?>">
+<li class="nav-item 
+<?php 
+    if (isset($currentScene)) { echo ($campaign->id == $currentScene['campaign_id']) ? " menu-open" : " menu-close";  } ?>">
+    <a href="#" class="nav-link<?php if (isset($currentScene)) { echo ($campaign->id == $currentScene['campaign_id']) ?  " active" :  " bg-secondary"; } ?>">
         <i class="nav-icon fas fa-feather"></i>
         <p>
             <?= h($campaign->name) ?>
@@ -8,7 +10,7 @@
         </p>
     </a>
 
-    <ul class="nav nav-treeview">
+    <ul class="nav nav-treeview mx-2">
         <?= $this->cell("ScenesSidebarBlock", [$campaign->id, $currentScene]) ?>
     </ul>
 </li>
