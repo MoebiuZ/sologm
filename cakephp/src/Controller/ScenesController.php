@@ -10,20 +10,6 @@ namespace App\Controller;
  */
 class ScenesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function index()
-    {
-        $this->Authorization->skipAuthorization();
-        $query = $this->Scenes->find()
-            ->contain(['Campaigns']);
-        $scenes = $this->paginate($query);
-
-        $this->set(compact('scenes'));
-    }
 
     /**
      * View method

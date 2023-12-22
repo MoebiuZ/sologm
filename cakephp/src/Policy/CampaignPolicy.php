@@ -47,18 +47,7 @@ class CampaignPolicy
         return $this->isOwner($user, $campaign);
     }
 
-    /**
-     * Check if $user can view campaign
-     *
-     * @param \Authorization\IdentityInterface $user The user.
-     * @param \App\Model\Entity\Campaign $campaign
-     * @return bool
-     */
-    public function canView(IdentityInterface $user, Campaign $campaign)
-    {
-        return $this->isOwner($user, $campaign);
-    }
-
+  
     protected function isOwner(IdentityInterface $user, Campaign $campaign)
     {
         return $campaign->user_id === $user->getIdentifier();

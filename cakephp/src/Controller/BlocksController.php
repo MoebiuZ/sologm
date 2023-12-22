@@ -19,35 +19,6 @@ class BlocksController extends AppController
         return [JsonView::class];
     }
 
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function index()
-    {
-        $query = $this->Blocks->find()
-            ->contain(['Scenes']);
-        $blocks = $this->paginate($query);
-
-        $this->set(compact('blocks'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Block id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $block = $this->Blocks->get($id, contain: ['Scenes']);
-        $this->Authorization->authorize($block);
-        $this->set(compact('block'));
-    }
-
     /**
      * Add method
      *

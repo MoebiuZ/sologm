@@ -50,18 +50,7 @@ class BlockPolicy
         return $this->isOwner($user, $block);
     }
 
-    /**
-     * Check if $user can view Block
-     *
-     * @param \Authorization\IdentityInterface $user The user.
-     * @param \App\Model\Entity\Block $block
-     * @return bool
-     */
-    public function canView(IdentityInterface $user, Block $block)
-    {
-        return $this->isOwner($user, $block);
-    }
-
+   
     protected function isOwner(IdentityInterface $user, Block $block)
     {
         $scene_campaign_id = $this->fetchtable("Scenes")->find('all')->where(['id' => $block->scene_id])->toArray()[0]['campaign_id'];

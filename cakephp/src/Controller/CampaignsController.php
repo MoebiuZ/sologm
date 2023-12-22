@@ -11,35 +11,6 @@ namespace App\Controller;
 class CampaignsController extends AppController
 {
     /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function index()
-    {
-        $this->Authorization->skipAuthorization();
-        $query = $this->Campaigns->find()
-            ->contain(['Users']);
-        $campaigns = $this->paginate($query);
-        
-        $this->set(compact('campaigns'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Campaign id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $campaign = $this->Campaigns->get($id, contain: ['Users', 'Scenes']);
-        $this->Authorization->authorize($campaign);
-        $this->set(compact('campaign'));
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
