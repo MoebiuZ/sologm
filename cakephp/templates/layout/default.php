@@ -18,17 +18,15 @@
 
 $user = $this->request->getAttribute('identity');
 
+$app_title = 'Solo GM';
 
-$
-
-$title = 'Solo GM';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $title ?>: <?= $this->fetch('title') ?></title>
+    <title><?= $app_title ?>: <?= $this->fetch('title') ?></title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
@@ -93,8 +91,8 @@ $title = 'Solo GM';
         <aside class="main-sidebar nav-collapse-hide-child nav-child-indent sidebar-dark-primary elevation-4">
 
             <a href="/" class="brand-link">
-                <?= $this->Html->Image('cake.icon.png', array('class' => 'brand-image img-circle elevation-3', 'style' => 'opacity: .8', 'alt' => $title)) ?>
-                <span class="brand-text font-weight-light"><?= $title ?></span>
+                <?= $this->Html->Image('cake.icon.png', array('class' => 'brand-image img-circle elevation-3', 'style' => 'opacity: .8', 'alt' => $app_title)) ?>
+                <span class="brand-text font-weight-light"><?= $app_title ?></span>
             </a>
 
             <div class="sidebar">
@@ -107,7 +105,7 @@ $title = 'Solo GM';
                                 <p><?= __('New Campaign') ?></p>
                             </a>
                         </li>                        
-                        <?= $this->cell("CampaignsSidebarBlock", [$user->id]) ?>
+                        <?= $this->cell("CampaignsSidebarBlock", [$user->id, $this->get('scene')]) ?>
                     </ul>
         
                 </nav>
@@ -123,7 +121,6 @@ $title = 'Solo GM';
 
             <div class="content-header">
                 <div class="container-fluid">
-                    <?php debug($this); ?>
                  <!--   <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">Titulo</h1>

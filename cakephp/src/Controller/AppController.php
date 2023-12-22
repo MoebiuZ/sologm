@@ -55,12 +55,7 @@ class AppController extends Controller
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        //debug($this->request->getParam('controller'));
-        //debug($this->request->getParam('pass')[0]);
-       if ($this->request->getParam('controller') == "Scenes") {
-            $this->set('currentCampaign', $this->request->getParam('pass')[0]);
-        }
-        //$this->set('currentCampaign', $this->Auth->user('id'));
+
     }
 
 

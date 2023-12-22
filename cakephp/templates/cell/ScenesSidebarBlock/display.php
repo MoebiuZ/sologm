@@ -1,6 +1,6 @@
 <?php foreach ($scenes as $scene) : ?>
 <li class="nav-item">
-    <a href="/scenes/view/<?= h($scene->id) ?>" class="nav-link active">
+    <a href="/scenes/view/<?= h($scene->id) ?>" class="nav-link nav-link-sm <?= $scene->id == $currentScene['id'] ? "active" : ""  ?>">
         <i class="fas fa-scroll nav-icon"></i>
         <p><?= h($scene->name) ?></p>
     </a>

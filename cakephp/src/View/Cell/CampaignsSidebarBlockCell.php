@@ -14,12 +14,13 @@ class CampaignsSidebarBlockCell extends Cell
         
     }
 
-    public function display($user_id)
+    public function display($user_id, $currentScene)
     {
         #$this->loadModel('Campaigns');
         
         $campaigns = $this->fetchtable("Campaigns")->find('all')->where(['user_id' => $user_id]); #->where(['is_published' => true])->order(['lft' => 'ASC']);
-        $this->set(compact('campaigns'));
+        
+        $this->set(compact('campaigns', 'currentScene'));
     }
 }
 
