@@ -75,8 +75,7 @@ class BlocksTable extends Table
         $validator
             ->numeric('pos')
             ->requirePresence('pos', 'create')
-            ->notEmptyString('pos')
-            ->add('pos', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->notEmptyString('pos');
 
         $validator
             ->boolean('hidden')

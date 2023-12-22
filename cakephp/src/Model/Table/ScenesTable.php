@@ -74,9 +74,8 @@ class ScenesTable extends Table
         $validator
             ->numeric('pos')
             ->requirePresence('pos', 'create')
-            ->notEmptyString('pos')
-            ->add('pos', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
+            ->notEmptyString('pos');
+           
         $validator
             ->requirePresence('chaos', 'create')
             ->notEmptyString('chaos');
