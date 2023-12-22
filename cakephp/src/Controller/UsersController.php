@@ -109,6 +109,7 @@ class UsersController extends AppController
                 unset($data['role']);
                 unset($data['enabled']);
             }
+            $data['email'] = strtolower($data['email']);
             $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
@@ -156,7 +157,8 @@ class UsersController extends AppController
             $activation_nonce = Text::uuid();
             $user->activation_nonce = $activation_nonce;
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            $user->role = "user";     
+            $user->role = "user";
+            $user->email = strtolower($user->email);
                        
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been created.'));
@@ -217,9 +219,10 @@ class UsersController extends AppController
     public function login()
     {
         $this->Authorization->skipAuthorization();
-
+        
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
+        
         // regardless of POST or GET, redirect if user is logged in
         if ($result && $result->isValid()) {
             $identity = $this->Authentication->getIdentity();
@@ -231,7 +234,7 @@ class UsersController extends AppController
             $this->Users->save($user);
 
             $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'users',
+                'controller' => 'Users',
                 'action' => 'view', 
                 $user->id
             ]);
@@ -265,7 +268,7 @@ class UsersController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['pages/home', 'login', 'signup', 'activate']);
+        $this->Authentication->allowUnauthenticated(['login', 'signup', 'activate']);
            
     }
 

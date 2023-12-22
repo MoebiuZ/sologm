@@ -32,13 +32,13 @@ class UserNewAdminCommand extends Command
 
         $user = $this->fetchTable()->newEmptyEntity();
         $user->password = $io->ask('New password');
-        $email = $args->getArgument('email');
+        $email = strtolower($args->getArgument('email'));
         $user->email = $email;
         $user->name = $args->getArgument('name');
         $user->last_name =  $args->getArgument('last_name');
         $user->enabled = true;
         $user->role = "admin";
-
+        
         $this->fetchTable()->save($user);
 
 

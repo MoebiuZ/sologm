@@ -38,7 +38,8 @@ $(function(){
                 saveBtnIndicator: 'btn-danger', // Class to change save button indication when content changes to warn of unsaved data.
             },
             focus: true
-            });
+        });
+
         $('#save-'.concat(id)).show();
         $('#edit-'.concat(id)).hide();
     });
@@ -52,7 +53,7 @@ $(function(){
                 '<label class="custom-file-upload"> <input type="file" class="input-file" id="input-file-' + id + '" multiple/>' +
                 '<i class="glyphicon glyphicon-paperclip"></i> dsfg </label>',
                  tooltip: 'Attach file',
-             });
+            });
         }
         $('#block-'.concat(id)).summernote({
             toolbar: [
@@ -167,7 +168,7 @@ $(function(){
 });
 
 
-
+/*
 $(function(){
     const rows = 21;
     const cols = 21;
@@ -273,3 +274,4 @@ $(function(){
     setInterval(updateGrid, 1000);
     
 });
+*/
