@@ -7,7 +7,7 @@ $(function(){
         }
     });
 
-    $("[id^=block]").dblclick(function() {
+    $("#blocks").on("dblclick", "[id^=block]", function() {
         var id = $(this).attr("id").replace("block-", '');
         var btnAttch = function (context) {
             var ui = $.summernote.ui;
@@ -44,7 +44,7 @@ $(function(){
         $('#edit-'.concat(id)).hide();
     });
 
-    $(".editblock").on("click", function() {
+    $("#blocks").on("click", ".editblock", function() {
         var id = $(this).attr("id").replace("edit-", '');
         var btnAttch = function (context) {
             var ui = $.summernote.ui;
@@ -80,7 +80,7 @@ $(function(){
         $('#edit-'.concat(id)).hide();
     });
       
-    $(".saveblock").on("click", function() {
+    $("#blocks").on("click", ".saveblock", function() {
         var id = $(this).attr("id").replace("save-", '');
         var markup = $('#block-'.concat(id)).summernote('code');
 
@@ -139,7 +139,7 @@ $(function(){
                             '" class="saveblock btn btn btn-primary hidden float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>' +
                             '</div></div></div>'
                         
-                        $('#blocks-end').before(newblock); 
+                        $('#blocks').append(newblock); 
                         $("#newpblock").show();
                         $("#block-new").summernote('destroy');
                         $('#new-block-editor').hide();
@@ -156,12 +156,8 @@ $(function(){
             $("#block-new").summernote('destroy');
             $('#new-block-editor').hide();
         }
-
-
     });
-    
-    
-
+        
     $("#newpblock").click(function() {
         $("#block-new").summernote();
         $("#new-block-editor").show();

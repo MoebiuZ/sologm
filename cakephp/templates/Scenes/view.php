@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Scene $scene
  */
 ?>
-
+<div id="blocks">
 <?php foreach ($scene->blocks as $block): ?>
 <div class="row soloblock">
     <div class="col pblock">
@@ -20,7 +20,7 @@
     </div>
 </div>
 <?php endforeach; ?>
-<div id="blocks-end"></div>
+</div>
 <div id="new-block-editor" class="row hidden">
     <div class="col pblock">
         <br />
