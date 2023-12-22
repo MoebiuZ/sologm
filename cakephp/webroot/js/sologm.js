@@ -104,9 +104,51 @@ $(function(){
                 console.log(e);
             }
         });
-
-        
     });
+
+    
+    $("#block-new").summernote();
+
+    $("#newpblock").click(function() {
+        $("#new-block-editor").show();
+        $(this).hide();
+    });
+
+    /*
+    $("#newpblock").click(function() {
+        $('.soloblock').last().after('<div class="row"><div class="col pblock"><div id="block-new"></div></div><br /><div class="float-right"><button id="save-new" class="editblock btn btn-xs btn-primary" type="button"><i class="fas fa-edit">Save</i></button>'); 
+
+        //var id = $(this).attr("id").replace("block-", '');
+        var btnAttch = function (context) {
+            var ui = $.summernote.ui;
+          /*  var button = ui.button({
+                contents:
+                '<label class="custom-file-upload"> <input type="file" class="input-file" id="input-file-' + id + '" multiple/>' +
+                '<i class="glyphicon glyphicon-paperclip"></i> dsfg </label>',
+                 tooltip: 'Attach file',
+             });
+        }
+        $('#block-new').summernote({
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['fontsize', ['fontsize']],
+                ['btn-anexar', ['btnAnexar']],
+                ['save', ['save']], // The button
+            ],
+            save:{
+                lang: 'en-US', // Change to your chosen language
+                encode: false, // true = encode editor data, you may need to unencode the data on your backend or before output.
+                pageBlockClass: '.page-block', // Leave empty if not using an overlay to block user activity while data is sent.
+                pageBlockToggle: 'd-block', // Class to use to toggle Page Block. Remove the class via backend once data is safely stored.
+                saveBtnIndicator: 'btn-danger', // Class to change save button indication when content changes to warn of unsaved data.
+            },
+            focus: true
+        });
+
+        $(this).hide();
+    });*/
 
 
 
