@@ -15,7 +15,8 @@
             <?= $block->content ?>
         </div>
         <div class="float-right">
-            <button id="save-<?= $block->id  ?>" class="saveblock btn btn btn-primary hidden float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>
+            <button id="cancel-<?= $block->id  ?>" class="cancelblock btn btn-secondary hidden clearfix" type="button">Cancel</button>
+            <button id="save-<?= $block->id  ?>" class="saveblock btn btn-primary hidden clearfix" type="button"><i class="fas fa-save"></i> Save</button>
         </div>
     </div>
 </div>
@@ -26,7 +27,8 @@
         <br />
         <div id="block-new"></div>
         <div class="float-right">
-            <button id="save-new-<?= $scene->id ?>" class="savenew btn btn btn-primary float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>
+            <button id="cancel-new" class="cancelnew btn btn btn-secondary clearfix" type="button">Cancel</button>
+            <button id="save-new-<?= $scene->id ?>" class="savenew btn btn btn-primary  clearfix" type="button"><i class="fas fa-save"></i> Save</button>
         </div>
     </div>
 </div>
