@@ -35,8 +35,6 @@ $app_title = 'Solo GM';
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    
-
 </head>
 
 <body class="hold-transition <?php if ($this->Identity->isLoggedIn()) : ?> sidebar-mini <?php endif; ?> sidebar-collapse layout-fixed layout-footer-fixed"> <!-- layout-navbar-fixed">-->
@@ -49,13 +47,15 @@ $app_title = 'Solo GM';
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
+            
+                <li class="nav-item ml-2">
+                    <?php if ($this->get('scene') != null): ?>
+                    <div class="h6"><?= $this->get('scene')->campaign['name'] ?></div>
+                    <div class="small"><i class="fa-solid fa-scroll"></i> &nbsp;<?= $this->get('scene')->name ?></div>
+                    <?php endif; ?>
+                </li>
             </ul>
 
-            <div class="ml-2">
-                <h4><?= $this->get('scene')->campaign['name'] ?></h4>
-                <p class="pl-2"><i class="fa-solid fa-scroll"></i> &nbsp;<?= $this->get('scene')->name ?></p>
-            </div>
-            
             <?php if ($this->Identity->isLoggedIn()) : ?>
             <ul class="navbar-nav ml-auto">
                 
