@@ -10,7 +10,11 @@
 }
 
 .pblock:hover .editblock {
-    display: block;
+    display: inline-block;
+}
+
+.pblock:hover .deleteblock {
+    display: inline-block;
 }
 
 .pblock p {

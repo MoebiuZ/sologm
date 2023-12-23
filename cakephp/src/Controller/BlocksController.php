@@ -111,14 +111,17 @@ class BlocksController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $block = $this->Blocks->get($id);
-        if ($this->Blocks->delete($block)) {
-            $this->Flash->success(__('The block has been deleted.'));
-        } else {
-            $this->Flash->error(__('The block could not be deleted. Please, try again.'));
+        if ($this->request->is('ajax')) {
+            $id = $this->request->getData("id");
+            $block = $this->Blocks->get($id);
+            $this->Authorization->authorize($block);
+            if ($this->Blocks->delete($block)) {
+                echo json_encode(array("status" => "success")); 
+                exit;
+            } else {
+                echo json_encode(array("status" => "error")); 
+                exit;
+            }
         }
-
-        return $this->redirect(['action' => 'index']);
     }
 }

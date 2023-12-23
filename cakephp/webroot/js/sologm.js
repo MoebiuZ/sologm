@@ -6,6 +6,32 @@ $(function(){
         }
     });
 
+
+    function confirmModal(message, callback) {
+        var confirmIndex = true;
+    
+        var newMessage = message.replace(/(?:\r\n|\r|\n)/g, "<br>");
+        $('#modal_confirm_dialog_body').html("" + newMessage + "");
+        $('#modal_confirm_dialog').modal('show');
+    
+        $('#confirm_cancle').on("click", function() {
+            if(confirmIndex) {
+                callback(false);
+                $('#modal_confirm_dialog').modal('hide');
+                confirmIndex = false;
+            }
+        });
+    
+        $('#confirm_ok').on("click", function() {
+            if(confirmIndex) {
+                callback(true);
+                $('#modal_confirm_dialog').modal('hide');
+                confirmIndex = false;
+            }
+        });
+    }
+
+
     $("#blocks").on("dblclick", "[id^=block]", function() {
         var id = $(this).attr("id").replace("block-", '');
         $('#block-'.concat(id)).summernote({
@@ -22,6 +48,7 @@ $(function(){
         $('#save-'.concat(id)).show();
         $('#cancel-'.concat(id)).show();
         $('#edit-'.concat(id)).hide();
+        $('#delete-'.concat(id)).hide();
     });
 
     $("#blocks").on("click", ".editblock", function() {
@@ -39,6 +66,34 @@ $(function(){
         $('#save-'.concat(id)).show();
         $('#cancel-'.concat(id)).show();
         $('#edit-'.concat(id)).hide();
+        $('#delete-'.concat(id)).hide();
+    });
+
+
+
+    $("#blocks").on("click", ".deleteblock", function() {
+
+        var id = $(this).attr("id").replace("delete-", '');
+        confirmModal('Are you sure you want to delete this block?', function() {
+            var postdata = {"id": id,};
+            $.ajax({
+                url: "/blocks/delete",
+                data: postdata,
+                dataType: "json",
+                method: "post",
+                type: "post",
+                success: function(response) {
+                    if (response.status == "success") {
+                        $('#soloblock-'.concat(id)).remove();
+                    } else {
+                        alert("Error");
+                    }               
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        });
     });
       
     $("#blocks").on("click", ".saveblock", function() {
@@ -55,6 +110,7 @@ $(function(){
                 if (response.status == "success") {
                     $('#block-'.concat(id)).summernote('destroy');
                     $('#edit-'.concat(id)).show();
+                    $('#delete-'.concat(id)).show();
                     $('#save-'.concat(id)).hide();
                     $('#cancel-'.concat(id)).hide();
                 } else {
@@ -71,6 +127,7 @@ $(function(){
         var id = $(this).attr("id").replace("cancel-", '');
         $('#block-'.concat(id)).summernote('destroy');
         $('#edit-'.concat(id)).show();
+        $('#delete-'.concat(id)).show();
         $('#save-'.concat(id)).hide();
         $('#cancel-'.concat(id)).hide();
     });
@@ -92,17 +149,11 @@ $(function(){
                         let newblock = '<div class="row soloblock">' +
                             '<div class="col pblock">' +
                             '<div class="float-left">' +
-                            '<button id="edit-' + 
-                            response.block_id +
-                            '" class="editblock btn btn-xs hidden" type="button"><i class="fas fa-pencil"></i></button>' +
-                            '</div><br /><div id="block-' +
-                            response.block_id +
-                            '" class="pblocktext">' +
-                                markup +
+                            '<button id="edit-' + response.block_id + '" class="editblock btn btn-xs hidden" type="button"><i class="fas fa-pencil"></i></button>' +
+                            '<button id="delete-' + response.block_id + '" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>' +
+                            '</div><br /><div id="block-' + response.block_id + '" class="pblocktext">' + markup +
                             '</div><div class="float-right">' +
-                            '<button id="save-' +
-                            response.block_id +
-                            '" class="saveblock btn btn btn-primary hidden float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>' +
+                            '<button id="save-' + response.block_id + '" class="saveblock btn btn btn-primary hidden float-right clearfix" type="button"><i class="fas fa-save"></i> Save</button>' +
                             '</div></div></div>'
                         
                         $('#blocks').append(newblock); 
