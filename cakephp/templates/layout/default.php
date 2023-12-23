@@ -50,8 +50,8 @@ $app_title = 'Solo GM';
             
                 <li class="nav-item ml-2">
                     <?php if ($this->get('scene') != null): ?>
-                    <div class="h6"><?= $this->get('scene')->campaign['name'] ?></div>
-                    <div class="small"><i class="fa-solid fa-scroll"></i> &nbsp;<?= $this->get('scene')->name ?></div>
+                    <div id="campaign-id-<?= $this->get('scene')->campaign['id'] ?>" class="h6"><span id="campaign-name"><?= $this->get('scene')->campaign['name'] ?></span> <span id="editcampaign-<?= $this->get('scene')->campaign['id'] ?>" class="btn-editcampaignname pl-1 small hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
+                    <div id="scene-id-<?= $this->get('scene')->id ?>" class="small"><i class="fa-solid fa-scroll"></i> <span id="scene-name"><?= $this->get('scene')->name ?></span> <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
                     <?php endif; ?>
                 </li>
             </ul>

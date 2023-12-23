@@ -38,7 +38,7 @@ $(function(){
         });
     }
 
-
+    // ------ Edit block on double click ------ //
     $("#blocks").on("dblclick", "[id^=block]", function() {
         textblocks_open += 1;
         var id = $(this).attr("id").replace("block-", '');
@@ -59,6 +59,7 @@ $(function(){
         $('#delete-'.concat(id)).hide();
     });
 
+    // ------ Edit block button ------ //
     $("#blocks").on("click", ".editblock", function() {
         textblocks_open += 1;
         var id = $(this).attr("id").replace("edit-", '');
@@ -78,32 +79,7 @@ $(function(){
         $('#delete-'.concat(id)).hide();
     });
 
-
-
-    $("#blocks").on("click", ".deleteblock", function() {
-        var id = $(this).attr("id").replace("delete-", '');
-        confirmModal('Are you sure you want to delete this block?', function() {
-            var postdata = {"id": id,};
-            $.ajax({
-                url: "/blocks/delete",
-                data: postdata,
-                dataType: "json",
-                method: "post",
-                type: "post",
-                success: function(response) {
-                    if (response.status == "success") {
-                        $('#soloblock-'.concat(id)).remove();
-                    } else {
-                        alert("Error");
-                    }               
-                },
-                error: function(e) {
-                    console.log(e);
-                }
-            });
-        });
-    });
-      
+    // ------ Save block ------ //
     $("#blocks").on("click", ".saveblock", function() {
         var id = $(this).attr("id").replace("save-", '');
         var markup = $('#block-'.concat(id)).summernote('code');
@@ -132,6 +108,34 @@ $(function(){
         });
     });
 
+
+    // ------ Delete block ------ //
+    $("#blocks").on("click", ".deleteblock", function() {
+        var id = $(this).attr("id").replace("delete-", '');
+        confirmModal('Are you sure you want to delete this block?', function() {
+            var postdata = {"id": id,};
+            $.ajax({
+                url: "/blocks/delete",
+                data: postdata,
+                dataType: "json",
+                method: "post",
+                type: "post",
+                success: function(response) {
+                    if (response.status == "success") {
+                        $('#soloblock-'.concat(id)).remove();
+                    } else {
+                        alert("Error");
+                    }               
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        });
+    });
+      
+
+    // ------ Calcel block ------ //
     $("#blocks").on("click", ".cancelblock", function() {
         textblocks_open -= 1;
         var id = $(this).attr("id").replace("cancel-", '');
@@ -142,6 +146,7 @@ $(function(){
         $('#cancel-'.concat(id)).hide();
     });
 
+    // ------ Save new block ------ //
     $(".savenew").click(function() {
         var scene_id = $(this).attr("id").replace("save-new-", '');
         var markup = $('#block-new').summernote('code');
@@ -189,6 +194,7 @@ $(function(){
         }
     });
 
+    // ------ Cancel new block ------ //
     $('.cancelnew').click(function() {
         textblocks_open -= 1;
         $("#newpblock").show();
@@ -197,6 +203,7 @@ $(function(){
         $('#new-block-editor').hide();
     });
         
+    // ------ Create new block ------ //
     $("#newpblock").click(function() {
         textblocks_open += 1;
         $("#block-new").summernote({
@@ -214,6 +221,62 @@ $(function(){
         $("html, body").animate({ scrollTop: $(document).height() }, 10);
     });
 
+
+    // ------ Edit campaign name ------ //
+    $("[id^=campaign-id]").dblclick(function(e) {
+        textblocks_open += 1;
+        
+        var id = $(this).attr("id").replace("campaign-id-", '');
+        $("#campaign-name").attr('contenteditable','true');
+        $("#campaign-name").focus();
+
+        $('.btn-editcampaignname').hide();
+
+    });
+
+    $("#campaign-name").blur(function(e) {
+        textblocks_open -= 1;
+        $("#campaign-name").attr('contenteditable','false');
+        // Acción a ejecutar después de guardar los cambios
+    });
+
+    $("#campaign-name").keydown(function(e) {
+        if (e.keyCode === 13) {
+            textblocks_open -= 1;
+            $("#campaign-name").attr('contenteditable','false');
+            // Acción a ejecutar después de guardar los cambios
+        }
+    });
+
+    // ------ Edit scene name ------ //
+    $("[id^=scene-id]").dblclick(function(e) {
+        textblocks_open += 1;
+        
+        var id = $(this).attr("id").replace("scene-id-", '');
+        $("#scene-name").attr('contenteditable','true');
+        $("#scene-name").focus();
+
+        $('.btn-editscenename').hide();
+        
+
+    });
+
+    $("#scene-name").blur(function(e) {
+        textblocks_open -= 1;
+        $("#scene-name").attr('contenteditable','false');
+       
+        // Acción a ejecutar después de guardar los cambios
+    });
+
+    $("#scene-name").keydown(function(e) {
+        if (e.keyCode === 13) {
+            textblocks_open -= 1;
+            $("#scene-name").attr('contenteditable','false');
+            // Acción a ejecutar después de guardar los cambios
+        }
+    });
+
+
 });
 
 
@@ -223,9 +286,7 @@ $(function(){
     const cols = 21;
     let grid = createGrid();
 
-   
     var conwaysize = $('#conway-grid').attr("class").replace(/.*conway-(\S*)[ ]*.*/i, '$1');
-    console.log(conwaysize);
     const container = $('#conway-grid');
 
     function createGridRows() {

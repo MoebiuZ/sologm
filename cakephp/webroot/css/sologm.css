@@ -9,12 +9,19 @@
     border-radius: 5px;
 }
 
-.pblock:hover .editblock {
-    display: inline-block;
+#campaign-name {
+    padding: 2px;
+}
+#scene-name {
+    padding: 2px;
 }
 
-.pblock:hover .deleteblock {
-    display: inline-block;
+#campaign-name:hover + .btn-editcampaignname {
+    display: inline;
+}
+
+#scene-name:hover + .btn-editscenename {
+    display: inline;
 }
 
 .pblock p {
@@ -31,6 +38,18 @@
 
 .hidden {
     display: none;
+}
+
+contenteditable {
+    outline: 5px solid;
+}
+
+.pblock:hover .editblock {
+    display: inline-block;
+}
+
+.pblock:hover .deleteblock {
+    display: inline-block;
 }
 
 #conway-grid {
