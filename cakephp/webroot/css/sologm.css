@@ -38,37 +38,34 @@
     left: 50%;
 }
 
-#conway-grid > div {
+#conway-grid-inside {
     position: relative; 
-    top: -50%;
+    left: -50%;
 }
 
-#conway-grid-mini {
-
+.conway-mini {
+    position: static !important;
+    left: 0% !important;
 }
 
-#conway-grid-mini > div {
 
-}
-
-.conwaycell {
+.conwaycell-normal {
     width: 9px;
     height: 9px;
     margin:1px;
     border-radius: 50%;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
 .conwaycell-mini {
     width: 2px;
     height: 2px;
     margin: 0.5px;
-    /*background: #fff;*/
     border-radius: 50%;
     display: inline-block;
 }
 
-@keyframes conwaycellcolor {
+@keyframes conwaycellcolor-normal {
     0% {
         background-color: rgb(255, 255, 255);
         transform: scale(0.1);
@@ -96,11 +93,10 @@
         
         transform: scale(1);
     }
-    
 }
 
-.conwayalive {
-    animation: conwaycellcolor 5s ease-in forwards;
+.conwayalive-normal {
+    animation: conwaycellcolor-normal 5s ease-in forwards;
 }
 
 .conwayalive-mini {

@@ -214,99 +214,6 @@ $(function(){
         $("html, body").animate({ scrollTop: $(document).height() }, 10);
     });
 
-    /*
-    $("#newpblock").click(function() {
-        $('.soloblock').last().after('<div class="row"><div class="col pblock"><div id="block-new"></div></div><br /><div class="float-right"><button id="save-new" class="editblock btn btn-xs btn-primary" type="button"><i class="fas fa-edit">Save</i></button>'); 
-
-        //var id = $(this).attr("id").replace("block-", '');
-        var btnAttch = function (context) {
-            var ui = $.summernote.ui;
-          /*  var button = ui.button({
-                contents:
-                '<label class="custom-file-upload"> <input type="file" class="input-file" id="input-file-' + id + '" multiple/>' +
-                '<i class="glyphicon glyphicon-paperclip"></i> dsfg </label>',
-                 tooltip: 'Attach file',
-             });
-        }
-        $('#block-new').summernote({
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['fontsize', ['fontsize']],
-                ['btn-anexar', ['btnAnexar']],
-                ['save', ['save']], // The button
-            ],
-            save:{
-                lang: 'en-US', // Change to your chosen language
-                encode: false, // true = encode editor data, you may need to unencode the data on your backend or before output.
-                pageBlockClass: '.page-block', // Leave empty if not using an overlay to block user activity while data is sent.
-                pageBlockToggle: 'd-block', // Class to use to toggle Page Block. Remove the class via backend once data is safely stored.
-                saveBtnIndicator: 'btn-danger', // Class to change save button indication when content changes to warn of unsaved data.
-            },
-            focus: true
-        });
-
-        $(this).hide();
-    });*/
-
-
-
-/*
-    // Ajax csrf token setup
-
-
-    // ajax request to save student
-    $("#frm-add-student").on("submit", function(){
-
-        var postdata = $("#frm-add-student").serialize();
-        $.ajax({
-            url: "/ajax-add-student",
-            data: postdata,
-            type: "JSON",
-            method: "post",
-            success:function(response){
-                
-                window.location.href = '/list-students'
-            }
-        });
-    });
-
-    // ajax request to update student
-    $(document).on("submit", "#frm-edit-student", function(){
-
-        var postdata = $("#frm-edit-student").serialize();
-
-        $.ajax({
-            url: "/ajax-edit-student",
-            data: postdata,
-            type: "JSON",
-            method: "post",
-            success:function(response){
-                
-                window.location.href = '/list-students'
-            }
-        });
-    });
-
-    // ajax request to delete student
-    $(document).on("click", ".btn-delete-student", function(){
-
-        if(confirm("Are you sure want to delete ?")){
-
-            var postdata = "student_id=" + $(this).attr("data-id");
-            $.ajax({
-                url: "/ajax-delete-student",
-                data: postdata,
-                type: "JSON",
-                method: "post",
-                success:function(response){
-                    
-                    window.location.href = '/list-students'
-                }
-            });
-        }
-    });*/
 });
 
 
@@ -315,15 +222,17 @@ $(function(){
     const rows = 21;
     const cols = 21;
     let grid = createGrid();
-    
-    const container = $('#conway-grid-mini');
 
-    function dale() {
+   
+    var conwaysize = $('#conway-grid').attr("class").replace(/.*conway-(\S*)[ ]*.*/i, '$1');
+    console.log(conwaysize);
+    const container = $('#conway-grid');
+
+    function createGridRows() {
         for (let i = 0; i < rows; i++) {
             const row = $('<div id="cwrow' + i + '" class="row"></div>');
-    
             for (let j = 0; j < cols; j++) {
-                const cell = $('<div id="cwcell' + j + '" class="conwaycell-mini"></div>');
+                const cell = $('<div id="cwcell' + j + '" class="conwaycell-' + conwaysize + '"></div>');
                 cell.on('click', () => toggleCell(i, j));
                 row.append(cell);
             }
@@ -342,10 +251,9 @@ $(function(){
             for (let j = 0; j < cols; j++) {
                 const cell = $('#cwrow' + i).find('#cwcell' + j);
                 if (grid[i][j] == 1) {
-                   cell.removeClass('conwayalive-mini');
+                   cell.removeClass('conwayalive-' + conwaysize);
                    cell.width();
-                   cell.addClass('conwayalive-mini');
-
+                   cell.addClass('conwayalive-' + conwaysize);
                 }
             }
         }
@@ -392,7 +300,7 @@ $(function(){
         return count;
     }
     
-    dale();
+    createGridRows();
 
     toggleCell(10,5);
     toggleCell(10,6);

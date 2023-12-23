@@ -49,15 +49,12 @@ $app_title = 'Solo GM';
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-              <!--  <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link"><?= __('Home') ?></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link"><?= __('Help') ?></a>
-                </li>-->
             </ul>
 
-            <div><?= $app_title ?></div>
+            <div class="ml-2">
+                <h4><?= $this->get('scene')->campaign['name'] ?></h4>
+                <p class="pl-2"><i class="fa-solid fa-scroll"></i> &nbsp;<?= $this->get('scene')->name ?></p>
+            </div>
             
             <?php if ($this->Identity->isLoggedIn()) : ?>
             <ul class="navbar-nav ml-auto">
@@ -93,13 +90,11 @@ $app_title = 'Solo GM';
         <aside class="main-sidebar nav-collapse-hide-child nav-child-indent sidebar-dark-primary elevation-4">
 
             <a href="#" class="brand-link">
-                <div id="conway-grid-mini" class="d-inline-block"><div></div></div>
-                <!-- <?= $this->Html->Image('cake.icon.png', array('class' => 'brand-image img-circle elevation-3', 'style' => 'opacity: .8', 'alt' => $app_title)) ?> -->
-                <div class="brand-text font-weight-light d-inline-block" style=""><span class=""><?= $app_title ?></span></div>
+                <div id="conway-grid" class="conway-mini d-inline-block" style="vertical-align:middle"><div></div></div>
+                <span class="brand-text font-weight-light"><?= $app_title ?></span>
             </a>
 
             <div class="sidebar">
-
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
