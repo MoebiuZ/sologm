@@ -1,11 +1,18 @@
 $(function(){
  
+    var textblocks_open = 0;
+    window.onbeforeunload = function(){
+        if (textblocks_open > 0) {
+           return textblocks_open;            
+        }
+    };
+
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': csrfToken // this is defined in app.php as a js variable
         }
     });
-
 
     function confirmModal(message, callback) {
         var confirmIndex = true;
@@ -33,6 +40,7 @@ $(function(){
 
 
     $("#blocks").on("dblclick", "[id^=block]", function() {
+        textblocks_open += 1;
         var id = $(this).attr("id").replace("block-", '');
         $('#block-'.concat(id)).summernote({
             toolbar: [
@@ -52,6 +60,7 @@ $(function(){
     });
 
     $("#blocks").on("click", ".editblock", function() {
+        textblocks_open += 1;
         var id = $(this).attr("id").replace("edit-", '');
         $('#block-'.concat(id)).summernote({
             toolbar: [
@@ -72,7 +81,6 @@ $(function(){
 
 
     $("#blocks").on("click", ".deleteblock", function() {
-
         var id = $(this).attr("id").replace("delete-", '');
         confirmModal('Are you sure you want to delete this block?', function() {
             var postdata = {"id": id,};
@@ -108,6 +116,7 @@ $(function(){
             type: "post",
             success: function(response) {
                 if (response.status == "success") {
+                    textblocks_open -= 1;
                     $('#block-'.concat(id)).summernote('destroy');
                     $('#edit-'.concat(id)).show();
                     $('#delete-'.concat(id)).show();
@@ -124,6 +133,7 @@ $(function(){
     });
 
     $("#blocks").on("click", ".cancelblock", function() {
+        textblocks_open -= 1;
         var id = $(this).attr("id").replace("cancel-", '');
         $('#block-'.concat(id)).summernote('destroy');
         $('#edit-'.concat(id)).show();
@@ -146,6 +156,7 @@ $(function(){
                 type: "post",
                 success: function(response) {
                     if (response.status == "success") {
+                        textblocks_open -= 1;
                         let newblock = '<div class="row soloblock">' +
                             '<div class="col pblock">' +
                             '<div class="float-left">' +
@@ -170,6 +181,7 @@ $(function(){
                 }
             });
         } else {
+            textblocks_open -= 1;
             $("#newpblock").show();
             $("#block-new").summernote('reset');
             $("#block-new").summernote('destroy');
@@ -178,6 +190,7 @@ $(function(){
     });
 
     $('.cancelnew').click(function() {
+        textblocks_open -= 1;
         $("#newpblock").show();
         $("#block-new").summernote('reset');
         $("#block-new").summernote('destroy');
@@ -185,6 +198,7 @@ $(function(){
     });
         
     $("#newpblock").click(function() {
+        textblocks_open += 1;
         $("#block-new").summernote({
             toolbar: [
                 ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
