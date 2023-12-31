@@ -59,9 +59,15 @@ $app_title = 'Solo GM';
                                 $campaign_name = $this->get('scene')->campaign->name;
                             }
                     ?>
-                    <div id="campaign-id-<?= $campaign_id ?>" class="h6"><span id="campaign-name"><?= $campaign_name ?></span> <span id="editcampaign-<?= $campaign_id ?>" class="btn-editcampaignname pl-1 small hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
+                    <div id="campaign-id-<?= $campaign_id ?>" class="h6">
+                        <span id="campaign-name"><?= $campaign_name ?></span> 
+                        <span id="editcampaign-<?= $campaign_id ?>" class="btn-editcampaignname pl-1 small hidden" type="button"> <i class="fas fa-pencil"></i></span>
+                    </div>
                         <?php if ($this->get('scene')->id != null): ?>
-                        <div id="scene-id-<?= $this->get('scene')->id ?>" class="small"><i class="fa-solid fa-scroll"></i> <span id="scene-name"><?= $this->get('scene')->name ?></span> <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
+                        <div id="scene-id-<?= $this->get('scene')->id ?>" class="small">
+                            <i class="fa-solid fa-scroll"></i> <span id="scene-name"><?= $this->get('scene')->name ?></span> 
+                            <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden" type="button"> <i class="fas fa-pencil"></i></span>
+                        </div>
                         <?php endif; ?> 
                     <?php endif; ?>
                 </li>
@@ -117,9 +123,7 @@ $app_title = 'Solo GM';
                         </li>                        
                         <?= $this->cell("CampaignsSidebarBlock", [$user->id, $this->get('scene')]) ?>
                     </ul>
-        
                 </nav>
-
             </div>
 
         </aside>
@@ -129,22 +133,13 @@ $app_title = 'Solo GM';
         <!-- content -->
         <div class="content-wrapper">
 
+            
             <div class="content-header">
                 <div class="container-fluid">
-                 <!--   <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Titulo</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Starter Page</li>
-                            </ol>
-                        </div>
-                    </div>-->
+
                 </div>
             </div>
-
+            
 
             <div class="content">
                 <div class="container-fluid">
@@ -160,7 +155,7 @@ $app_title = 'Solo GM';
                             <div >
                                 <div class="card card-tabs card-dark">
                                     <div class="card-header p-0 pt-1">
-                                        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                        <ul class="nav nav-pills" id="custom-tabs-one-tab" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="custom-tabs-one-threads-tab" data-toggle="pill" href="#custom-tabs-one-threads" role="tab" aria-controls="custom-tabs-one-threads" aria-selected="true">Threads</a>
                                             </li>
@@ -208,12 +203,22 @@ $app_title = 'Solo GM';
         <!-- content -->
 
         <!-- footer -->
-        <?php if ($this->Identity->isLoggedIn()) : ?>
+        <?php if ($this->get('scene') != null) : ?>
         <footer class="main-footer">
-            <div class="float-right"> 
-                <button type="button" data-widget="control-sidebar" class="btn btn-primary btn-block">
-                    <i class="fa fa-wrench"></i> <?= __("Adventure lists") ?>
-                </button>
+            <div class="d-flex justify-content-around">
+                <div class="px-1">
+                    <button type="button" class="btn btn-primary p-2">
+                        <i class="fa fa-dice"></i> <?= __("Fate") ?>
+                    </button>
+                    <button type="button" class="btn btn-primary p-2">
+                        <i class="fa fa-dice"></i> <?= __("Focus") ?>
+                    </button>
+                </div>
+                <div class="px-1 ml-auto">
+                    <button type="button" data-widget="control-sidebar" class="btn btn-primary">
+                        <i class="fa fa-wrench"></i> <?= __("Adventure lists") ?>
+                    </button>
+                </div>
             </div>
         </footer>
         <?php endif; ?>
@@ -227,5 +232,4 @@ $app_title = 'Solo GM';
 </script>
 <?php $this->fetch('script') ?>
 </body>
-
 </html>

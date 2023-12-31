@@ -50,6 +50,8 @@ $(function(){
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
             ],
+             height: 210,
+             spellCheck: false,
              focus: true
         });
 
@@ -71,6 +73,8 @@ $(function(){
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
             ],
+             height: 210,
+             spellCheck: false,
              focus: true
         });
         $('#save-'.concat(id)).show();
@@ -214,6 +218,8 @@ $(function(){
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
             ],
+             height: 210,
+             spellCheck: false,
              focus: true
         });
         $("#new-block-editor").show();
@@ -287,7 +293,12 @@ $(function(){
     let grid = createGrid();
 
     var conwaysize = $('#conway-grid').attr("class").replace(/.*conway-(\S*)[ ]*.*/i, '$1');
-    const container = $('#conway-grid');
+    let container = $('#conway-grid-inside');
+    
+    if (conwaysize == "mini") {
+        container = $('#conway-grid');
+    }
+    
 
     function createGridRows() {
         for (let i = 0; i < rows; i++) {

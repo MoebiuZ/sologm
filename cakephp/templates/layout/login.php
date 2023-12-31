@@ -38,7 +38,7 @@ $title = 'Solo GM';
 </head>
 
 <body class="hold-transition">
-    <div id="conway-grid" class="conway-normal"><div class="conway-grid-inside"></div></div>
+    <div id="conway-grid" class="conway-normal"><div id="conway-grid-inside"></div></div>
     <!-- content -->
     <div class="d-flex align-items-center vh-100">
         <div class="container">
