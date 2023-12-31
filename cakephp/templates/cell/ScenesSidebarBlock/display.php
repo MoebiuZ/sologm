@@ -7,7 +7,7 @@
 </li>
 <?php endforeach; ?>
 <li class="nav-item">
-    <a href="/scenes/add" class="nav-link">
+    <a href="/scenes/add/<?= $campaign_id ?>" class="nav-link">
         <i class="fa-solid fa-circle-plus nav-icon"></i>
         <p><?= __('New scene') ?></p>
     </a>

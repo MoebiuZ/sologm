@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="mx-auto col-auto">
-        <div class="card" style="width: 350px;">
+        <div class="card card-dark" style="width: 350px;">
             
             <div class="card-header">
                 <h3 class="card-title"><?= __('Please enter the activation code we have sent to your email.') ?></h3>

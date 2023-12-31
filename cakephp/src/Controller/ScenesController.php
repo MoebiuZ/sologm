@@ -30,11 +30,14 @@ class ScenesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($campaign_id)
     {
         $scene = $this->Scenes->newEmptyEntity();
         $this->Authorization->authorize($scene);
         if ($this->request->is('post')) {
+
+            // TODO  SET LAST POS
+            //$scene->pos = ;
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
             if ($this->Scenes->save($scene)) {
                 $campaignstable = $this->fetchTable('Campaigns');
@@ -43,12 +46,13 @@ class ScenesController extends AppController
                 $campaignstable->save($campaign);
                 $this->Flash->success(__('The scene has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view']);
             }
             $this->Flash->error(__('The scene could not be saved. Please, try again.'));
         }
-        $campaigns = $this->Scenes->Campaigns->find('list', limit: 200)->all();
-        $this->set(compact('scene', 'campaigns'));
+        #$campaign = $this->Scenes->Campaigns->find('list', limit: 200)->where(['campaignid' => $campaign_id]);
+        $campaign = $scenes = $this->fetchtable("Campaigns")->get($campaign_id);
+        $this->set(compact('scene', 'campaign'));
     }
 
     /**

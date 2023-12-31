@@ -6,26 +6,26 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Scenes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column column-80">
-        <div class="scenes form content">
+    <div class="mx-auto col-auto">
+        <div class="card card-dark" style="width: 350px;">
+            <div class="card-header">
+                <h3 class="card-title"><?= __('New campaign') ?></h3>
+            </div>
+            <div class="card-body ">
             <?= $this->Form->create($scene) ?>
             <fieldset>
-                <legend><?= __('Add Scene') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('pos');
-                    echo $this->Form->control('chaos');
-                    echo $this->Form->control('campaign_id', ['options' => $campaigns]);
-                ?>
+                <div class="form-group mb-3">
+                    <?= $this->Form->label(__('Name')) ?>
+                    <?= $this->Form->text('name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Name')]) ?>
+                </div>
+                <div class="form-group mb-3">
+                    <?= $this->Form->label(__('Chaos')) ?>
+                    <?= $this->Form->text('chaos', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Current chaos: ') . $campaign->current_chaos]) ?>
+                </div>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->submit(__('Create'), array('class' => 'btn btn-primary btn-block')); ?>
             <?= $this->Form->end() ?>
+            </div>
         </div>
     </div>
 </div>

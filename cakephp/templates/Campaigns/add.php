@@ -5,26 +5,29 @@
  * @var \Cake\Collection\CollectionInterface|string[] $users
  */
 ?>
+
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Campaigns'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column column-80">
-        <div class="campaigns form content">
+    <div class="mx-auto col-auto">
+        <div class="card card-dark" style="width: 350px;">
+            <div class="card-header">
+                <h3 class="card-title"><?= __('New campaign') ?></h3>
+            </div>
+            <div class="card-body ">
             <?= $this->Form->create($campaign) ?>
             <fieldset>
-                <legend><?= __('Add Campaign') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('current_chaos');
-                    echo $this->Form->control('user_id', ['options' => $users]);
-                ?>
+                <div class="form-group mb-3">
+                    <?= $this->Form->label(__('Name')) ?>
+                    <?= $this->Form->text('name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Name')]) ?>
+                </div>
+                <div class="form-group mb-3">
+                    <?= $this->Form->label(__('Current Chaos')) ?>
+                    <?= $this->Form->text('current_chaos', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Current Chaos')]) ?>
+                </div>
+                <?= $this->Form->input('user_id', ['type' => 'hidden', 'value' =>  $user->id]) ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->submit(__('Create'), array('class' => 'btn btn-primary btn-block')); ?>
             <?= $this->Form->end() ?>
+            </div>
         </div>
     </div>
 </div>

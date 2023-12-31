@@ -6,12 +6,12 @@
 
 <div class="row">
     <div class="mx-auto col-auto">
-        <div class="card" style="max-width: 350px;">
+        <div class="card card-dark" style="max-width: 350px;">
  
             <div class="card-header">
                 <h3 class="card-title"><?= __('Sign in') ?></h3>
             </div>
-            <div class="card-body ">
+            <div class="card-body">
                 <?= $this->Form->create(null, ['url' => '/users/login']) ?>
                 <fieldset>
                     <div class="input-group mb-3">

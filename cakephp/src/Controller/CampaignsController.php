@@ -24,12 +24,13 @@ class CampaignsController extends AppController
             if ($this->Campaigns->save($campaign)) {
                 $this->Flash->success(__('The campaign has been saved.'));
 
-                return $this->redirect(['action' => 'view', $campaign->id]);
+                return $this->redirect(['controller' => 'scenes', 'action' => 'add', $campaign->id]);
             }
             $this->Flash->error(__('The campaign could not be saved. Please, try again.'));
         }
         $users = $this->Campaigns->Users->find('list', limit: 200)->all();
-        $this->set(compact('campaign', 'users'));
+        $user = $this->Authentication->getIdentity();
+        $this->set(compact('campaign', 'users', 'user'));
     }
 
     /**

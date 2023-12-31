@@ -49,9 +49,20 @@ $app_title = 'Solo GM';
                 </li>
             
                 <li class="nav-item ml-2">
-                    <?php if ($this->get('scene') != null): ?>
-                    <div id="campaign-id-<?= $this->get('scene')->campaign['id'] ?>" class="h6"><span id="campaign-name"><?= $this->get('scene')->campaign['name'] ?></span> <span id="editcampaign-<?= $this->get('scene')->campaign['id'] ?>" class="btn-editcampaignname pl-1 small hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
-                    <div id="scene-id-<?= $this->get('scene')->id ?>" class="small"><i class="fa-solid fa-scroll"></i> <span id="scene-name"><?= $this->get('scene')->name ?></span> <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
+                    <?php 
+                        if ($this->get('scene') != null) : 
+                            if  ($this->get('campaign') != null) {
+                                $campaign_id = $this->get('campaign')->id;
+                                $campaign_name = $this->get('campaign')->name;
+                            } else {
+                                $campaign_id = $this->get('scene')->campaign->id;
+                                $campaign_name = $this->get('scene')->campaign->name;
+                            }
+                    ?>
+                    <div id="campaign-id-<?= $campaign_id ?>" class="h6"><span id="campaign-name"><?= $campaign_name ?></span> <span id="editcampaign-<?= $campaign_id ?>" class="btn-editcampaignname pl-1 small hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
+                        <?php if ($this->get('scene')->id != null): ?>
+                        <div id="scene-id-<?= $this->get('scene')->id ?>" class="small"><i class="fa-solid fa-scroll"></i> <span id="scene-name"><?= $this->get('scene')->name ?></span> <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden" type="button"> <i class="fas fa-pencil"></i></span></div>
+                        <?php endif; ?> 
                     <?php endif; ?>
                 </li>
             </ul>
@@ -67,9 +78,10 @@ $app_title = 'Solo GM';
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-header"><?= $user->name ?></span>
                         <div class="dropdown-divider"></div>
-                        <?= $this->Html->link('<i class="fa fa-user" aria-hidden="true"></i> ' . __('My profile'), ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
+                        <?= $this->Html->link('<i class="fa fa-shield" aria-hidden="true"></i> ' . __('My campaigns'), ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
                         <div class="dropdown-divider"></div>
-
+                        <?= $this->Html->link('<i class="fa fa-user" aria-hidden="true"></i> ' . __('Edit profile'), ['controller' => 'users', 'action' => 'edit', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
+                        <div class="dropdown-divider"></div>
                         <?php if ($this->Identity->get('role') == "admin"): ?>
                         <?= $this->Html->link('<i class="fa fa-users" aria-hidden="true"></i> ' . __('List users'), ['controller' => 'users', 'action' => 'index', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
                         <div class="dropdown-divider"></div>

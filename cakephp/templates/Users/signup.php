@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="mx-auto col-auto">
-        <div class="card" style="width: 350px;">
+        <div class="card card-dark" style="width: 350px;">
             
             <div class="card-header">
                 <h3 class="card-title"><?= __('Sign up') ?></h3>
