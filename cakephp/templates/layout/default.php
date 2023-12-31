@@ -208,15 +208,15 @@ $app_title = 'Solo GM';
             <div class="d-flex justify-content-around">
                 <div class="px-1">
                     <button type="button" class="btn btn-primary p-2">
-                        <i class="fa fa-dice"></i> <?= __("Fate") ?>
+                        <i class="fa fa-dice pr-1"></i> <?= __("Fate") ?>
                     </button>
                     <button type="button" class="btn btn-primary p-2">
-                        <i class="fa fa-dice"></i> <?= __("Focus event") ?>
+                        <i class="fa fa-dice pr-1"></i> <?= __("Focus event") ?>
                     </button>
                 </div>
                 <div class="px-1 ml-auto">
                     <button type="button" data-widget="control-sidebar" class="btn btn-warning">
-                        <i class="fa fa-wrench"></i> <?= __("Adventure lists") ?>
+                        <i class="fa fa-list pr-1"></i> <?= __("Adventure lists") ?>
                     </button>
                 </div>
             </div>

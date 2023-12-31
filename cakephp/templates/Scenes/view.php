@@ -7,7 +7,7 @@
 <div id="blocks" class="timeline">
 <?php foreach ($scene->blocks as $block): ?>
    <div id="soloblock-<?= $block->id ?>">
-      <i class="fas <?= $block->blocktype == "text" ? "fa-file-lines" : "" ?> bg-maroon"></i>    
+      <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?> <?= $block->blocktype == 'fate' ? 'fa-clover bg-green' : '' ?>"></i>    
       <div class="pblock timeline-item pb-2">
       <?php if ($block->blocktype == "text") : ?>
           <div class="float-left">
@@ -17,7 +17,7 @@
           <div id="block-<?= $block->id  ?>" class="pblocktext">
               <?= $block->content ?>
           </div>
-          <div class="">
+          <div class="ml-2">
               <button id="cancel-<?= $block->id  ?>" class="cancelblock btn btn-secondary hidden clearfix  my-2" type="button">Cancel</button>
               <button id="save-<?= $block->id  ?>" class="saveblock btn btn-primary hidden clearfix  my-2" type="button"><i class="fas fa-save"></i> Save</button>
           </div>
