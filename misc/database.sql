@@ -94,7 +94,7 @@ CREATE TABLE scenes (
 CREATE TABLE blocks (
     id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
     content TEXT NOT NULL,
-    blocktype ENUM('text', 'other') NOT NULL DEFAULT "text",
+    blocktype ENUM('text', 'fate', 'event', 'other') NOT NULL DEFAULT "text",
     pos FLOAT NOT NULL,
     hidden BOOL NOT NULL DEFAULT false,
     created TIMESTAMP NOT NULL,

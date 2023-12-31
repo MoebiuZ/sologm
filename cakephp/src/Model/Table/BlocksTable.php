@@ -68,7 +68,7 @@ class BlocksTable extends Table
 
         $validator
             ->scalar('blocktype')
-            ->inList('blocktype', ['text','other'])
+            ->inList('blocktype', ['text','fate','eventfocus','other'])
             ->requirePresence('blocktype', 'create')
             ->notEmptyString('blocktype');
 
