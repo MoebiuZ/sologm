@@ -41,10 +41,11 @@ class ScenesController extends AppController
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
             $maxpos == null ? $scene->pos = 0 : $scene->pos = $maxpos + 1;
             $scene->campaign_id = $campaign_id;
+
             if ($this->Scenes->save($scene)) {
                 $campaignstable = $this->fetchTable('Campaigns');
                 $campaign = $campaignstable->get($scene->campaign_id);
-                $campaignstable->touch($campaign);
+                $campaign->current_chaos = $scene->chaos;
                 $campaignstable->save($campaign);
                 $this->Flash->success(__('The scene has been saved.'));
 
