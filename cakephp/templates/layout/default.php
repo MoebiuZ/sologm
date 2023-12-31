@@ -211,11 +211,11 @@ $app_title = 'Solo GM';
                         <i class="fa fa-dice"></i> <?= __("Fate") ?>
                     </button>
                     <button type="button" class="btn btn-primary p-2">
-                        <i class="fa fa-dice"></i> <?= __("Focus") ?>
+                        <i class="fa fa-dice"></i> <?= __("Focus event") ?>
                     </button>
                 </div>
                 <div class="px-1 ml-auto">
-                    <button type="button" data-widget="control-sidebar" class="btn btn-primary">
+                    <button type="button" data-widget="control-sidebar" class="btn btn-warning">
                         <i class="fa fa-wrench"></i> <?= __("Adventure lists") ?>
                     </button>
                 </div>
