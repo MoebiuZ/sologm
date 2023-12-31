@@ -39,7 +39,7 @@ class ScenesController extends AppController
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
                         
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
-            $maxpos == null ? $scene->pos = 0 : $scene->pos = $maxpos;
+            $maxpos == null ? $scene->pos = 0 : $scene->pos = $maxpos + 1;
             $scene->campaign_id = $campaign_id;
             if ($this->Scenes->save($scene)) {
                 $campaignstable = $this->fetchTable('Campaigns');
