@@ -5,7 +5,11 @@
  * @var \Cake\Collection\CollectionInterface|string[] $users
  */
 ?>
-
+<div class="row">
+    <div class="mx-auto"> 
+        <?= $this->Flash->render() ?>
+    </div>
+</div>
 <div class="row">
     <div class="mx-auto col-auto">
         <div class="card card-dark" style="width: 350px;">
