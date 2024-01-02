@@ -50,6 +50,10 @@ class BlockPolicy
         return $this->isOwner($user, $block);
     }
 
+    public function canFateroll(IdentityInterface $user, Block $block)
+    {
+        return true;
+    }
    
     protected function isOwner(IdentityInterface $user, Block $block)
     {

@@ -37,7 +37,7 @@ $app_title = 'Solo GM';
     <?= $this->fetch('css') ?>
 </head>
 
-<body class="hold-transition <?php if ($this->Identity->isLoggedIn()) : ?> sidebar-mini <?php endif; ?> sidebar-collapse layout-fixed layout-footer-fixed"> <!-- layout-navbar-fixed">-->
+<body class="hold-transition <?php if ($this->Identity->isLoggedIn()) : ?> sidebar-mini <?php endif; ?> layout-fixed layout-footer-fixed"> <!-- layout-navbar-fixed">-->
     <div class="wrapper">
         <!-- navvbar -->
         <?php if ($this->Identity->isLoggedIn()) : ?>

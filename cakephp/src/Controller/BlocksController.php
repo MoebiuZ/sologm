@@ -45,7 +45,7 @@ class BlocksController extends AppController
 
             $block->scene_id = $this->request->getData("scene_id");
             $block->content = $this->request->getData("content");
-            $block->type = $this->request->getData("blocktype");
+            $block->blocktype = $this->request->getData("blocktype");
             $block->pos = $maxpos + 1;
 
             if ($this->Blocks->save($block)) {
@@ -116,9 +116,45 @@ class BlocksController extends AppController
 
 
 
-    public function fateroll($scene_id, $odds) 
+    public function fateroll() 
     {
-        debug($this->MythicGM->fateRoll($odds, 5));
+        // TODO: Check if odds and scene_id are present
+
+        if ($this->request->is('ajax')) {
+            $block = $this->Blocks->newEmptyEntity();
+            $this->Authorization->authorize($block);
+            $query = $this->Blocks->find('all');
+            $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
+            
+            if ($maxpos = null) {
+                $maxpos = 0;
+            }
+
+            
+            $block->scene_id = $this->request->getData("scene_id");
+            $block->blocktype = 'fate';
+            $block->pos = $maxpos + 1;
+
+            $scenestable = $this->fetchTable('Scenes');
+            $scene = $scenestable->get($block->scene_id);
+
+            $odds = $this->request->getData("odds");
+            $question = $this->request->getData("question");
+            $fate = $this->MythicGM->fateRoll($odds, $scene->chaos);
+
+            $block->content = json_encode(['question' => $question, 'odds' => $odds, 'fate' => $fate]);
+
+            if ($this->Blocks->save($block)) {
+
+                $scenestable->touch($scene);
+                $scenestable->save($scene);
+                echo json_encode(["status" => "success", "block_id" => $block->id, 'fate' => $fate]);
+                exit;
+            } else {
+                echo json_encode(array("status" => "error")); 
+                exit;
+            }
+        }
     }
 
 }

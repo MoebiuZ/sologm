@@ -9,19 +9,45 @@
    <div id="soloblock-<?= $block->id ?>">
       <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?> <?= $block->blocktype == 'fate' ? 'fa-clover bg-green' : '' ?>"></i>    
       <div class="pblock timeline-item pb-2">
-      <?php if ($block->blocktype == "text") : ?>
+      
           <div class="float-left">
+          <?php if ($block->blocktype == "text") : ?>
               <button id="edit-<?= $block->id ?>" class="editblock btn btn-xs hidden" type="button"><i class="fas fa-pencil"></i></button>
+          <?php endif; ?>
               <button id="delete-<?= $block->id ?>" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>
           </div><br />
           <div id="block-<?= $block->id  ?>" class="pblocktext">
-              <?= $block->content ?>
+              <?php 
+                if ($block->blocktype == "text") {
+                  echo  $block->content;
+                } else if ($block->blocktype == 'fate' ) {
+                  $content = json_decode($block->content);
+                  echo '<div class="pb-2">' . $content->question . '</div>';
+                  echo '<div><small>Odds: ';
+                  switch($content->odds) {
+                    case '0': echo __('Certain'); break;
+                    case '1': echo __('Nearly Certain'); break; 
+                    case '2': echo __('Very Likely'); break;
+                    case '3': echo __('Likely'); break;
+                    case '4': echo __('50/50'); break;
+                    case '5': echo __('Unlikely'); break;
+                    case '6': echo __('Very Unlikely'); break;
+                    case '7': echo __('Nearly Impossible'); break;
+                    case '8': echo __('Impossible'); break;
+                  }
+                  echo '</small></div>';
+                  echo '<div><h3>' . $content->fate . '</h3></div>';
+                }
+
+              ?>
           </div>
           <div class="ml-2">
-              <button id="cancel-<?= $block->id  ?>" class="cancelblock btn btn-secondary hidden clearfix  my-2" type="button">Cancel</button>
-              <button id="save-<?= $block->id  ?>" class="saveblock btn btn-primary hidden clearfix  my-2" type="button"><i class="fas fa-save"></i> Save</button>
+          <?php if ($block->blocktype == "text") : ?>
+              <button id="cancel-<?= $block->id  ?>" class="cancelblock btn btn-secondary hidden clearfix my-2" type="button"><?= __('Cancel') ?></button>
+          <?php endif; ?>
+              <button id="save-<?= $block->id  ?>" class="saveblock btn btn-primary hidden clearfix my-2" type="button"><i class="fas fa-save"></i> <?= __('Save') ?></button>
           </div>
-      <?php endif; ?>
+      
       </div>
   </div>
 <?php endforeach; ?>
@@ -37,12 +63,12 @@
     </div>
 </div>
 
-<div id="new-block-button" class="row">
+<div id="new-block-button" class="row pb-5">
     <div class="col text-center"><button id="newpblock" class="btn text-primary"><h1><i class="fa-solid fa-circle-plus color-blue"></i></h1></button></div>
 </div>
 
 
-<!-- Focus modal -->
+<!-- Fate modal -->
 <div class="modal fade" id="fatemodal" tabindex="-1" role="dialog" aria-labelledby="fatemodal" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -53,7 +79,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="fateform">
           <div class="mb-3">
             <?= $this->Form->label('odds', __("Odds"), ['class' => 'form-group-label']); ?>
             <?= $this->Form->select('odds', [
@@ -72,16 +98,17 @@
             <?= $this->Form->label('question', __("Question"), ['class' => 'form-group-label']); ?>
             <?= $this->Form->textarea('question', ['rows' => '5', 'style' => 'height: 100%', 'class' => 'form-control form-control-md']); ?>
           </div>
+          <?= $this->Form->hidden('scene_id', ['value' => $scene->id]) ?> 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Roll</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('fateform').reset()">Cancel</button>
+        <button type="button" class="btn btn-primary" id="fateroll">Roll</button>
       </div>
     </div>
   </div>
 </div>
-<!-- end Focus modal-->
+<!-- end Fate modal-->
 
 <!-- confirmModal -->
 <div class="modal fade" id="modal_confirm_dialog" role="dialog" aria-labelledby="modal_confirm_dialog_label" aria-hidden="true" style="z-index: 8192">
