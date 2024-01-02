@@ -205,7 +205,7 @@ $app_title = 'Solo GM';
         <footer class="main-footer">
             <div class="d-flex justify-content-around">
                 <div class="px-1">
-                    <button type="button" class="btn btn-primary p-2">
+                    <button type="button" class="btn btn-primary p-2"  data-toggle="modal" data-target="#fatemodal">
                         <i class="fa fa-dice pr-1"></i> <?= __("Fate") ?>
                     </button>
                     <button type="button" class="btn btn-primary p-2">

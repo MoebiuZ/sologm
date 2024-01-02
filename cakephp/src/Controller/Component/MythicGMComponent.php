@@ -6,7 +6,7 @@ use Cake\Controller\Component;
 
 class MythicGMComponent extends Component
 {
-
+/*
     private $meaning_table_action1 = [
         __('Abandon'),
         __('Accompany'),
@@ -212,58 +212,62 @@ class MythicGMComponent extends Component
         __('Work'),
         __('Wound'),
         ];
+*/
 
+    public function fateRoll($odds, $chaos): string
+    {
+        $fate_chart = [
+            [[10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98], [18, 90, 99], [19, 95, 100], [20, 99, 101], [20, 99 , 101], [20, 99, 101]],
+            [[7, 35, 88], [10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98], [18, 90, 99], [19, 95, 100], [20, 99 , 101], [20, 99, 101]],
+            [[5, 25, 86], [7, 35, 88], [10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98], [18, 90, 99], [19, 95, 100], [20, 99 , 101]],
+            [[3, 15, 84], [5, 25, 86], [7, 35, 88], [10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98], [18, 90, 99], [19, 95, 100]],
+            [[2, 10, 83], [3, 15, 84],[5, 25, 86], [7, 35, 88], [10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98], [18, 90, 99]],
+            [[1, 5, 82], [2, 10, 83], [3, 15, 84],[5, 25, 86], [7, 35, 88], [10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98]],
+            [[1, 1, 81], [1, 5, 82], [2, 10, 83], [3, 15, 84],[5, 25, 86], [7, 35, 88], [10, 50, 91], [13, 65, 94], [15, 75, 96]],
+            [[-1, 1, 81], [-1, 1, 81], [1, 5, 82], [2, 10, 83], [3, 15, 84],[5, 25, 86], [7, 35, 88], [10, 50, 91], [13, 65, 94]],
+            [[-1, 1, 81], [-1, 1, 81], [-1, 1, 81], [1, 5, 82], [2, 10, 83], [3, 15, 84],[5, 25, 86], [7, 35, 88], [10, 50, 91]]
+        ];
 
-        public function fateRoll(): string
-        {
-            $fate_chart = [
-                [[10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98], [18, 90, 99], [19, 95, 100], [20, 99, 100], [20, 99 , 100], [20, 99, 100]],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                []
-            ];
-
-            // roll 1d100
-            $roll = 50;
-            $chaos = 5; // from campaign
-
-            if ($roll < $fate_chart[$chaos][0]) {
-                return __("Exceptional yes");
-            } else if ($roll <= $fate_chart[$chaos][1]) {
+        // roll 1d100
+        $roll = rand(1, 100);
+        
+        if ($roll < $fate_chart[$odds][$chaos][0]) {
+            if ($fate_chart[$odds][$chaos][0] == -1) {
                 return __("Yes");
-            } else if ($roll >= $fate_chart[$chaos][2]) {
-                return __("Exceptional no");
             } else {
-                return __("No");
+                return __("Exceptional yes");
             }
-
+        } else if ($roll <= $fate_chart[$odds][$chaos][1]) {
+            return __("Yes");
+        } else if ($roll >= $fate_chart[$odds][$chaos][2]) {
+            return __("Exceptional no");
+        } else {
+            return __("No");
         }
 
-
-        public function randomEventFocus() 
-        {
-
-        }
+    }
 
 
-        public function sceneAdjustment()
-        {
-            /*
+    public function randomEventFocus() 
+    {
 
-            __(Remove A Character
-            2 Add A Character
-            3 Reduce/Remove An Activity
-            4 Increase An Activity
-            5 Remove An Object
-            6 Add An Object
-            7-10 Make 2 Adjustments
-            */
+    }
 
-        }
+
+    public function sceneAdjustment()
+    {
+        /*
+
+        __(Remove A Character
+        2 Add A Character
+        3 Reduce/Remove An Activity
+        4 Increase An Activity
+        5 Remove An Object
+        6 Add An Object
+        7-10 Make 2 Adjustments
+        */
+
+    }
+}
 
 ?>

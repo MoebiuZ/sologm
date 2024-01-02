@@ -14,6 +14,12 @@ class BlocksController extends AppController
 {
 
 
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('MythicGM');
+    }
+
     public function viewClasses(): array
     {
         return [JsonView::class];
@@ -107,4 +113,12 @@ class BlocksController extends AppController
             }
         }
     }
+
+
+
+    public function fateroll($scene_id, $odds) 
+    {
+        debug($this->MythicGM->fateRoll($odds, 5));
+    }
+
 }
