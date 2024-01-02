@@ -64,7 +64,12 @@ class UsersController extends AppController
         $user = $this->Users->get($id, contain: ['Campaigns']);
         $this->Authorization->authorize($user);
 
-        $this->set(compact('user'));
+        $scenesTable = $this->fetchTable('Scenes');
+        $campaignsTable = $this->fetchTable('Campaigns');
+        $last_scene = $scenesTable->find()->orderDesc('modified')->first();
+        $last_campaign = $campaignsTable->find('all')->where(['id' => $last_scene->campaign_id])->first();
+        
+        $this->set(compact('user', 'last_scene', 'last_campaign'));
     }
 
     /**
@@ -101,25 +106,36 @@ class UsersController extends AppController
         $this->Authorization->authorize($user);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
-            if ($data['password'] == '') {
-                unset($data['password']);
-                unset($data['confirm_password']);
+            if (isset($data['password'])) {
+                if ($data['password'] == '') {
+                    unset($data['password']);
+                    unset($data['confirm_password']);
+                }
             }
             if ($user['role'] != 'user') {
                 unset($data['role']);
                 unset($data['enabled']);
             }
-            $data['email'] = strtolower($data['email']);
+
+            if (isset($data['email'])) {
+                $data['email'] = strtolower($data['email']);
+            }
+
             $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                
+                if (str_starts_with($data['referer'], "/users/index")) {
+                    return $this->redirect(['action' => 'index', $user->id]);
+                } else {
+                    return $this->redirect(['action' => 'view', $user->id]);
+                }
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         
-        $this->set(compact('user'));
+        $referer = $this->request->referer();
+        $this->set(compact('user', 'referer'));
     }
 
     /**

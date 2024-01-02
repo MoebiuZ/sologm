@@ -6,93 +6,137 @@
 ?>
 
 <div class="row">
-    <div class="mx-auto"> 
+    <div class="mx-auto">
         <?= $this->Flash->render() ?>
     </div>
 </div>
+
+
 <div class="row">
-    <div class="mx-auto col-auto">
-        <div class="column column-80">
-            <div class="users view content">
-                <h3><?= h($user->name) ?></h3>
-                <table>
-                    <tr>
-                        <th><?= __('Email') ?></th>
-                        <td><?= h($user->email) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Role') ?></th>
-                        <td><?= h($user->role) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Name') ?></th>
-                        <td><?= h($user->name) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Last name') ?></th>
-                        <td><?= h($user->last_name) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Pref Theme') ?></th>
-                        <td><?= h($user->pref_theme) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Pref Language') ?></th>
-                        <td><?= h($user->pref_language) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Id') ?></th>
-                        <td><?= $this->Number->format($user->id) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Created') ?></th>
-                        <td><?= h($user->created) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Modified') ?></th>
-                        <td><?= h($user->modified) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Last Login') ?></th>
-                        <td><?= h($user->last_login) ?></td>
-                    </tr>
-                    <tr>
-                        <th><?= __('Enabled') ?></th>
-                        <td><?= $user->enabled ? __('Yes') : __('No'); ?></td>
-                    </tr>
-                </table>
-                <div class="related">
-                    <h4><?= __('Related Campaigns') ?></h4>
-                    <?php if (!empty($user->campaigns)) : ?>
-                    <div class="table-responsive">
-                        <table>
-                            <tr>
-                                <th><?= __('Id') ?></th>
-                                <th><?= __('Name') ?></th>
-                                <th><?= __('Chaos') ?></th>
-                                <th><?= __('Created') ?></th>
-                                <th><?= __('Modified') ?></th>
-                                <th><?= __('User Id') ?></th>
-                                <th class="actions"><?= __('Actions') ?></th>
-                            </tr>
-                            <?php foreach ($user->campaigns as $campaigns) : ?>
-                            <tr>
-                                <td><?= h($campaigns->id) ?></td>
-                                <td><?= h($campaigns->name) ?></td>
-                                <td><?= h($campaigns->chaos) ?></td>
-                                <td><?= h($campaigns->created) ?></td>
-                                <td><?= h($campaigns->modified) ?></td>
-                                <td><?= h($campaigns->user_id) ?></td>
-                                <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['controller' => 'Campaigns', 'action' => 'view', $campaigns->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['controller' => 'Campaigns', 'action' => 'edit', $campaigns->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Campaigns', 'action' => 'delete', $campaigns->id], ['confirm' => __('Are you sure you want to delete # {0}?', $campaigns->id)]) ?>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </table>
+    <div class="col-md-3">
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="<?= __("User profile picture") ?>">
+                </div>
+                <h3 class="profile-username text-center"><?= __($user->name) ?></h3>
+                <br 7>
+                <p class="text-muted"><?= __('Last edited:') ?></`>
+                <p><?= $last_campaign->name ?>: <?= $last_scene->name ?> </p>
+                <a href="/scenes/view/<?= $last_scene->id ?>" class="btn btn-primary btn-block"><b>Continue</b></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#campaigns" data-toggle="tab"><?= __("Campaigns") ?></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#preferences" data-toggle="tab"><?= __("Preferences") ?></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#profile" data-toggle="tab"><?= __("Profile") ?></a></li>
+                </ul>
+            </div>
+
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="campaigns">
+
+                        <div class="post">
+                            <div class="user-block">
+                                
+                            </div>
+
+                            <?php if (!empty($user->campaigns)): ?>
+                            <table class="table">
+                                <tbody> 
+                                    <?php foreach ($user->campaigns as $campaigns): ?>
+                                    <tr>
+                                        <td><?= h($campaigns->name) ?></td>
+                                        <td class="actions"><?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['controller' => 'Campaigns', 'action' => 'delete', $campaigns->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete campaign: "{0}"?', $campaigns->name)]) ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <?php else: ?> 
+                                <div>No campaigns yet.</div>
+                            <?php endif; ?>
+                            
+                        </div>
+
                     </div>
-                    <?php endif; ?>
+          
+
+                    <div class="tab-pane" id="preferences">
+                    <?= $this->Form->create($user, ['url' => '/users/edit/' . $user->id]) ?>
+                        <fieldset style="width: 350px;">
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Language')) ?>
+                                <small>Not functional yet</small>
+                                <?= $this->Form->select('pref_language', ['en_US' => __('English'), 'es_ES' => __('Spanish')], ['class' => 'custom-select']) ?>
+                            </div>
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Theme')) ?>
+                                <small>Not functional yet</small>
+                                <?= $this->Form->select('pref_theme', ['light' => __('Light'), 'dark' => __('Dark')], ['class' => 'custom-select']) ?>
+                            </div>
+
+                            <?= $this->Form->hidden('referer', ['value' => $this->getRequest()->getRequestTarget()]) ?>
+                        </fieldset>
+                        <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-primary')); ?>
+                        <?= $this->Form->end() ?>
+                    </div>
+
+                    <div class="tab-pane" id="profile">
+                        <?= $this->Form->create($user, ['url' => '/users/edit/' . $user->id]) ?>
+                        <fieldset style="width: 350px;">
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Name')) ?>
+                                <?= $this->Form->text('name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Name')]) ?>
+                            </div>
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Last name')) ?>
+                                <?= $this->Form->text('last_name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Last name')]) ?>
+                            </div>
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Email')) ?>
+                                <div class="input-group">
+                                    <?= $this->Form->email('email', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Email')]) ?>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Password')) ?>
+                                <div class="input-group">
+                                    <?= $this->Form->password('password', ['required' => false, 'value' => '', 'class' => 'form-control', 'placeholder' => __('Leave empty to not change')]) ?>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-lock"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Confirm password')) ?>
+                                <div class="input-group">
+                                    <?= $this->Form->password('confirm_password', ['required' => false, 'class' => 'form-control', 'placeholder' => __('Leave empty to not change')]) ?>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-lock"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?= $this->Form->hidden('referer', ['value' => $this->getRequest()->getRequestTarget()]) ?>
+                        </fieldset>
+                        <?= $this->Form->submit(__('Save'), array('class' => 'btn btn-primary')); ?>
+                        <?= $this->Form->end() ?>
+                    </div>
+
                 </div>
             </div>
         </div>

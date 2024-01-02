@@ -154,7 +154,7 @@ $(function(){
     $(".savenew").click(function() {
         var scene_id = $(this).attr("id").replace("save-new-", '');
         var markup = $('#block-new').summernote('code');
-        var postdata = {"scene_id": scene_id, "content": markup};
+        var postdata = {"scene_id": scene_id, "content": markup, "blocktype": "text"};
         
         if (markup != "<p><br></p>") {
             $.ajax({

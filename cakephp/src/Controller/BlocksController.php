@@ -39,7 +39,7 @@ class BlocksController extends AppController
 
             $block->scene_id = $this->request->getData("scene_id");
             $block->content = $this->request->getData("content");
-            $block->type = "text";
+            $block->type = $this->request->getData("blocktype");
             $block->pos = $maxpos + 1;
 
             if ($this->Blocks->save($block)) {
@@ -55,22 +55,6 @@ class BlocksController extends AppController
             }
                 
         }
-
-/*
-        if ($this->request->is('post')) {
-
-            $block = $this->Blocks->patchEntity($block, $this->request->getData());
-            debug($this->Blocks->save($block));
-            if ($this->Blocks->save($block)) {
-                $this->Flash->success(__('The block has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-
-            $this->Flash->error(__('The block could not be saved. Please, try again.'));
-        }
-        $scenes = $this->Blocks->Scenes->find('list', limit: 200)->all();
-        $this->set(compact('block', 'scenes'));*/
     }
 
     /**
@@ -82,7 +66,6 @@ class BlocksController extends AppController
      */
     public function edit($id = null)
     {
-
         if ($this->request->is('ajax')) {
             $id = $this->request->getData("id");
             $block = $this->Blocks->get($id, contain: []);

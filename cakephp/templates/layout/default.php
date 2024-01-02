@@ -84,9 +84,7 @@ $app_title = 'Solo GM';
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-header"><?= $user->name ?></span>
                         <div class="dropdown-divider"></div>
-                        <?= $this->Html->link('<i class="fa fa-shield" aria-hidden="true"></i> ' . __('My campaigns'), ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
-                        <div class="dropdown-divider"></div>
-                        <?= $this->Html->link('<i class="fa fa-user" aria-hidden="true"></i> ' . __('Edit profile'), ['controller' => 'users', 'action' => 'edit', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
+                        <?= $this->Html->link('<i class="fa fa-user" aria-hidden="true"></i> ' . __('My profile'), ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
                         <div class="dropdown-divider"></div>
                         <?php if ($this->Identity->get('role') == "admin"): ?>
                         <?= $this->Html->link('<i class="fa fa-users" aria-hidden="true"></i> ' . __('List users'), ['controller' => 'users', 'action' => 'index', $user->id], ['class' => 'dropdown-item', 'escape' => false]) ?>
