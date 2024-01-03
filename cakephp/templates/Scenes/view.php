@@ -4,10 +4,11 @@
  * @var \App\Model\Entity\Scene $scene
  */
 ?>
+
 <div id="blocks" class="timeline">
 <?php foreach ($scene->blocks as $block): ?>
    <div id="soloblock-<?= $block->id ?>">
-      <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?> <?= $block->blocktype == 'fate' ? 'fa-clover bg-green' : '' ?>"></i>    
+      <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?> <?= $block->blocktype == 'fate' ? 'fa-question bg-orange' : '' ?>"></i>    
       <div class="pblock timeline-item pb-2">
       
           <div class="float-left">
@@ -16,7 +17,7 @@
           <?php endif; ?>
               <button id="delete-<?= $block->id ?>" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>
           </div><br />
-          <div id="block-<?= $block->id  ?>" class="pblocktext">
+          <div id="block-<?= $block->id  ?>" class="<?= $block->blocktype == "text" ? "pblocktext" : "otherblock" ?>">
               <?php 
                 if ($block->blocktype == "text") {
                   echo  $block->content;
@@ -36,7 +37,11 @@
                     case '8': echo __('Impossible'); break;
                   }
                   echo '</small></div>';
-                  echo '<div><h3>' . $content->fate . '</h3></div>';
+                  echo '<div><h3>Answer: ' . $content->answer . '</h3></div>';
+
+                  if ($content->random_event) {
+                    echo '<div><strong>' . __('Random event!') .  '</strong></div>';
+                  }
                 }
 
               ?>
@@ -70,10 +75,10 @@
 
 <!-- Fate modal -->
 <div class="modal fade" id="fatemodal" tabindex="-1" role="dialog" aria-labelledby="fatemodal" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-      <span class="pr-2"><i class="fa fa-clover bg-green circle-icon"></i></span><h5 class="modal-title"><?= __('Make a Fate question') ?></h5>
+      <span class="pr-2"><i class="fa fa-question bg-orange circle-icon"></i></span><h5 class="modal-title"><?= __('Make a Fate question') ?></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -112,7 +117,7 @@
 
 <!-- confirmModal -->
 <div class="modal fade" id="modal_confirm_dialog" role="dialog" aria-labelledby="modal_confirm_dialog_label" aria-hidden="true" style="z-index: 8192">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_confirm_dialog_label">
@@ -121,7 +126,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="modal_confirm_dialog_body" align="center">
+      <div class="modal-body" id="modal_confirm_dialog_body">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="confirm_cancel">Cancel</button>

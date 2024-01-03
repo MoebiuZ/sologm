@@ -79,6 +79,18 @@ CREATE TABLE campaigns (
 ) DEFAULT CHARSET=utf8 ENGINE=InnoDB;
 
 
+CREATE TABLE listitems (
+    id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
+    content TEXT NOT NULL,
+    list_type ENUM('threads', 'characters') NOT NULL DEFAULT "threads",
+    created TIMESTAMP NOT NULL,
+    modified TIMESTAMP NOT NULL,
+    campaign_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (campaign_id) REFERENCES campaigns(id) ON DELETE CASCADE
+) DEFAULT CHARSET=utf8 ENGINE=InnoDB;
+
+
 CREATE TABLE scenes (
     id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
@@ -104,4 +116,3 @@ CREATE TABLE blocks (
     PRIMARY KEY (id),
     FOREIGN KEY (scene_id) REFERENCES scenes(id) ON DELETE CASCADE
 ) DEFAULT CHARSET=utf8 ENGINE=InnoDB;
-

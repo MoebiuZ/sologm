@@ -252,15 +252,33 @@ $(function(){
                 if (response.status == "success") {
                     
                     let newblock = '<div id="soloblock-' + response.block_id + '" class="fade show">' +
-                            '<i class="fas fa-clover bg-green"></i>' +
+                            '<i class="fas fa-question bg-orange"></i>' +
                             '<div class="pblock timeline-item pb-2">' +
                             '<div class="float-left">' +
                             '<button id="delete-' + response.block_id + '" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>' +
-                            '</div><br /><div id="block-' + response.block_id + '" class="pblocktext">' + 
+                            '</div><br /><div id="block-' + response.block_id + '" class="otherblock">' + 
                             '<div>' + inputs['question'] + '</div>' +
-                            '<div>' + response.fate + '</div>' +
-                            '</div>' +
-                            '</div></div></div>'
+                            '<div>';
+
+                            switch(inputs['odds']) {
+                                case '0': newblock += 'Certain'; break;
+                                case '1': newblock += 'Nearly Certain'; break; 
+                                case '2': newblock += 'Very Likely'; break;
+                                case '3': newblock += 'Likely'; break;
+                                case '4': newblock += '50/50'; break;
+                                case '5': newblock += 'Unlikely'; break;
+                                case '6': newblock += 'Very Unlikely'; break;
+                                case '7': newblock += 'Nearly Impossible'; break;
+                                case '8': newblock += 'Impossible'; break;
+                              };
+
+                    newblock += '</div><div><h3>' + response.answer + '</h3></div>';
+                    
+                    if (response.random_event == true){
+                        newblock += '<div><strong>Random event!</strong></div>';
+                    }
+                    newblock += '</div>' +
+                                '</div></div></div>'
                                         
                     $('#fateform').trigger('reset');
                     $('#fatemodal').modal('toggle');

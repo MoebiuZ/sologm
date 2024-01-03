@@ -137,5 +137,6 @@ class Campaign extends Entity
         'user_id' => true,
         'user' => true,
         'scenes' => true,
+        'listitems' => true,
     ];
 }

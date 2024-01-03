@@ -11,7 +11,6 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-md-3">
         <div class="card card-primary card-outline">
@@ -61,8 +60,7 @@
                                         </div>
                                         <div class="col">
                                             <?= $this->Html->link('<i class="fa fa-caret-down"></i>', '#collapse-campaign-'. $campaign->id, ['data-toggle' => 'collapse', 'escape'=>false, 'class' => 'btn btn-sm btn-outline-secondary']) ?>
-                                            <?= $this->Html->link('<i class="fa fa-trash"></i>', ['controller' => 'Campaigns', 'action' => 'delete', $campaign->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete campaign: "{0}"?', $campaign->name)]) ?>
-                                            </a>
+                                            <?= $this->Html->link('<i class="fa fa-trash"></i>', ['controller' => 'Campaigns', 'action' => 'delete', $campaign->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete campaign: {0}?', $campaign->name)]) ?>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +74,7 @@
                                                 <i class="fa fa-scroll pr-1"></i>  <?= $scene->name ?>
                                                 </div>
                                                 <div class="col">
-                                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', ['controller' => 'Scenes', 'action' => 'delete', $scene->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete scene: "{0}"?', $scene->name)]) ?>
+                                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', ['controller' => 'Scenes', 'action' => 'delete', $scene->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete scene: {0}?', $scene->name)]) ?>
                                                 </div>
                                             </div>
                                             <?php endforeach; ?>

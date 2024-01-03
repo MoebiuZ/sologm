@@ -214,7 +214,7 @@ class MythicGMComponent extends Component
         ];
 */
 
-    public function fateRoll($odds, $chaos): string
+    public function fateRoll($odds, $chaos): array
     {
         $fate_chart = [
             [[10, 50, 91], [13, 65, 94], [15, 75, 96], [17, 85, 98], [18, 90, 99], [19, 95, 100], [20, 99, 101], [20, 99 , 101], [20, 99, 101]],
@@ -230,20 +230,27 @@ class MythicGMComponent extends Component
 
         // roll 1d100
         $roll = rand(1, 100);
-        
+
         if ($roll < $fate_chart[$odds][$chaos][0]) {
             if ($fate_chart[$odds][$chaos][0] == -1) {
-                return __("Yes");
+                $answer = __("Yes");
             } else {
-                return __("Exceptional yes");
+                $answer = __("Exceptional yes");
             }
         } else if ($roll <= $fate_chart[$odds][$chaos][1]) {
-            return __("Yes");
+            $answer = __("Yes");
         } else if ($roll >= $fate_chart[$odds][$chaos][2]) {
-            return __("Exceptional no");
+            $answer = __("Exceptional no");
         } else {
-            return __("No");
+            $answer = __("No");
         }
+
+        $random_event = false;
+        if (substr($roll, 0, 1) == substr($roll, 1, 1) && (int) substr($roll, 0, 1) <= $chaos) {
+            $random_event = true;
+        }
+
+        return ['answer' => $answer, 'random_event' => $random_event];
 
     }
 

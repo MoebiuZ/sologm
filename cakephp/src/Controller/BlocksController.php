@@ -141,14 +141,16 @@ class BlocksController extends AppController
             $odds = $this->request->getData("odds");
             $question = $this->request->getData("question");
             $fate = $this->MythicGM->fateRoll($odds, $scene->chaos);
+            $answer = $fate['answer'];
+            $random_event = $fate['random_event'];
 
-            $block->content = json_encode(['question' => $question, 'odds' => $odds, 'fate' => $fate]);
+            $block->content = json_encode(['question' => $question, 'odds' => $odds, 'answer' => $answer, 'random_event' => $random_event]);
 
             if ($this->Blocks->save($block)) {
 
                 $scenestable->touch($scene);
                 $scenestable->save($scene);
-                echo json_encode(["status" => "success", "block_id" => $block->id, 'fate' => $fate]);
+                echo json_encode(["status" => "success", "block_id" => $block->id, 'answer' => $answer, 'random_event' => $random_event]);
                 exit;
             } else {
                 echo json_encode(array("status" => "error")); 

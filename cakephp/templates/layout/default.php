@@ -61,12 +61,12 @@ $app_title = 'Solo GM';
                     ?>
                     <div id="campaign-id-<?= $campaign_id ?>" class="h6">
                         <span id="campaign-name"><?= $campaign_name ?></span> 
-                        <span id="editcampaign-<?= $campaign_id ?>" class="btn-editcampaignname pl-1 small hidden" type="button"> <i class="fas fa-pencil"></i></span>
+                        <span id="editcampaign-<?= $campaign_id ?>" class="btn-editcampaignname pl-1 small hidden"> <i class="fas fa-pencil"></i></span>
                     </div>
                         <?php if ($this->get('scene')->id != null): ?>
                         <div id="scene-id-<?= $this->get('scene')->id ?>" class="small">
                             <i class="fa-solid fa-scroll"></i> <span id="scene-name"><?= $this->get('scene')->name ?></span> 
-                            <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden" type="button"> <i class="fas fa-pencil"></i></span>
+                            <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden"> <i class="fas fa-pencil"></i></span>
                         </div>
                         <?php endif; ?> 
                     <?php endif; ?>
@@ -80,12 +80,11 @@ $app_title = 'Solo GM';
                     <a class="nav-link" data-toggle="dropdown" data-slide="true" href="#" role="button">
                     <?php 
                         if (is_file(WWW_ROOT . DS . "img" . DS . "users" . DS . $user->profile_picture)) {
-                            echo $this->Html->Image('users/' . $user->profile_picture, array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px'));
+                            echo $this->Html->Image('users/' . $user->profile_picture, array('class' => 'img-circle', 'alt' => $user->name, 'style' => 'width: 25px'));
                         } else {
-                            echo $this->Html->Image('user.jpg', array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px'));
+                            echo $this->Html->Image('user.jpg', array('class' => 'img-circle', 'alt' => $user->name, 'style' => 'width: 25px'));
                         }
                      ?>
-                           <!-- <?= $this->Html->Image('user.jpg', array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px')) ?>-->
                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -137,7 +136,6 @@ $app_title = 'Solo GM';
 
         <!-- content -->
         <div class="content-wrapper">
-
             
             <div class="content-header">
                 <div class="container-fluid">
@@ -145,7 +143,6 @@ $app_title = 'Solo GM';
                 </div>
             </div>
             
-
             <div class="content">
                 <div class="container-fluid">
                     <?= $this->Flash->render() ?>
@@ -153,6 +150,7 @@ $app_title = 'Solo GM';
                 </div>
 
                 <!-- adventure-lists -->
+                <?php if ($this->get('scene') != null) : ?>
                 <aside class="control-sidebar control-sidebar-dark">
                     <div class="p-3">
                         <div class="row"><h5><?= __("Adventure lists") ?></h5></div>
@@ -168,7 +166,11 @@ $app_title = 'Solo GM';
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade show active" id="pills-threads" role="tabpanel" aria-labelledby="pills-threads-tab">
                                     <table>
+                                        <?php debug($this->get('scene')->campaign); ?>
+                                        <?php foreach ($this->get('scene')->campaign->listitems as $item): ?>
                                         <tr><td>asdasd</td></tr>
+                                        <?php endforeach; ?>
+                                        <tr><td><?= $this->Html->link(__('Create one'), ['controller' => 'listitems', 'action' => 'add'], ['class' => 'btn btn-primary']) ?></td></tr>
                                     </table>
                                 </div>
 
@@ -179,6 +181,7 @@ $app_title = 'Solo GM';
                         </div>
                     </div>
                 </aside>
+                <?php endif; ?>
                 <!-- adventure-lists -->
                 
             </div>
@@ -193,10 +196,16 @@ $app_title = 'Solo GM';
             <div class="d-flex justify-content-around">
                 <div class="px-1">
                     <button type="button" class="btn btn-primary p-2"  data-toggle="modal" data-target="#fatemodal">
-                        <i class="fa fa-dice pr-1"></i> <?= __("Fate") ?>
+                        <i class="fa fa-question pr-1"></i> <?= __("Fate Question") ?>
                     </button>
                     <button type="button" class="btn btn-primary p-2">
-                        <i class="fa fa-dice pr-1"></i> <?= __("Focus event") ?>
+                        <i class="fa fa-dice pr-1"></i> <?= __("Random event") ?>
+                    </button>
+                    <button type="button" class="btn btn-primary p-2">
+                        <i class="fa fa-dice pr-1"></i> <?= __("Event Focus") ?>
+                    </button>
+                    <button type="button" class="btn btn-primary p-2">
+                        <i class="fa fa-dice pr-1"></i> <?= __("Event Meaning") ?>
                     </button>
                 </div>
                 <div class="px-1 ml-auto">

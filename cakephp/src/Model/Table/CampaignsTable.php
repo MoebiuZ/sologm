@@ -13,6 +13,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\ScenesTable&\Cake\ORM\Association\HasMany $Scenes
+ * @property \App\Model\Table\ListitemsTable&\Cake\ORM\Association\HasMany $Listitems
  *
  * @method \App\Model\Entity\Campaign newEmptyEntity()
  * @method \App\Model\Entity\Campaign newEntity(array $data, array $options = [])
@@ -53,6 +54,9 @@ class CampaignsTable extends Table
             'joinType' => 'INNER',
         ]);
         $this->hasMany('Scenes', [
+            'foreignKey' => 'campaign_id',
+        ]);
+        $this->hasMany('Listitems', [
             'foreignKey' => 'campaign_id',
         ]);
     }

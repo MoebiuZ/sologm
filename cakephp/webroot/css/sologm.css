@@ -9,6 +9,11 @@
     border-radius: 5px;
 }
 
+.pblock .otherblock {
+    padding: 5px;
+    margin: 4px;
+}
+
 #campaign-name {
     padding: 2px;
 }
