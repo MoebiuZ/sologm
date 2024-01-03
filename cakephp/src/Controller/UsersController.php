@@ -133,12 +133,9 @@ class UsersController extends AppController
 
                     $newfilename = Text::uuid() . "." . pathinfo($data['profile_picture_file']->getClientFilename(), PATHINFO_EXTENSION);
                     $data['profile_picture_file']->moveTo($pictures_path . DS . $newfilename);
-                
-                    
+                                    
                     $old_picture = WWW_ROOT . DS . "img" . DS . "users" . DS . $user->profile_picture;
-                    
                     $user->profile_picture = $newfilename;
-
                 }
             }
 

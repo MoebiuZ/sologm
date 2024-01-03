@@ -20,12 +20,12 @@
             <?= $this->Form->create($campaign) ?>
             <fieldset>
                 <div class="form-group mb-3">
-                    <?= $this->Form->label(__('Name')) ?>
+                    <?= $this->Form->label(__('Campaign name')) ?>
                     <?= $this->Form->text('name', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Name')]) ?>
                 </div>
                 <div class="form-group mb-3">
-                    <?= $this->Form->label(__('Current Chaos')) ?>
-                    <?= $this->Form->text('current_chaos', ['required' => true, 'class' => 'form-control', 'placeholder' => __('Current Chaos')]) ?>
+                    <?= $this->Form->label(__('Initial Chaos')) ?>
+                    <?= $this->Form->select('chaos', ['1' => '1', '2' => '2',  '3' => '3',  '4' => '4',  '5' => '5',  '6' => '6',  '7' => '7',  '8' => '8',  '9' => '9'], ['class' => 'custom-select', 'value' => '5']) ?>
                 </div>
                 <?= $this->Form->input('user_id', ['type' => 'hidden', 'value' =>  $user->id]) ?>
             </fieldset>
