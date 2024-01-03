@@ -68,6 +68,7 @@
                                 <div id="collapse-campaign-<?= $campaign->id ?>" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <?php if (!empty($campaign->scenes)): ?>
+                                            <?php usort($campaign->scenes, fn($a, $b) => $a->pos <=> $b->pos); // Sort the array by 'pos', because "contain" on controller do not allow to specify an order ?>
                                             <?php foreach ($campaign->scenes as $scene): ?>
                                             <div class="row pb-2 pl-3">
                                                 <div class="col">
