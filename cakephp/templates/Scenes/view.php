@@ -56,9 +56,9 @@
     <div class="col pblock timeline-item">
         <br />
         <div id="block-new"></div>
-        <div class="float-right">
+        <div class="pt-2 ml-2">
             <button id="cancel-new" class="cancelnew btn btn btn-secondary clearfix" type="button">Cancel</button>
-            <button id="save-new-<?= $scene->id ?>" class="savenew btn btn btn-primary  clearfix" type="button"><i class="fas fa-save"></i> Save</button>
+            <button id="save-new-<?= $scene->id ?>" class="savenew btn btn btn-primary clearfix" type="button"><i class="fas fa-save"></i> Save</button>
         </div>
     </div>
 </div>

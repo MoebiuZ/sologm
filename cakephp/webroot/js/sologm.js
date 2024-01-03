@@ -173,16 +173,19 @@ $(function(){
                             '<button id="edit-' + response.block_id + '" class="editblock btn btn-xs hidden" type="button"><i class="fas fa-pencil"></i></button>' +
                             '<button id="delete-' + response.block_id + '" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>' +
                             '</div><br /><div id="block-' + response.block_id + '" class="pblocktext">' + markup +
-                            '</div><div class="float-right">' +
+                            '</div><div class="ml-2">' +
                             '<button id="cancel-' + response.block_id + '" class="cancelblock btn btn btn-secondary hidden clearfix my-2" type="button">Cancel</button>' +
                             '<button id="save-' + response.block_id + '" class="saveblock btn btn btn-primary hidden clearfix my-2" type="button"><i class="fas fa-save"></i> Save</button>' +
                             '</div></div></div>'
                         
-                        $('#blocks').append(newblock); 
+                        
                         $("#newpblock").show();
                         $("#block-new").summernote('reset');
                         $("#block-new").summernote('destroy');
                         $('#new-block-editor').hide();
+                        $('#blocks').append(newblock); 
+                        $('#soloblock-' + response.block_id).hide().fadeIn(1000);
+                    
                     } else {
                         alert("Error");
                     }               
@@ -248,7 +251,7 @@ $(function(){
             success: function(response) {
                 if (response.status == "success") {
                     
-                    let newblock = '<div id="soloblock-' + response.block_id + '">' +
+                    let newblock = '<div id="soloblock-' + response.block_id + '" class="fade show">' +
                             '<i class="fas fa-clover bg-green"></i>' +
                             '<div class="pblock timeline-item pb-2">' +
                             '<div class="float-left">' +
@@ -258,11 +261,12 @@ $(function(){
                             '<div>' + response.fate + '</div>' +
                             '</div>' +
                             '</div></div></div>'
-                    
-                    $('#blocks').append(newblock); 
+                                        
                     $('#fateform').trigger('reset');
                     $('#fatemodal').modal('toggle');
                     $("html, body").animate({ scrollTop: $(document).height() }, 10);
+                    $('#blocks').append(newblock);
+                    $('#soloblock-' + response.block_id).hide().fadeIn(1000);
                     
                 } else {
                     alert("Error");
