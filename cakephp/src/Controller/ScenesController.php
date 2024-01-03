@@ -95,7 +95,7 @@ class ScenesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['get', 'post', 'delete']);
         $scene = $this->Scenes->get($id);
         $this->Authorization->authorize($scene);
         if ($this->Scenes->delete($scene)) {
@@ -104,6 +104,6 @@ class ScenesController extends AppController
             $this->Flash->error(__('The scene could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'users', 'action' => 'view', $this->request->getAttribute('identity')->id]);
     }
 }

@@ -66,7 +66,7 @@ class CampaignsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['get', 'post', 'delete']);
         $campaign = $this->Campaigns->get($id);
         $this->Authorization->authorize($campaign);
         if ($this->Campaigns->delete($campaign)) {

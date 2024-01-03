@@ -61,14 +61,15 @@ class UsersController extends AppController
     public function view($id = null)
     {
         Cache::clear();
-        $user = $this->Users->get($id, contain: ['Campaigns']);
+        
+        $user = $this->Users->get($id, contain: ['Campaigns.Scenes']);
         $this->Authorization->authorize($user);
 
         $scenesTable = $this->fetchTable('Scenes');
         $campaignsTable = $this->fetchTable('Campaigns');
         $last_scene = $scenesTable->find()->orderDesc('modified')->first();
         $last_campaign = $campaignsTable->find('all')->where(['id' => $last_scene->campaign_id])->first();
-        
+
         $this->set(compact('user', 'last_scene', 'last_campaign'));
     }
 

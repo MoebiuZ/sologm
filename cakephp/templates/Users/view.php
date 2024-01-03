@@ -19,17 +19,16 @@
                 <div class="text-center">
                     <?php 
                         if (is_file(WWW_ROOT . DS . "img" . DS . "users" . DS . $user->profile_picture)) {
-                           
-                            echo $this->Html->Image('users/' . $user->profile_picture, array('class' => 'profile-user-img img-fluid img-circle', 'alt' => $user->name, 'width' => '25px'));
+                            echo $this->Html->Image('users/' . $user->profile_picture, array('class' => 'profile-user-img img-fluid img-circle', 'alt' => $user->name . " " . $user->last_name, 'width' => '25px'));
                         } else {
-                           echo $this->Html->Image('user.jpg', array('class' => 'profile-user-img img-fluid img-circle', 'alt' => $user->name, 'width' => '25px'));
+                           echo $this->Html->Image('user.jpg', array('class' => 'profile-user-img img-fluid img-circle', 'alt' => $user->name . " " . $user->last_name, 'width' => '25px'));
                         }
                      ?>
                 </div>
-                <h3 class="profile-username text-center"><?= __($user->name) ?></h3>
-                <br 7>
-                <p class="text-muted"><?= __('Last edited:') ?></`>
-                <p><?= $last_campaign->name ?>: <?= $last_scene->name ?> </p>
+                <h3 class="profile-username text-center"><?= __($user->name . " " . $user->last_name) ?></h3>
+                <br />
+                <p><?= $last_campaign->name ?></p>
+                <p><i class="fa-solid fa-scroll"></i> <?= $last_scene->name ?> </p>
                 <a href="/scenes/view/<?= $last_scene->id ?>" class="btn btn-primary btn-block"><b>Continue</b></a>
             </div>
         </div>
@@ -47,32 +46,51 @@
 
             <div class="card-body">
                 <div class="tab-content">
+                
                     <div class="active tab-pane" id="campaigns">
-
-                        <div class="post">
-                            <div class="user-block">
+                    <?php if (!empty($user->campaigns)): ?>
+                        <div id="accordion">
+                            <?php foreach ($user->campaigns as $campaign): ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                        <strong><?= h($campaign->name) ?></strong>
+                                        </div>
+                                        <div class="col">
+                                            <?= $this->Html->link('<i class="fa fa-caret-down"></i>', '#collapse-campaign-'. $campaign->id, ['data-toggle' => 'collapse', 'escape'=>false, 'class' => 'btn btn-sm btn-outline-secondary']) ?>
+                                            <?= $this->Html->link('<i class="fa fa-trash"></i>', ['controller' => 'Campaigns', 'action' => 'delete', $campaign->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete campaign: "{0}"?', $campaign->name)]) ?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                                 
+                                <div id="collapse-campaign-<?= $campaign->id ?>" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <?php if (!empty($campaign->scenes)): ?>
+                                            <?php foreach ($campaign->scenes as $scene): ?>
+                                            <div class="row pb-2 pl-3">
+                                                <div class="col">
+                                                <i class="fa fa-scroll pr-1"></i>  <?= $scene->name ?>
+                                                </div>
+                                                <div class="col">
+                                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', ['controller' => 'Scenes', 'action' => 'delete', $scene->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete scene: "{0}"?', $scene->name)]) ?>
+                                                </div>
+                                            </div>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <div class="pl-3"><?= __('No scenes') ?></div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
                             </div>
-
-                            <?php if (!empty($user->campaigns)): ?>
-                            <table class="table">
-                                <tbody> 
-                                    <?php foreach ($user->campaigns as $campaigns): ?>
-                                    <tr>
-                                        <td><?= h($campaigns->name) ?></td>
-                                        <td class="actions"><?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['controller' => 'Campaigns', 'action' => 'delete', $campaigns->id], ['class' => 'btn btn-sm btn-outline-danger', 'escape'=>false, 'confirm' => __('Are you sure you want to delete campaign: "{0}"?', $campaigns->name)]) ?></td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <?php else: ?> 
-                                <div>No campaigns yet.</div>
-                            <?php endif; ?>
-                            
+                            <?php endforeach; ?>
                         </div>
-
+                        <?php else: ?> 
+                        <div>No campaigns yet.</div>
+                        <div> <?= $this->Html->link(__('Create one'), ['controller' => 'campaigns', 'action' => 'add'], ['class' => 'btn btn-primary']) ?></div>
+                        <?php endif; ?>
                     </div>
-          
 
                     <div class="tab-pane" id="preferences">
                     <?= $this->Form->create($user, ['url' => '/users/edit/' . $user->id]) ?>
