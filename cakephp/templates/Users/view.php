@@ -30,7 +30,7 @@
                 <?php if ($last_campaign != null) : ?>
                 <p><?= $last_campaign->name ?></p>
                 <p><i class="fa-solid fa-scroll"></i> <?= $last_scene->name ?> </p>
-                <a href="/scenes/view/<?= $last_scene->id ?>" class="btn btn-primary btn-block"><b>Continue</b></a>
+                <a href="/scenes/view/<?= $last_scene->id ?>" class="btn btn-primary btn-block"><b><?= __('Resume scene') ?></b></a>
                 <?php endif; ?>
             </div>
         </div>
