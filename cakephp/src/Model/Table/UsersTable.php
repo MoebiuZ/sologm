@@ -98,6 +98,10 @@ class UsersTable extends Table
             ->maxLength('last_name', 255)
             ->requirePresence('last_name', 'create')
             ->notEmptyString('last_name');
+        
+        $validator
+            ->scalar('name')
+            ->maxLength('name', 70);
 
         $validator
             ->boolean('enabled')

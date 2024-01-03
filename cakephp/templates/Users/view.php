@@ -17,7 +17,14 @@
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
                 <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="<?= __("User profile picture") ?>">
+                    <?php 
+                        if (is_file(WWW_ROOT . DS . "img" . DS . "users" . DS . $user->profile_picture)) {
+                           
+                            echo $this->Html->Image('users/' . $user->profile_picture, array('class' => 'profile-user-img img-fluid img-circle', 'alt' => $user->name, 'width' => '25px'));
+                        } else {
+                           echo $this->Html->Image('user.jpg', array('class' => 'profile-user-img img-fluid img-circle', 'alt' => $user->name, 'width' => '25px'));
+                        }
+                     ?>
                 </div>
                 <h3 class="profile-username text-center"><?= __($user->name) ?></h3>
                 <br 7>
@@ -88,7 +95,7 @@
                     </div>
 
                     <div class="tab-pane" id="profile">
-                        <?= $this->Form->create($user, ['url' => '/users/edit/' . $user->id]) ?>
+                        <?= $this->Form->create($user, ['url' => '/users/edit/' . $user->id, 'type' => 'file']) ?>
                         <fieldset style="width: 350px;">
                             <div class="form-group mb-3">
                                 <?= $this->Form->label(__('Name')) ?>
@@ -107,6 +114,12 @@
                                             <span class="fas fa-envelope"></span>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <?= $this->Form->label(__('Profile picture')) ?>
+                                <div class="input-group">
+                                    <?= $this->Form->file('profile_picture_file', ['required' => false, 'accept' => 'image/jpeg,image/png']) ?>
                                 </div>
                             </div>
                             <div class="form-group mb-3">

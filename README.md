@@ -58,6 +58,12 @@ cd cakephp
 # Say Yes to set permissions
 sudo docker exec -ti sologm-php-fpm composer install
 sudo docker exec -ti sologm-php-fpm composer update
+cd ..
+```
+
+Set permissions for uploads:
+```
+chmod 0733 cakephp/webroot/img/users
 ```
 
 Add an admin user:

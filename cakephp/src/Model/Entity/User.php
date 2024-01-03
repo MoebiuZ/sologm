@@ -42,6 +42,7 @@ class User extends Entity
         'role' => true,
         'name' => true,
         'last_name' => true,
+        'profile_picture' => true,
         'enabled' => true,
         'created' => true,
         'modified' => true,

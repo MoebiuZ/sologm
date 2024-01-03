@@ -17,7 +17,7 @@
                 <h3 class="card-title"><?= __('Edit user') ?></h3>
             </div>
             <div class="card-body ">
-                <?= $this->Form->create($user) ?>
+                <?= $this->Form->create($user, ['type' => 'file']) ?>
                 <fieldset>
                     <div class="form-group mb-3">
                         <?= $this->Form->label(__('Name')) ?>
@@ -58,6 +58,12 @@
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <?= $this->Form->label(__('Profile picture')) ?>
+                        <div class="input-group">
+                            <?= $this->Form->file('profile_picture_file', ['required' => false, 'accept' => 'image/jpeg,image/png']) ?>
                         </div>
                     </div>
                     <?php if ($this->Identity->get('role') == "admin"): ?>

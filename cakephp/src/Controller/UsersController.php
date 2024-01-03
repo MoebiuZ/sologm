@@ -104,8 +104,11 @@ class UsersController extends AppController
     {
         $user = $this->Users->get($id, contain: []);
         $this->Authorization->authorize($user);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
+
+            $old_picture = "";
             if (isset($data['password'])) {
                 if ($data['password'] == '') {
                     unset($data['password']);
@@ -121,9 +124,33 @@ class UsersController extends AppController
                 $data['email'] = strtolower($data['email']);
             }
 
+            if (isset($data['profile_picture_file'])) {
+                if (is_file($data['profile_picture_file']->getStream()->getMetadata('uri'))) {
+                    $pictures_path = WWW_ROOT . DS . "img" . DS . "users";
+                    if (!is_dir($pictures_path)) {
+                        mkdir($pictures_path, 0775);
+                    }
+
+                    $newfilename = Text::uuid() . "." . pathinfo($data['profile_picture_file']->getClientFilename(), PATHINFO_EXTENSION);
+                    $data['profile_picture_file']->moveTo($pictures_path . DS . $newfilename);
+                
+                    
+                    $old_picture = WWW_ROOT . DS . "img" . DS . "users" . DS . $user->profile_picture;
+                    
+                    $user->profile_picture = $newfilename;
+
+                }
+            }
+
             $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
+
+                if (is_file($old_picture)) {
+                    unlink($old_picture);
+                }
+
+                $this->Authentication->setIdentity($user); // Update current identity object
                 
                 if (str_starts_with($data['referer'], "/users/index")) {
                     return $this->redirect(['action' => 'index', $user->id]);

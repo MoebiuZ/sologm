@@ -78,7 +78,14 @@ $app_title = 'Solo GM';
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" data-slide="true" href="#" role="button">
-                            <?= $this->Html->Image('user.jpg', array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px')) ?>
+                    <?php 
+                        if (is_file(WWW_ROOT . DS . "img" . DS . "users" . DS . $user->profile_picture)) {
+                            echo $this->Html->Image('users/' . $user->profile_picture, array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px'));
+                        } else {
+                            echo $this->Html->Image('user.jpg', array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px'));
+                        }
+                     ?>
+                           <!-- <?= $this->Html->Image('user.jpg', array('class' => 'img-circle', 'alt' => $user->name, 'width' => '25px')) ?>-->
                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

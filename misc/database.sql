@@ -5,6 +5,7 @@ CREATE TABLE users (
     role ENUM('admin', 'user') NOT NULL DEFAULT "user",
     name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
+    profile_picture VARCHAR(70);
     enabled BOOL NOT NULL DEFAULT false,
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP DEFAULT NULL,
