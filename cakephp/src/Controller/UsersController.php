@@ -68,7 +68,10 @@ class UsersController extends AppController
         $scenesTable = $this->fetchTable('Scenes');
         $campaignsTable = $this->fetchTable('Campaigns');
         $last_scene = $scenesTable->find()->orderDesc('modified')->first();
-        $last_campaign = $campaignsTable->find('all')->where(['id' => $last_scene->campaign_id])->first();
+        $last_campaign = null;
+        if ($last_scene != null) {
+            $last_campaign = $campaignsTable->find('all')->where(['id' => $last_scene->campaign_id])->first();
+        }
 
         $this->set(compact('user', 'last_scene', 'last_campaign'));
     }

@@ -11,21 +11,21 @@ use Cake\Validation\Validator;
 /**
  * Listitems Model
  *
- * @property \App\Model\Table\ScenesTable&\Cake\ORM\Association\BelongsTo $Scenes
+ * @property \App\Model\Table\CampaignsTable&\Cake\ORM\Association\BelongsTo $Campaigns
  *
- * @method \App\Model\Entity\Block newEmptyEntity()
- * @method \App\Model\Entity\Block newEntity(array $data, array $options = [])
- * @method array<\App\Model\Entity\Block> newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Block get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \App\Model\Entity\Block findOrCreate($search, ?callable $callback = null, array $options = [])
- * @method \App\Model\Entity\Block patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method array<\App\Model\Entity\Block> patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Block|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \App\Model\Entity\Block saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method iterable<\App\Model\Entity\Block>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Block>|false saveMany(iterable $entities, array $options = [])
- * @method iterable<\App\Model\Entity\Block>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Block> saveManyOrFail(iterable $entities, array $options = [])
- * @method iterable<\App\Model\Entity\Block>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Block>|false deleteMany(iterable $entities, array $options = [])
- * @method iterable<\App\Model\Entity\Block>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Block> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \App\Model\Entity\Listitem newEmptyEntity()
+ * @method \App\Model\Entity\Listitem newEntity(array $data, array $options = [])
+ * @method array<\App\Model\Entity\Listitem> newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Listitem get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \App\Model\Entity\Listitem findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \App\Model\Entity\Listitem patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method array<\App\Model\Entity\Listitem> patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Listitem|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \App\Model\Entity\Listitem saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method iterable<\App\Model\Entity\Listitem>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Listitem>|false saveMany(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\Listitem>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Listitem> saveManyOrFail(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\Listitem>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Listitem>|false deleteMany(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\Listitem>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Listitem> deleteManyOrFail(iterable $entities, array $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
@@ -41,7 +41,7 @@ class ListitemsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('Listitems');
+        $this->setTable('listitems');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 

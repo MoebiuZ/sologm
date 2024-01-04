@@ -5,7 +5,7 @@ CREATE TABLE users (
     role ENUM('admin', 'user') NOT NULL DEFAULT "user",
     name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
-    profile_picture VARCHAR(70);
+    profile_picture VARCHAR(70),
     enabled BOOL NOT NULL DEFAULT false,
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP DEFAULT NULL,
@@ -14,69 +14,19 @@ CREATE TABLE users (
     pref_theme ENUM("light", "dark") NOT NULL DEFAULT "light",
     pref_language ENUM("en_US", "es_ES") NOT NULL DEFAULT "en_US",
     PRIMARY KEY (id)
-) DEFAULT CHARSET=utf8 ENGINE=InnoDB;  
+) DEFAULT CHARSET=utf8mb4 ENGINE=InnoDB;  
 
 
 CREATE TABLE campaigns (
     id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     current_chaos TINYINT NOT NULL DEFAULT 5,
-    adventurelist_char_1_1 VARCHAR(255),
-    adventurelist_char_1_3 VARCHAR(255),
-    adventurelist_char_1_5 VARCHAR(255),
-    adventurelist_char_1_7 VARCHAR(255),
-    adventurelist_char_1_9 VARCHAR(255),
-    adventurelist_char_3_1 VARCHAR(255),
-    adventurelist_char_3_3 VARCHAR(255),
-    adventurelist_char_3_5 VARCHAR(255),
-    adventurelist_char_3_7 VARCHAR(255),
-    adventurelist_char_3_9 VARCHAR(255),
-    adventurelist_char_5_1 VARCHAR(255),
-    adventurelist_char_5_3 VARCHAR(255),
-    adventurelist_char_5_5 VARCHAR(255),
-    adventurelist_char_5_7 VARCHAR(255),
-    adventurelist_char_5_9 VARCHAR(255),
-    adventurelist_char_7_1 VARCHAR(255),
-    adventurelist_char_7_3 VARCHAR(255),
-    adventurelist_char_7_5 VARCHAR(255),
-    adventurelist_char_7_7 VARCHAR(255),
-    adventurelist_char_7_9 VARCHAR(255),
-    adventurelist_char_9_1 VARCHAR(255),
-    adventurelist_char_9_3 VARCHAR(255),
-    adventurelist_char_9_5 VARCHAR(255),
-    adventurelist_char_9_7 VARCHAR(255),
-    adventurelist_char_9_9 VARCHAR(255),
-    adventurelist_thread_1_1 VARCHAR(255),
-    adventurelist_thread_1_3 VARCHAR(255),
-    adventurelist_thread_1_5 VARCHAR(255),
-    adventurelist_thread_1_7 VARCHAR(255),
-    adventurelist_thread_1_9 VARCHAR(255),
-    adventurelist_thread_3_1 VARCHAR(255),
-    adventurelist_thread_3_3 VARCHAR(255),
-    adventurelist_thread_3_5 VARCHAR(255),
-    adventurelist_thread_3_7 VARCHAR(255),
-    adventurelist_thread_3_9 VARCHAR(255),
-    adventurelist_thread_5_1 VARCHAR(255),
-    adventurelist_thread_5_3 VARCHAR(255),
-    adventurelist_thread_5_5 VARCHAR(255),
-    adventurelist_thread_5_7 VARCHAR(255),
-    adventurelist_thread_5_9 VARCHAR(255),
-    adventurelist_thread_7_1 VARCHAR(255),
-    adventurelist_thread_7_3 VARCHAR(255),
-    adventurelist_thread_7_5 VARCHAR(255),
-    adventurelist_thread_7_7 VARCHAR(255),
-    adventurelist_thread_7_9 VARCHAR(255),
-    adventurelist_thread_9_1 VARCHAR(255),
-    adventurelist_thread_9_3 VARCHAR(255),
-    adventurelist_thread_9_5 VARCHAR(255),
-    adventurelist_thread_9_7 VARCHAR(255),
-    adventurelist_thread_9_9 VARCHAR(255),
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP DEFAULT NULL,
     user_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-) DEFAULT CHARSET=utf8 ENGINE=InnoDB;
+) DEFAULT CHARSET=utf8mb4 ENGINE=InnoDB;
 
 
 CREATE TABLE listitems (
@@ -88,7 +38,7 @@ CREATE TABLE listitems (
     campaign_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (campaign_id) REFERENCES campaigns(id) ON DELETE CASCADE
-) DEFAULT CHARSET=utf8 ENGINE=InnoDB;
+) DEFAULT CHARSET=utf8mb4 ENGINE=InnoDB;
 
 
 CREATE TABLE scenes (
@@ -101,7 +51,7 @@ CREATE TABLE scenes (
     campaign_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (campaign_id) REFERENCES campaigns(id) ON DELETE CASCADE
-) DEFAULT CHARSET=utf8 ENGINE=InnoDB;
+) DEFAULT CHARSET=utf8mb4 ENGINE=InnoDB;
 
 
 CREATE TABLE blocks (
@@ -115,4 +65,4 @@ CREATE TABLE blocks (
     scene_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (scene_id) REFERENCES scenes(id) ON DELETE CASCADE
-) DEFAULT CHARSET=utf8 ENGINE=InnoDB;
+) DEFAULT CHARSET=utf8mb4 ENGINE=InnoDB;

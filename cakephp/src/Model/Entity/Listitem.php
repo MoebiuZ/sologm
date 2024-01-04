@@ -10,14 +10,12 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $content
- * @property string $Listitemtype
- * @property float $pos
- * @property bool $hidden
+ * @property string $list_type
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
- * @property int $scene_id
+ * @property int $campaign_id
  *
- * @property \App\Model\Entity\Scene $scene
+ * @property \App\Model\Entity\Campaign $campaign
  */
 class Listitem extends Entity
 {

@@ -34,7 +34,6 @@ class ListitemsController extends AppController
             $listitem->content = $this->request->getData("content");
             $listitem->list_type = $this->request->getData("list_type");
             
-
             if ($this->Listitems->save($listitem)) {
                 $campaignstable = $this->fetchTable('Campaigns');
                 $campaign = $campaignstable->get($listitem->campaign_id);
@@ -50,33 +49,6 @@ class ListitemsController extends AppController
         }
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Block id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        if ($this->request->is('ajax')) {
-            $id = $this->request->getData("id");
-            $listitem = $this->Listitems->get($id, contain: []);
-            $this->Authorization->authorize($listitem);
-            $listitem->content = $this->request->getData("content");
-            if ($this->Listitems->save($listitem)) {
-                $campaignstable = $this->fetchTable('Campaign');
-                $campaign = $campaignstable->get($listitem->campaign_id);
-                $campaignstable->touch($campaign);
-                $campaignstable->save($campaign);
-                echo json_encode(array("status" => "success")); 
-                exit;
-            } else {
-                echo json_encode(array("status" => "error")); 
-                exit;
-            }
-        }
-    }
 
     /**
      * Delete method

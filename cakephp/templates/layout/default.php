@@ -149,44 +149,10 @@ $app_title = 'Solo GM';
                     <?= $this->fetch('content') ?>
                 </div>
 
-                <!-- adventure-lists -->
-                <?php if ($this->get('scene') != null) : ?>
-                <aside class="control-sidebar control-sidebar-dark">
-                    <div class="p-3">
-                        <div class="row"><h5><?= __("Adventure lists") ?></h5></div>
-                        <div class="row">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="threads">
-                                    <button class="nav-link active" id="pills-threads-tab" data-toggle="pill" data-target="#pills-threads" type="button" role="tab" aria-controls="pills-threads" aria-selected="true"><?= __('Threads')?></button>
-                                </li>
-                                <li class="nav-item" role="characters">
-                                    <button class="nav-link" id="pills-characters-tab" data-toggle="pill" data-target="#pills-characters" type="button" role="tab" aria-controls="pills-characters" aria-selected="false"><?= __('Characters') ?></button>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-threads" role="tabpanel" aria-labelledby="pills-threads-tab">
-                                    <table>
-                                        <?php debug($this->get('scene')->campaign); ?>
-                                        <?php foreach ($this->get('scene')->campaign->listitems as $item): ?>
-                                        <tr><td>asdasd</td></tr>
-                                        <?php endforeach; ?>
-                                        <tr><td><?= $this->Html->link(__('Create one'), ['controller' => 'listitems', 'action' => 'add'], ['class' => 'btn btn-primary']) ?></td></tr>
-                                    </table>
-                                </div>
-
-                                <div class="tab-pane fade" id="pills-characters" role="tabpanel" aria-labelledby="pills-characters-tab">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-                <?php endif; ?>
-                <!-- adventure-lists -->
+    
                 
             </div>
-
-            
+   
         </div>
         <!-- content -->
 
@@ -202,10 +168,10 @@ $app_title = 'Solo GM';
                         <i class="fa fa-dice pr-1"></i> <?= __("Random event") ?>
                     </button>
                     <button type="button" class="btn btn-primary p-2">
-                        <i class="fa fa-dice pr-1"></i> <?= __("Event Focus") ?>
+                        <i class="fa fa-arrows-to-eye pr-1"></i> <?= __("Event Focus") ?>
                     </button>
                     <button type="button" class="btn btn-primary p-2">
-                        <i class="fa fa-dice pr-1"></i> <?= __("Event Meaning") ?>
+                        <i class="fa fa-brain pr-1"></i> <?= __("Event Meaning") ?>
                     </button>
                 </div>
                 <div class="px-1 ml-auto">
@@ -217,6 +183,12 @@ $app_title = 'Solo GM';
         </footer>
         <?php endif; ?>
         <!-- footer -->
+
+        <!-- adventure-lists -->
+        <?php if ($this->get('scene') != null) : ?>
+            <?= $this->cell("AdventureListsAsideBlock", [$this->get('scene')->campaign_id]) ?>
+        <?php endif; ?>
+        <!-- adventure-lists -->
 
     </div>
 
