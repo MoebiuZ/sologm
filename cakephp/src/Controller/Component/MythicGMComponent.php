@@ -255,9 +255,39 @@ class MythicGMComponent extends Component
     }
 
 
-    public function randomEventFocus() 
+    public function randomEvent(): array 
     {
+        $roll = rand(1, 100);
 
+        if ($roll <= 5) {
+            $eventfocus = __("Remote event");
+        } else if ($roll <= 10) {
+            $eventfocus = __("Ambiguous Event");
+        } else if ($roll <= 20) {
+            $eventfocus = __("New NPC");
+        } else if ($roll <= 40) {
+            $eventfocus = __("NPC Action");
+        } else if ($roll <= 45) {
+            $eventfocus = __("NPC Negative");
+        } else if ($roll <= 50) {
+            $eventfocus = __("NPC Positive");
+        } else if ($roll <= 55) {
+            $eventfocus = __("Move Toward A Thread");
+        } else if ($roll <= 65) {
+            $eventfocus = __("Move Away From A Thread");
+        } else if ($roll <= 70) {
+            $eventfocus = __("Close a Thread");
+        } else if ($roll <= 80) {
+            $eventfocus = __("PC Negative");
+        } else if ($roll <= 85) {
+            $eventfocus = __("PC Positive");
+        } else {
+            $eventfocus = __("Current Context");
+        }
+
+        debug($roll);
+        debug($eventfocus);
+        return ['eventfocus' => $eventfocus];
     }
 
 

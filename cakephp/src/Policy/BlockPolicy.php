@@ -55,6 +55,11 @@ class BlockPolicy
         return true;
     }
    
+    public function canRandomevent(IdentityInterface $user, Block $block)
+    {
+        return true;
+    }
+
     protected function isOwner(IdentityInterface $user, Block $block)
     {
         $scene_campaign_id = $this->fetchtable("Scenes")->find('all')->where(['id' => $block->scene_id])->toArray()[0]['campaign_id'];

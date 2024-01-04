@@ -164,7 +164,7 @@ $app_title = 'Solo GM';
                     <button type="button" class="btn btn-primary p-2"  data-toggle="modal" data-target="#fatemodal">
                         <i class="fa fa-question pr-1"></i> <?= __("Fate Question") ?>
                     </button>
-                    <button type="button" class="btn btn-primary p-2">
+                    <button id="randomevent-<?= $this->get('scene')->id ?>" type="button" class="btn btn-primary p-2">
                         <i class="fa fa-dice pr-1"></i> <?= __("Random event") ?>
                     </button>
                     <button type="button" class="btn btn-primary p-2">
