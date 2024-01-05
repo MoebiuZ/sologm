@@ -217,6 +217,7 @@ class Application extends BaseApplication
                 'controller' => 'Users',
                 'action' => 'login',
             ]),
+            'cookie' => ['expires' => \Cake\Chronos\Chronos::now()->addDays(2)]
         ]);
 
         // Load identifiers
