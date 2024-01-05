@@ -171,7 +171,7 @@ class BlocksController extends AppController
             }
             
             $block->scene_id = $this->request->getData("scene_id");
-            $block->blocktype = 'eventfocus';
+            $block->blocktype = 'randomevent';
             $block->pos = $maxpos + 1;
 
             $scenestable = $this->fetchTable('Scenes');
@@ -185,6 +185,41 @@ class BlocksController extends AppController
                 $scenestable->touch($scene);
                 $scenestable->save($scene);
                 echo json_encode(["status" => "success", "block_id" => $block->id, 'eventfocus' => $eventfocus]);
+                exit;
+            } else {
+                echo json_encode(array("status" => "error")); 
+                exit;
+            }
+        }
+    }
+
+    public function eventmeaning() {
+        if ($this->request->is('ajax')) {
+            $block = $this->Blocks->newEmptyEntity();
+            $this->Authorization->authorize($block);
+            $query = $this->Blocks->find('all');
+            $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
+            
+            if ($maxpos = null) {
+                $maxpos = 0;
+            }
+            
+            $block->scene_id = $this->request->getData("scene_id");
+            $block->blocktype = 'eventmeaning';
+            $block->pos = $maxpos + 1;
+
+            $scenestable = $this->fetchTable('Scenes');
+            $scene = $scenestable->get($block->scene_id);
+ 
+            $eventmeaning = $this->MythicGM->eventMeaning();
+
+            
+            $block->content = json_encode(['eventmeaning_first' => $eventmeaning['first'], 'eventmeaning_second' => $eventmeaning['second']]);
+
+            if ($this->Blocks->save($block)) {
+                $scenestable->touch($scene);
+                $scenestable->save($scene);
+                echo json_encode(["status" => "success", "block_id" => $block->id, 'eventmeaning_first' => $eventmeaning['first'], 'eventmeaning_second' => $eventmeaning['second']]);
                 exit;
             } else {
                 echo json_encode(array("status" => "error")); 

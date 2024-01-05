@@ -289,11 +289,11 @@ $(function(){
     });
 
 
-     // ------ Random event block ------ //
-     $("[id^=randomevent]").click(function() {
+    // ------ Random event block ------ //
+    $("[id^=randomevent]").click(function() {
         let scene_id = $(this).attr("id").replace("randomevent-", '');
         
-        let postdata = {"scene_id": scene_id, "blocktype": "eventfocus"};
+        let postdata = {"scene_id": scene_id, "blocktype": "randomevent"};
         $.ajax({
             url: "/blocks/randomevent",
             data: postdata,
@@ -302,42 +302,19 @@ $(function(){
             type: "post",
             success: function(response) {
                 if (response.status == "success") {
-                    /*
                     let newblock = '<div id="soloblock-' + response.block_id + '" class="fade show">' +
-                            '<i class="fas fa-question bg-orange"></i>' +
+                            '<i class="fas fa-dice bg-green"></i>' +
                             '<div class="pblock timeline-item pb-2">' +
                             '<div class="float-left">' +
                             '<button id="delete-' + response.block_id + '" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>' +
                             '</div><br /><div id="block-' + response.block_id + '" class="otherblock">' + 
-                            '<div>' + inputs['question'] + '</div>' +
-                            '<div>';
-
-                            switch(inputs['odds']) {
-                                case '0': newblock += 'Certain'; break;
-                                case '1': newblock += 'Nearly Certain'; break; 
-                                case '2': newblock += 'Very Likely'; break;
-                                case '3': newblock += 'Likely'; break;
-                                case '4': newblock += '50/50'; break;
-                                case '5': newblock += 'Unlikely'; break;
-                                case '6': newblock += 'Very Unlikely'; break;
-                                case '7': newblock += 'Nearly Impossible'; break;
-                                case '8': newblock += 'Impossible'; break;
-                              };
-
-                    newblock += '</div><div><h3>' + response.answer + '</h3></div>';
-                    
-                    if (response.random_event == true){
-                        newblock += '<div><strong>Random event!</strong></div>';
-                    }
-                    newblock += '</div>' +
-                                '</div></div></div>'
+                            '<div>A random event ocurred with the following Focus:</div><div>' +
+                            '</div><div><h3>' + response.eventfocus + '</h3></div>' +
+                            '</div></div></div></div>'
                                         
-                    $('#fateform').trigger('reset');
-                    $('#fatemodal').modal('toggle');
                     $("html, body").animate({ scrollTop: $(document).height() }, 10);
                     $('#blocks').append(newblock);
                     $('#soloblock-' + response.block_id).hide().fadeIn(1000);
-                    */
                 } else {
                     alert("Error");
                     console.log("Error");
@@ -350,6 +327,44 @@ $(function(){
     });
 
 
+    // ------ Event meaning block ------ //
+    $("[id^=eventmeaning]").click(function() {
+        let scene_id = $(this).attr("id").replace("eventmeaning-", '');
+        
+        let postdata = {"scene_id": scene_id, "blocktype": "eventmeaning"};
+        $.ajax({
+            url: "/blocks/eventmeaning",
+            data: postdata,
+            dataType: "json",
+            method: "post",
+            type: "post",
+            success: function(response) {
+                if (response.status == "success") {
+                    let newblock = '<div id="soloblock-' + response.block_id + '" class="fade show">' +
+                            '<i class="fas fa-brain bg-blue"></i>' +
+                            '<div class="pblock timeline-item pb-2">' +
+                            '<div class="float-left">' +
+                            '<button id="delete-' + response.block_id + '" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>' +
+                            '</div><br /><div id="block-' + response.block_id + '" class="otherblock">' + 
+                            '<div>Action Meaning:</div><div>' +
+                            '</div><div><h3>' + response.eventmeaning_first + " " + response.eventmeaning_second + '</h3></div>' +
+                            '</div></div></div></div>'
+                                        
+                    $("html, body").animate({ scrollTop: $(document).height() }, 10);
+                    $('#blocks').append(newblock);
+                    $('#soloblock-' + response.block_id).hide().fadeIn(1000);
+                } else {
+                    alert("Error");
+                    console.log("Error");
+                }               
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    });
+
+    
      // ------ Adventure list functions ------ //
     function adventurelist_add() {
         let list_type = "";

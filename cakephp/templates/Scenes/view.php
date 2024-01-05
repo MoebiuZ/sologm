@@ -8,7 +8,7 @@
 <div id="blocks" class="timeline">
 <?php foreach ($scene->blocks as $block): ?>
    <div id="soloblock-<?= $block->id ?>">
-      <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?> <?= $block->blocktype == 'fate' ? 'fa-question bg-orange' : '' ?>"></i>    
+      <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?> <?= $block->blocktype == 'fate' ? 'fa-question bg-orange' : '' ?> <?= $block->blocktype == 'randomevent' ? 'fa-dice bg-green' : '' ?> <?= $block->blocktype == 'eventmeaning' ? 'fa-brain bg-blue' : '' ?>"></i>    
       <div class="pblock timeline-item pb-2">
       
           <div class="float-left">
@@ -21,7 +21,7 @@
               <?php 
                 if ($block->blocktype == "text") {
                   echo  $block->content;
-                } else if ($block->blocktype == 'fate' ) {
+                } else if ($block->blocktype == 'fate') {
                   $content = json_decode($block->content);
                   echo '<div class="pb-2">' . $content->question . '</div>';
                   echo '<div><small>Odds: ';
@@ -42,6 +42,16 @@
                   if ($content->random_event) {
                     echo '<div><strong>' . __('Random event!') .  '</strong></div>';
                   }
+
+                } else if ($block->blocktype == 'randomevent') {
+                    $content = json_decode($block->content);
+                    echo '<div class="pb-2">' . __('A random event ocurred with the following Focus:') . '</div>';
+                    echo '<div><h3>Answer: ' . $content->eventfocus . '</h3></div>';
+
+                }  else if ($block->blocktype == 'eventmeaning') {
+                    $content = json_decode($block->content);
+                    echo '<div class="pb-2">' . __('Action Meaning:') . '</div>';
+                    echo '<div><h3>Answer: ' . $content->eventmeaning_first . " " . $content->eventmeaning_second  . '</h3></div>';
                 }
 
               ?>

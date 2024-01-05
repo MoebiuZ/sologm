@@ -167,10 +167,10 @@ $app_title = 'Solo GM';
                     <button id="randomevent-<?= $this->get('scene')->id ?>" type="button" class="btn btn-primary p-2">
                         <i class="fa fa-dice pr-1"></i> <?= __("Random event") ?>
                     </button>
-                    <button type="button" class="btn btn-primary p-2">
+                    <!--<button type="button" class="btn btn-primary p-2">
                         <i class="fa fa-arrows-to-eye pr-1"></i> <?= __("Event Focus") ?>
-                    </button>
-                    <button type="button" class="btn btn-primary p-2">
+                    </button>-->
+                    <button id="eventmeaning-<?= $this->get('scene')->id ?>"type="button" class="btn btn-primary p-2">
                         <i class="fa fa-brain pr-1"></i> <?= __("Event Meaning") ?>
                     </button>
                 </div>
