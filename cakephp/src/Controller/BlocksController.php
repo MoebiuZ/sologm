@@ -123,10 +123,10 @@ class BlocksController extends AppController
         if ($this->request->is('ajax')) {
             $block = $this->Blocks->newEmptyEntity();
             $this->Authorization->authorize($block);
-            $query = $this->Blocks->find('all');
+            $query = $this->Blocks->find('all')->where(['scene_id' => $this->request->getData("scene_id")]);
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
             
-            if ($maxpos = null) {
+            if ($maxpos == null) {
                 $maxpos = 0;
             }
 
@@ -163,10 +163,10 @@ class BlocksController extends AppController
         if ($this->request->is('ajax')) {
             $block = $this->Blocks->newEmptyEntity();
             $this->Authorization->authorize($block);
-            $query = $this->Blocks->find('all');
+            $query = $this->Blocks->find('all')->where(['scene_id' => $this->request->getData("scene_id")]);
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
             
-            if ($maxpos = null) {
+            if ($maxpos == null) {
                 $maxpos = 0;
             }
             
@@ -197,10 +197,10 @@ class BlocksController extends AppController
         if ($this->request->is('ajax')) {
             $block = $this->Blocks->newEmptyEntity();
             $this->Authorization->authorize($block);
-            $query = $this->Blocks->find('all');
+            $query = $this->Blocks->find('all')->where(['scene_id' => $this->request->getData("scene_id")]);
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
             
-            if ($maxpos = null) {
+            if ($maxpos == null) {
                 $maxpos = 0;
             }
             
@@ -211,10 +211,10 @@ class BlocksController extends AppController
             $scenestable = $this->fetchTable('Scenes');
             $scene = $scenestable->get($block->scene_id);
  
-            $eventmeaning = $this->MythicGM->eventMeaning();
+            $eventmeaning = $this->MythicGM->eventMeaning($this->request->getData('meaning_type'));
 
             
-            $block->content = json_encode(['eventmeaning_first' => $eventmeaning['first'], 'eventmeaning_second' => $eventmeaning['second']]);
+            $block->content = json_encode(['eventmeaning_first' => $eventmeaning['first'], 'eventmeaning_second' => $eventmeaning['second'], 'meaning_type' => $this->request->getData('meaning_type')]);
 
             if ($this->Blocks->save($block)) {
                 $scenestable->touch($scene);

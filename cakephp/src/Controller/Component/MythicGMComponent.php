@@ -83,7 +83,7 @@ class MythicGMComponent extends Component
         return $eventfocus;
     }
 
-    public function eventMeaning(): array 
+    public function eventMeaning($meaning_type): array 
     {
         $meaning_table_action1 = [
             __('Abandon'),
@@ -290,6 +290,8 @@ class MythicGMComponent extends Component
             __('Work'),
             __('Wound')
             ];
+
+        // TODO: Add tables for Description and Element meanings
 
         return ['first' => $meaning_table_action1[rand(0, 99)], 'second' => $meaning_table_action2[rand(0, 99)]];
     }

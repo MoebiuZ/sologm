@@ -15,7 +15,7 @@
  */
 
 
-
+debug("FIX POS INCREMENT ON SCENES");
 $user = $this->request->getAttribute('identity');
 
 $app_title = 'Solo GM';
@@ -170,8 +170,14 @@ $app_title = 'Solo GM';
                     <!--<button type="button" class="btn btn-primary p-2">
                         <i class="fa fa-arrows-to-eye pr-1"></i> <?= __("Event Focus") ?>
                     </button>-->
-                    <button id="eventmeaning-<?= $this->get('scene')->id ?>"type="button" class="btn btn-primary p-2">
-                        <i class="fa fa-brain pr-1"></i> <?= __("Event Meaning") ?>
+                    <button id="eventmeaning-action-<?= $this->get('scene')->id ?>"type="button" class="btn btn-primary p-2">
+                        <i class="fa fa-bolt pr-1"></i> <?= __("Action Meaning") ?>
+                    </button>
+                    <button id="eventmeaning-description-<?= $this->get('scene')->id ?>"type="button" class="btn btn-primary p-2">
+                        <i class="fa fa-brain pr-1"></i> <?= __("Description Meaning") ?>
+                    </button>
+                    <button id="eventmeaning-element-<?= $this->get('scene')->id ?>"type="button" class="btn btn-primary p-2">
+                        <i class="fa fa-box pr-1"></i> <?= __("Element Meaning") ?>
                     </button>
                 </div>
                 <div class="px-1 ml-auto">

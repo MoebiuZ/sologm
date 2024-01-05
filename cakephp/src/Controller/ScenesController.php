@@ -37,7 +37,7 @@ class ScenesController extends AppController
         if ($this->request->is('post')) {
             $query = $this->Scenes->find('all', ['conditions' => ['campaign_id' => $campaign_id]]);
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
-                        
+            // TODO: FIX POS
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
             $maxpos == null ? $scene->pos = 0 : $scene->pos = $maxpos + 1;
             $scene->campaign_id = $campaign_id;
@@ -53,7 +53,7 @@ class ScenesController extends AppController
             }
             $this->Flash->error(__('The scene could not be saved. Please, try again.'));
         }
-        #$campaign = $this->Scenes->Campaigns->find('list', limit: 200)->where(['campaignid' => $campaign_id]);
+        //$campaign = $this->Scenes->Campaigns->find('list', limit: 200)->where(['campaignid' => $campaign_id]);
         $campaign = $scenes = $this->fetchtable("Campaigns")->get($campaign_id);
         $this->set(compact('scene', 'campaign'));
     }

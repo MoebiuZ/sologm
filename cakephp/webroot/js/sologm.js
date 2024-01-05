@@ -329,9 +329,12 @@ $(function(){
 
     // ------ Event meaning block ------ //
     $("[id^=eventmeaning]").click(function() {
-        let scene_id = $(this).attr("id").replace("eventmeaning-", '');
-        
-        let postdata = {"scene_id": scene_id, "blocktype": "eventmeaning"};
+        const regex = /-[0-9]*/i;
+        let meaning_type = $(this).attr("id").replace("eventmeaning-", '').replace(regex, '');
+        let scene_id = $(this).attr("id").replace("eventmeaning-" + meaning_type + '-', '');
+
+                
+        let postdata = {"scene_id": scene_id, "blocktype": "eventmeaning", "meaning_type": meaning_type };
         $.ajax({
             url: "/blocks/eventmeaning",
             data: postdata,
@@ -346,8 +349,8 @@ $(function(){
                             '<div class="float-left">' +
                             '<button id="delete-' + response.block_id + '" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>' +
                             '</div><br /><div id="block-' + response.block_id + '" class="otherblock">' + 
-                            '<div>Action Meaning:</div><div>' +
-                            '</div><div><h3>' + response.eventmeaning_first + " " + response.eventmeaning_second + '</h3></div>' +
+                            '<div>' + meaning_type.charAt(0).toUpperCase() + meaning_type.slice(1) + ' Meaning:</div><div>' +
+                            '</div><div><h3>' + response.eventmeaning_first + " & " + response.eventmeaning_second + '</h3></div>' +
                             '</div></div></div></div>'
                                         
                     $("html, body").animate({ scrollTop: $(document).height() }, 10);

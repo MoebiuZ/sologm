@@ -46,12 +46,12 @@
                 } else if ($block->blocktype == 'randomevent') {
                     $content = json_decode($block->content);
                     echo '<div class="pb-2">' . __('A random event ocurred with the following Focus:') . '</div>';
-                    echo '<div><h3>Answer: ' . $content->eventfocus . '</h3></div>';
+                    echo '<div><h3>' . $content->eventfocus . '</h3></div>';
 
                 }  else if ($block->blocktype == 'eventmeaning') {
                     $content = json_decode($block->content);
-                    echo '<div class="pb-2">' . __('Action Meaning:') . '</div>';
-                    echo '<div><h3>Answer: ' . $content->eventmeaning_first . " " . $content->eventmeaning_second  . '</h3></div>';
+                    echo '<div class="pb-2">' . __(ucfirst($content->meaning_type)) . " " . __('Meaning:') . '</div>';
+                    echo '<div><h3>' . $content->eventmeaning_first . " & " . $content->eventmeaning_second  . '</h3></div>';
                 }
 
               ?>
