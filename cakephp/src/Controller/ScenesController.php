@@ -35,11 +35,17 @@ class ScenesController extends AppController
         $scene = $this->Scenes->newEmptyEntity();
         $this->Authorization->authorize($scene);
         if ($this->request->is('post')) {
-            $query = $this->Scenes->find('all', ['conditions' => ['campaign_id' => $campaign_id]]);
+            $query = $this->Scenes->find('all',['conditions' => ['campaign_id' => $campaign_id]]);
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
             // TODO: FIX POS
+            debug($maxpos);
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
-            $maxpos == null ? $scene->pos = 0 : $scene->pos = $maxpos + 1;
+
+            if ($maxpos == null) {
+                $maxpos = 0;
+            }
+
+            $scene->pos = $maxpos + 1;
             $scene->campaign_id = $campaign_id;
 
             if ($this->Scenes->save($scene)) {

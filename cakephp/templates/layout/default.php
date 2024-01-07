@@ -15,7 +15,6 @@
  */
 
 
-debug("FIX POS INCREMENT ON SCENES");
 $user = $this->request->getAttribute('identity');
 
 $app_title = 'Solo GM';
