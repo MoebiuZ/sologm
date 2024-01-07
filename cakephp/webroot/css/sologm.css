@@ -27,6 +27,7 @@
 
 #campaign-name:hover + .btn-editcampaignname {
     display: inline;
+    visibility: visible;
 }
 
 #scene-name:hover + .btn-editscenename {

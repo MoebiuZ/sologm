@@ -455,62 +455,112 @@ $(function(){
     $("#threadstable").on("click", ".deletelistitem", adventurelist_delete);
     $("#characterstable").on("click", ".deletelistitem", adventurelist_delete);
 
-   
 
     // ------ Edit campaign name ------ //
+
+    function edit_campaign(id, name) {
+        let postdata = {"id": id, "name": name};
+        $.ajax({
+            url: "/campaigns/edit",
+            data: postdata,
+            dataType: "json",
+            method: "post",
+            type: "post",
+            success: function(response) {
+                if (response.status == "success") {
+                    $("#campaign-name").attr('contenteditable','false');
+                    $("#sidebar-campaign-" + id).text(name);
+                    $('#campaign-name').blur(campaign_blur);
+                    textblocks_open -= 1;
+                } else {
+                    alert("Error");
+                }               
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function campaign_blur() {
+        textblocks_open -= 1;
+        $(this).text($(this).data('oldname'));
+    }
+
+
     $("[id^=campaign-id]").dblclick(function(e) {
         textblocks_open += 1;
-        
-        let id = $(this).attr("id").replace("campaign-id-", '');
         $("#campaign-name").attr('contenteditable','true');
-        $("#campaign-name").focus();
-
-        $('.btn-editcampaignname').hide();
-
+        $('#campaign-name').data('oldname', $(this).text().trim());
+        $("#campaign-name").focus();        
     });
 
-    $("#campaign-name").blur(function(e) {
-        textblocks_open -= 1;
-        $("#campaign-name").attr('contenteditable','false');
-        // Acción a ejecutar después de guardar los cambios
-    });
+
+    $("#campaign-name").blur(campaign_blur);
 
     $("#campaign-name").keydown(function(e) {
         if (e.keyCode === 13) {
-            textblocks_open -= 1;
+            $('#campaign-name').off('blur');
+            let id = $(this).parent().attr("id").replace("campaign-id-", '');
+            let name = $(this).text().trim();
+            $(this).text(name); // remove whitespaces on view
             $("#campaign-name").attr('contenteditable','false');
-            // Acción a ejecutar después de guardar los cambios
+            edit_campaign(id, name);       
         }
     });
 
+
     // ------ Edit scene name ------ //
+    
+    function edit_scene(id, name) {
+        let postdata = {"id": id, "name": name};
+        $.ajax({
+            url: "/scenes/edit",
+            data: postdata,
+            dataType: "json",
+            method: "post",
+            type: "post",
+            success: function(response) {
+                if (response.status == "success") {
+                    $("#scene-name").attr('contenteditable','false');
+                    $("#sidebar-scene-" + id).text(name);
+                    $('#scene-name').blur(scene_blur);
+                    textblocks_open -= 1;
+                } else {
+                    alert("Error");
+                }               
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function scene_blur() {
+        textblocks_open -= 1;
+        $(this).text($(this).data('oldname'));
+    }
+    
     $("[id^=scene-id]").dblclick(function(e) {
         textblocks_open += 1;
-        
-        let id = $(this).attr("id").replace("scene-id-", '');
         $("#scene-name").attr('contenteditable','true');
-        $("#scene-name").focus();
-
-        $('.btn-editscenename').hide();
-        
-
+        $('#scene-name').data('oldname', $(this).text().trim());
+        $("#scene-name").focus();   
     });
 
-    $("#scene-name").blur(function(e) {
-        textblocks_open -= 1;
-        $("#scene-name").attr('contenteditable','false');
-       
-        // Acción a ejecutar después de guardar los cambios
-    });
+    $("#scene-name").blur(scene_blur);
+
 
     $("#scene-name").keydown(function(e) {
         if (e.keyCode === 13) {
-            textblocks_open -= 1;
+            $('#scene-name').off('blur');
+            let id = $(this).parent().attr("id").replace("scene-id-", '');
+            let name = $(this).text().trim();
+            $(this).text(name); // remove whitespaces on view
             $("#scene-name").attr('contenteditable','false');
-            // Acción a ejecutar después de guardar los cambios
+            edit_scene(id, name); 
         }
     });
-
 
 });
 

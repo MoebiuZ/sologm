@@ -69,6 +69,24 @@ class ScenesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+     public function edit($id = null)
+     {
+         if ($this->request->is('ajax')) {
+             $id = $this->request->getData("id");
+             $scene = $this->Scenes->get($id, contain: []);
+             $this->Authorization->authorize($scene);
+             $scene->name = $this->request->getData("name");
+             if ($this->Scenes->save($scene)) {
+                 echo json_encode(array("status" => "success")); 
+                 exit;
+             } else {
+                 echo json_encode(array("status" => "error")); 
+                 exit;
+             }
+         }
+     }
+     /*
     public function edit($id = null)
     {
         $scene = $this->Scenes->get($id, contain: []);
@@ -89,6 +107,7 @@ class ScenesController extends AppController
         $campaigns = $this->Scenes->Campaigns->find('list', limit: 200)->all();
         $this->set(compact('scene', 'campaigns'));
     }
+    */
 
     /**
      * Delete method

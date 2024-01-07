@@ -2,7 +2,7 @@
 <li class="nav-item">
     <a href="/scenes/view/<?= h($scene->id) ?>" class="nav-link<?php if (isset($currentScene)) { echo ($scene->id == $currentScene['id']) ? " active" : "";  } ?>">
         <i class="fas fa-scroll nav-icon"></i>
-        <p><?= h($scene->name) ?></p>
+        <p id="sidebar-scene-<?= $scene->id ?>"><?= h($scene->name) ?></p>
     </a>
 </li>
 <?php endforeach; ?>

@@ -40,6 +40,25 @@ class CampaignsController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+     
+    public function edit($id = null)
+    {
+        if ($this->request->is('ajax')) {
+            $id = $this->request->getData("id");
+            $campaign = $this->Campaigns->get($id, contain: []);
+            $this->Authorization->authorize($campaign);
+            $campaign->name = $this->request->getData("name");
+            if ($this->Campaigns->save($campaign)) {
+                echo json_encode(array("status" => "success")); 
+                exit;
+            } else {
+                echo json_encode(array("status" => "error")); 
+                exit;
+            }
+        }
+    }
+    /*
     public function edit($id = null)
     {
         $campaign = $this->Campaigns->get($id, contain: []);
@@ -56,7 +75,7 @@ class CampaignsController extends AppController
         $users = $this->Campaigns->Users->find('list', limit: 200)->all();
         $this->set(compact('campaign', 'users'));
     }
-
+*/
     /**
      * Delete method
      *

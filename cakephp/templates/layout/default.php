@@ -30,9 +30,8 @@ $app_title = 'Solo GM';
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css(['fontawesome/css/all.min', 'adminlte.min', 'sologm', 'summernote-lite.min']) ?>
-
     <?= $this->fetch('meta') ?>
+    <?= $this->Html->css(['fontawesome/css/all.min', 'adminlte.min', 'sologm', 'summernote-lite.min']) ?>
     <?= $this->fetch('css') ?>
 </head>
 
@@ -60,12 +59,12 @@ $app_title = 'Solo GM';
                     ?>
                     <div id="campaign-id-<?= $campaign_id ?>" class="h6">
                         <span id="campaign-name"><?= $campaign_name ?></span> 
-                        <span id="editcampaign-<?= $campaign_id ?>" class="btn-editcampaignname pl-1 small hidden"> <i class="fas fa-pencil"></i></span>
+                        <span id="editcampaign-<?= $campaign_id ?>" class="btn-editcampaignname pl-1 small hidden"> <i class="fas fa-pencil"></i></span>                        
                     </div>
                         <?php if ($this->get('scene')->id != null): ?>
                         <div id="scene-id-<?= $this->get('scene')->id ?>" class="small">
                             <i class="fa-solid fa-scroll"></i> <span id="scene-name"><?= $this->get('scene')->name ?></span> 
-                            <span id="editcampaign-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden"> <i class="fas fa-pencil"></i></span>
+                            <span id="editscene-<?= $this->get('scene')->id ?>" class="btn-editscenename small pl-1 hidden"> <i class="fas fa-pencil"></i></span>
                         </div>
                         <?php endif; ?> 
                     <?php endif; ?>
