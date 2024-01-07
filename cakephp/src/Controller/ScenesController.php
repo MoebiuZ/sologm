@@ -37,8 +37,6 @@ class ScenesController extends AppController
         if ($this->request->is('post')) {
             $query = $this->Scenes->find('all',['conditions' => ['campaign_id' => $campaign_id]]);
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
-            // TODO: FIX POS
-            debug($maxpos);
             $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
 
             if ($maxpos == null) {
