@@ -33,6 +33,7 @@ class CampaignsController extends AppController
         $this->set(compact('campaign', 'users', 'user'));
     }
 
+    
     /**
      * Edit method
      *
@@ -40,8 +41,7 @@ class CampaignsController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-
-     
+    
     public function edit($id = null)
     {
         if ($this->request->is('ajax')) {
@@ -58,24 +58,7 @@ class CampaignsController extends AppController
             }
         }
     }
-    /*
-    public function edit($id = null)
-    {
-        $campaign = $this->Campaigns->get($id, contain: []);
-        $this->Authorization->authorize($campaign);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $campaign = $this->Campaigns->patchEntity($campaign, $this->request->getData());
-            if ($this->Campaigns->save($campaign)) {
-                $this->Flash->success(__('The campaign has been saved.'));
 
-                return $this->redirect(['action' => 'index', $campaign->id]);
-            }
-            $this->Flash->error(__('The campaign could not be saved. Please, try again.'));
-        }
-        $users = $this->Campaigns->Users->find('list', limit: 200)->all();
-        $this->set(compact('campaign', 'users'));
-    }
-*/
     /**
      * Delete method
      *

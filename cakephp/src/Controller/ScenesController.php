@@ -86,28 +86,7 @@ class ScenesController extends AppController
              }
          }
      }
-     /*
-    public function edit($id = null)
-    {
-        $scene = $this->Scenes->get($id, contain: []);
-        $this->Authorization->authorize($scene);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $scene = $this->Scenes->patchEntity($scene, $this->request->getData());
-            if ($this->Scenes->save($scene)) {
-                $campaignstable = $this->fetchTable('Campaigns');
-                $campaign = $campaignstable->get($scene->campaign_id);
-                $campaignstable->touch($campaign);
-                $campaignstable->save($campaign);
-                $this->Flash->success(__('The scene has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The scene could not be saved. Please, try again.'));
-        }
-        $campaigns = $this->Scenes->Campaigns->find('list', limit: 200)->all();
-        $this->set(compact('scene', 'campaigns'));
-    }
-    */
 
     /**
      * Delete method
