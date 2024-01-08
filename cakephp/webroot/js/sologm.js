@@ -369,11 +369,12 @@ $(function(){
 
     
      // ------ Adventure list functions ------ //
-    function adventurelist_add() {
+    function adventurelist_add(list) {
         let list_type = "";
-        if ($(this).attr('id') == 'newthread') {
+        
+        if ($(this).attr('id') == 'newthread' || list == 'threads') {
             list_type = "threads";
-        } else {
+        } else if ($(this).attr('id') == 'newcharacter' || list == 'characters') {
             list_type = "characters";
         }
         
@@ -454,6 +455,23 @@ $(function(){
     $("#newcharacter").click(adventurelist_add);
     $("#threadstable").on("click", ".deletelistitem", adventurelist_delete);
     $("#characterstable").on("click", ".deletelistitem", adventurelist_delete);
+
+    $("#threadsform").keydown(function(e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            e.stopPropagation();
+            adventurelist_add("threads");
+        }
+    });
+
+    $("#charactersform").keydown(function(e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            e.stopPropagation();
+            adventurelist_add("characters");
+        }
+    });
+
 
 
     // ------ Edit campaign name ------ //
