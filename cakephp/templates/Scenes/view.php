@@ -37,7 +37,7 @@
                     case '8': echo __('Impossible'); break;
                   }
                   echo '</small></div>';
-                  echo '<div><h3>Answer: ' . $content->answer . '</h3></div>';
+                  echo '<div><h3>' . $content->answer . '</h3></div>';
 
                   if ($content->random_event) {
                     echo '<div><strong>' . __('Random event!') .  '</strong></div>';

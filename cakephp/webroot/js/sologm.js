@@ -41,8 +41,7 @@ $(function(){
     
     // ------ Edit text block ------ //
     function edit_textblock() {
-        textblocks_open += 1;
-        
+                
         let id = "";
         if ($(this).hasClass('editblock')) {
             id = $(this).attr("id").replace("edit-", '');
@@ -50,25 +49,31 @@ $(function(){
             id = $(this).attr("id").replace("block-", '');
         }
 
-        $('#block-'.concat(id)).summernote({
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-                ['fontsize', ['fontsize']],
-                ['color', ['forecolor', 'color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-            ],
-             height: 210,
-             spellCheck: false,
-             focus: true
-        });
+        if ($(this).hasClass('pblocktext')) {
 
-        $('#save-'.concat(id)).show();
-        $('#cancel-'.concat(id)).show();
-        $('#edit-'.concat(id)).hide();
-        $('#delete-'.concat(id)).hide();
+            textblocks_open += 1;
+            
+            $('#block-'.concat(id)).summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['forecolor', 'color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ],
+                height: 210,
+                spellCheck: false,
+                focus: true
+            });
+
+            $('#save-'.concat(id)).show();
+            $('#cancel-'.concat(id)).show();
+            $('#edit-'.concat(id)).hide();
+            $('#delete-'.concat(id)).hide();
+        }
     }
     
+
     $("#blocks").on("dblclick", "[id^=block]", edit_textblock);
     $("#blocks").on("click", ".editblock", edit_textblock);
 
