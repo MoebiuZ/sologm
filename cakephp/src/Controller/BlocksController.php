@@ -39,7 +39,7 @@ class BlocksController extends AppController
             $query = $this->Blocks->find('all');
             $maxpos = $query->select(['maxpos' => $query->func()->max('pos')])->first()->maxpos;
             
-            if ($maxpos = null) {
+            if ($maxpos == null) {
                 $maxpos = 0;
             }
 
