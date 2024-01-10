@@ -349,7 +349,15 @@ $(function(){
             success: function(response) {
                 if (response.status == "success") {
                     let newblock = '<div id="soloblock-' + response.block_id + '" class="fade show">' +
-                            '<i class="fas fa-brain bg-blue"></i>' +
+                            '<i class="fas ';
+                            if (meaning_type == "description") {
+                                newblock += "fa-brain";
+                            } else if (meaning_type == "element") {
+                                newblock += "fa-box";
+                            } else {
+                                newblock += "fa-bolt";
+                            }
+                            newblock += ' bg-blue"></i>' +
                             '<div class="pblock timeline-item pb-2">' +
                             '<div class="float-left">' +
                             '<button id="delete-' + response.block_id + '" class="deleteblock btn btn-xs hidden text-danger" type="button"><i class="fas fa-trash"></i></button>' +

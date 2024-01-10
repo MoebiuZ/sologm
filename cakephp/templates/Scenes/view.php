@@ -8,7 +8,17 @@
 <div id="blocks" class="timeline">
 <?php foreach ($scene->blocks as $block): ?>
    <div id="soloblock-<?= $block->id ?>">
-      <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?> <?= $block->blocktype == 'fate' ? 'fa-question bg-orange' : '' ?> <?= $block->blocktype == 'randomevent' ? 'fa-dice bg-green' : '' ?> <?= $block->blocktype == 'eventmeaning' ? 'fa-brain bg-blue' : '' ?>"></i>    
+      <?php 
+        $meaning_type = json_decode($block->content)->meaning_type;
+        if ($meaning_type == "description") {
+          $icon = "fa-brain";
+        } else if ($meaning_type == "element") {
+          $icon = "fa-box";
+        } else {
+          $icon = "fa-bolt";
+        }
+      ?>
+      <i class="fas <?= $block->blocktype == 'text' ? 'fa-file-lines bg-maroon' : '' ?><?= $block->blocktype == 'fate' ? 'fa-question bg-orange' : '' ?><?= $block->blocktype == 'randomevent' ? 'fa-dice bg-green' : '' ?><?= $block->blocktype == 'eventmeaning' ? $icon . ' bg-blue' : '' ?>"></i>    
       <div class="pblock timeline-item pb-2">
       
           <div class="float-left">
