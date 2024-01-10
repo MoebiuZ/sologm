@@ -23,7 +23,7 @@
                     <table id="threadstable" class="table table-sm w-100">
                         <?php foreach ($threads as $thread): ?>
                         <tr id="threads-<?= $thread->id ?>" class="advlisttr">
-                            <td style="word-wrap: break-word;min-width: 170px;max-width: 170px;"><?= $thread->content ?></td>
+                            <td style="word-wrap: break-word; min-width: 170px; max-width: 170px;"><?= $thread->content ?></td>
                             <td style="width: 50px"><button id="delete-<?= $thread->id ?>" class="deletelistitem btn hidden btn-xs text-danger" type="button"><i class="fas fa-trash"></i></button></td>
                         </tr>
                         <?php endforeach; ?>

@@ -403,8 +403,8 @@ $(function(){
             success: function(response) {
                 if (response.status == "success") {
                     
-                    let newitem = '<tr id="' + list_type + '-' + response.listitem_id + '">' +
-                                  ' <td style="word-wrap: break-word;min-width: 170px;max-width: 170px;">' + inputs['content'] + '</td>' +
+                    let newitem = '<tr id="' + list_type + '-' + response.listitem_id + '" class="advlisttr">' +
+                                  '<td style="word-wrap: break-word; min-width: 170px; max-width: 170px;">' + inputs['content'] + '</td>' +
                                   '<td style="width: 50px"><button id="delete-' + response.listitem_id + '" class="deletelistitem btn hidden btn-xs text-danger" type="button"><i class="fas fa-trash"></i></button></td>' +
                                   '</tr>';
                                         
