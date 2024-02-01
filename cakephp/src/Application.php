@@ -246,7 +246,7 @@ class Application extends BaseApplication
 
     public function console(CommandCollection $commands): CommandCollection
     {
-        $commands->autoDiscover();
+        $commands->addMany($commands->autoDiscover());
         $commands->add('user newadmin', UserNewAdminCommand::class);
         return $commands;
     } 
