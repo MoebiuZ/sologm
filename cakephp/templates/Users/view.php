@@ -24,7 +24,7 @@
                         }
                      ?>
                 </div>
-                <h3 class="profile-username text-center"><?= __($user->name . " " . $user->last_name) ?></h3>
+                <h3 class="profile-username text-center"><?= $user->name . " " . $user->last_name ?></h3>
                 <small class="text-center"><?= __('Last login:') ?> <?= $user->last_login ?></small>
                 <br />
                 <?php if ($last_campaign != null) : ?>
